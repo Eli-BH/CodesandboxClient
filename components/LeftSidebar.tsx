@@ -96,7 +96,7 @@ const LeftSidebar = () => {
       border-2
       p-1
       w-[150px]
-      
+      py-2
       text-xl
       rounded-md
       border-[#e85538]
