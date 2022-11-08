@@ -5,7 +5,10 @@ import Navbar from "../components/Navbar";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps,
+}: AppProps): JSX.Element | null {
   const [isSSR, setIsSSR] = useState(true);
 
   useEffect(() => {
@@ -22,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
       w-[100vw]
       m-auto
       overflow-hidden
-      h-[100vh]
+      portrait:h-[100vh]
       bg-white
     "
     >
@@ -37,7 +40,10 @@ export default function App({ Component, pageProps }: AppProps) {
         "
       >
         <LeftSidebar />
-        <Component {...pageProps} />
+        <div className="h-full w-full">
+          <Component {...pageProps} />
+        </div>
+
         <RightSidebar />
       </div>
     </div>
