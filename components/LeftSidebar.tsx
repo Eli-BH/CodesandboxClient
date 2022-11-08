@@ -1,30 +1,37 @@
 import React from "react";
 import User from "../utils/user.png";
 import { ImLinkedin, ImYoutube, ImFacebook } from "react-icons/im";
+import {
+  MdPersonAddAlt,
+  MdOutlinePermPhoneMsg,
+  MdOutlineSettings,
+  MdOutlineHome,
+} from "react-icons/md";
 import Image from "next/image";
+import Link from "next/link";
 
 const LeftSidebar = () => {
-  const menuItmes = [
-    "Home",
-    "Contact Us",
-    "Manage Patients",
-    "Settings",
-    <button
-      className="
-      border-2
-      p-3
-      w-[150px]
-      text-2xl
-      rounded-md
-      border-[#e85538]
-      text-[#e85538]
-      hover:text-[#ffffff]
-      hover:bg-[#f29b8a]
-      cursor-pointer
-      "
-    >
-      Logout
-    </button>,
+  const items = [
+    {
+      text: "Home",
+      icon: <MdOutlineHome />,
+      link: "home",
+    },
+    {
+      text: "Contact Us",
+      icon: <MdOutlinePermPhoneMsg />,
+      link: "contact",
+    },
+    {
+      text: "Manage Patients",
+      icon: <MdPersonAddAlt />,
+      link: "manage_patients",
+    },
+    {
+      text: "Settings",
+      icon: <MdOutlineSettings />,
+      link: "settings",
+    },
   ];
 
   return (
@@ -32,7 +39,7 @@ const LeftSidebar = () => {
       className="
         border-r-2
         h-full
-        w-[20%]
+        w-[30%]
         items-center
         flex
         flex-col
@@ -41,26 +48,85 @@ const LeftSidebar = () => {
       "
     >
       <div className="border-b-2 border-gray-200 h-[20%] flex-col flex items-center justify-center">
-        <Image src={User} alt="profile Image" className="w-[64px] " />
+        <Link href="/?page=profile">
+          <Image src={User} alt="profile Image" className="w-[64px] " />
+        </Link>
 
-        <h2 className="text-2xl font-medium font-sans">Hello, John</h2>
+        <h2 className="text-2xl font-medium font-sans">Hello, John!</h2>
       </div>
 
       <div className="border-b-2 h-[65%] flex flex-col items-center justify-evenly text-xl border-gray-200">
-        {menuItmes &&
-          menuItmes.map((item, index) => (
-            <div
-              key={index}
-              className="hover:text-orange-500 w-full text-center  cursor-pointer"
-            >
-              <h2 className="text-2xl font-medium font-sans">{item}</h2>
-            </div>
-          ))}
+        {items &&
+          items.map(
+            (item, index): JSX.Element => (
+              <Link
+                className="w-full flex justify-center"
+                href={`/?page=${item.link}`}
+                key={index}
+              >
+                <div
+                  className="
+                        w-[70%] 
+                        text-center 
+                        cursor-pointer
+                        flex
+                        justify-start
+                        items-center
+                        hover:bg-[#14375a]
+                        hover:text-white
+                        hover:shadow-xl
+                        border-2
+                        border-white
+                        hover:border-red-300
+                        text-2xl
+                        p-2
+                        rounded-md
+                        "
+                >
+                  {item.icon}
+                  <p className=" ml-3 text-sm xxxl:text-2xl font-medium font-sans">
+                    {item.text}
+                  </p>
+                </div>
+              </Link>
+            )
+          )}
+        <button
+          className="
+      border-2
+      p-1
+      w-[150px]
+      
+      text-xl
+      rounded-md
+      border-[#e85538]
+      text-[#e85538]
+      hover:text-[#ffffff]
+      hover:bg-[#f29b8a]
+      cursor-pointer
+      shadow-lg
+      drop-shadow-lg
+      "
+        >
+          Logout
+        </button>
       </div>
       <div className="h-[15%] flex items-center justify-evenly">
-        <ImFacebook className="text-[2em] text-blue-600 cursor-pointer" />
-        <ImLinkedin className="text-[2em] text-blue-900 cursor-pointer" />
-        <ImYoutube className="text-[2em] text-red-600   cursor-pointer" />
+        <a href="https://www.facebook.com/freedomcareny/" target="_blank">
+          <ImFacebook className="text-[2em]  text-blue-600 cursor-pointer" />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/freedomcareny"
+          target="_blank"
+        >
+          <ImLinkedin className="text-[2em]  text-blue-900 cursor-pointer" />
+        </a>
+        <a
+          href="https://www.youtube.com/channel/UCGaP0_PxlyAhDK9L68goIrQ"
+          target="_blank"
+        >
+          <ImYoutube className="text-[2em] text-red-600   cursor-pointer" />
+        </a>
       </div>
     </div>
   );

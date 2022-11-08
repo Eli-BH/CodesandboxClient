@@ -13,6 +13,7 @@ module.exports = {
         lg: { min: "1200px" }, //Desktop smallest
         xl: { min: "1159px" }, //Desktop wide,
         xxl: { min: "1359px" }, // Desktop widescreen
+        xxxl: { min: "1900px" }, // HD Desktop
       },
       width: {
         1600: "1600px",
@@ -44,5 +45,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@headlessui/tailwindcss")({ prefix: "ui" })],
 };
