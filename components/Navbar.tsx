@@ -12,15 +12,15 @@ const Navbar = () => {
       className="
             border-b-2
             w-full
+            h-full
             justify-center
             flex 
             items-center
             border-gray-300
-            py-5
-            px-4
             shadow-lg
             shadow-gray-200/100
             bg-white
+            
         "
     >
       <CgMenu
@@ -38,6 +38,7 @@ const Navbar = () => {
                 p-3
                 rounded-full
                 hover:bg-gray-200
+                
             "
       />
       <div className="md:w-[250px] xs:w-[100px]">
@@ -54,7 +55,7 @@ const Navbar = () => {
             absolute
             bottom-0
             top-0
-            ${menuShowing ? "" : "-translate-x-[2000px]"}
+            ${menuShowing ? "" : "-translate-x-[4000px]"}
             h-full
             w-full
             bg-white

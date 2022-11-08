@@ -26,14 +26,14 @@ export default function App({ Component, pageProps }: AppProps) {
       bg-white
     "
     >
-      <div>
+      <div className="h-[8vh]">
         <Navbar />
       </div>
       <div
         className="
           flex
           w-full
-          h-full
+          h-[92vh]
         "
       >
         <LeftSidebar />
