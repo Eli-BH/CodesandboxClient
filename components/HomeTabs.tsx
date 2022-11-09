@@ -1,4 +1,14 @@
 import { Tab } from "@headlessui/react";
+import {
+  MdCheckCircle,
+  MdPending,
+  MdError,
+  MdRemoveCircle,
+  MdCancel,
+  MdOutlineCircle,
+  MdOutlineArrowRight,
+} from "react-icons/md";
+import { AiOutlineDoubleRight } from "react-icons/ai";
 
 const HomeTabs = (): JSX.Element => {
   return (
@@ -61,13 +71,57 @@ const HomeTabs = (): JSX.Element => {
             rounded-b-lg
           "
         >
-          Caregiver Content
+          <div
+            className="
+            h-full
+            p-5
+            flex
+            flex-col
+            justify-evenly 
+            items-center
+          "
+          >
+            <div
+              className="
+                bg-gray-200
+                w-[90%]
+                justify-between
+                items-center
+                flex
+                text-[2em]
+                
+              "
+            >
+              <MdOutlineCircle />
+              <p>Intake Information</p>
+              <AiOutlineDoubleRight />
+            </div>
+            <div>
+              <MdOutlineCircle />
+              <p>Employee Douments </p>
+              <AiOutlineDoubleRight />
+            </div>
+            <div>
+              <MdOutlineCircle />
+              <p>Health Assessment </p>
+              <AiOutlineDoubleRight />
+            </div>
+            <div>
+              <MdOutlineCircle />
+              <p>Welcome Call</p>
+              <AiOutlineDoubleRight />
+            </div>
+            <div>
+              <MdOutlineCircle />
+              <p>Enrollment Orientation</p>
+              <AiOutlineDoubleRight />
+            </div>
+          </div>
         </Tab.Panel>
         <Tab.Panel
           className="
             bg-gray-50
             h-full
-            
             border-x-2
             border-b-2
             border-t
@@ -76,7 +130,43 @@ const HomeTabs = (): JSX.Element => {
             rounded-b-lg
           "
         >
-          Patient Content
+          <div
+            className="
+               h-full
+               p-5
+               flex
+               flex-col
+               justify-evenly 
+               items-center
+               w-[90%]
+            "
+          >
+            <div>
+              <MdOutlineCircle />
+              <p>Intake Information </p>
+              <AiOutlineDoubleRight />
+            </div>
+            <div>
+              <MdOutlineCircle />
+              <p>Medicaid Nurse Visit</p>
+              <AiOutlineDoubleRight />
+            </div>
+            <div>
+              <MdOutlineCircle />
+              <p>Doctor Order - DOH</p>
+              <AiOutlineDoubleRight />
+            </div>
+            <div>
+              <MdOutlineCircle />
+              <p>Authorization</p>
+              <AiOutlineDoubleRight />
+            </div>
+            <div>
+              <MdOutlineCircle />
+              <p>Orientation</p>
+              <AiOutlineDoubleRight />
+            </div>
+          </div>
         </Tab.Panel>
       </Tab.Group>
     </div>
