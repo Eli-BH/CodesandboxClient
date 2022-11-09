@@ -39,21 +39,16 @@ const Navbar = () => {
     },
   ];
 
+  const resolutions = {
+    navbarContainer100 : "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-white",
+    navbarContainer150 : "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-blue-100" 
+  }
+
+
   return (
     <div
-      className="
-            border-b-2
-            w-full
-            h-full
-            justify-center
-            flex 
-            items-center
-            border-gray-300
-            shadow-lg
-            shadow-gray-200/100
-            bg-white
-            
-        "
+        className={window.devicePixelRatio >= 1.5 ? resolutions.navbarContainer150 : resolutions.navbarContainer100 }
+        id="navbarContainer"
     >
       <CgMenu
         onClick={() => setMenuShowing(true)}
