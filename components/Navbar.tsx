@@ -73,9 +73,9 @@ const Navbar = () => {
                 
             "
       />
-      <div className="md:w-[250px] xs:w-[100px]">
+      <div className="md:w-[200px] xs:w-[100px]">
         <Image
-          className="cursor-pointer"
+          className="py-2"
           src={Logo}
           alt="Freedom care logo"
           layout="responsive"
