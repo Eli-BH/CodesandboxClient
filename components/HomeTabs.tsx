@@ -32,6 +32,7 @@ const HomeTabs = (): JSX.Element => {
               font-bold
               outline-0
               mr-1
+            
             "
           >
             Caregiver
@@ -62,7 +63,6 @@ const HomeTabs = (): JSX.Element => {
           className="
             bg-gray-50
             h-full
-            
             border-x-2
             border-b-2
             border-t
@@ -74,7 +74,8 @@ const HomeTabs = (): JSX.Element => {
           <div
             className="
             h-full
-            p-5
+            p-2
+            lg:p-5
             flex
             flex-col
             justify-evenly 
@@ -83,41 +84,100 @@ const HomeTabs = (): JSX.Element => {
           >
             <div
               className="
-                bg-gray-200
+                hover:bg-gray-100
                 w-[90%]
                 justify-between
                 items-center
                 flex
-                text-[2em]
-                
+                text-md
+                lg:text-[1.5em]
               "
             >
-              <MdOutlineCircle />
+              <div className="flex border-2 border-gray-150 w-[200px] items-center justify-evenly rounded-full px">
+                <MdOutlineCircle />
+                <p>Requested</p>
+              </div>
+
               <p>Intake Information</p>
-              <AiOutlineDoubleRight />
+              <AiOutlineDoubleRight className="w-[200px] cursor-pointer" />
             </div>
-            <div>
-              <MdOutlineCircle />
+            <div
+              className="
+                hover:bg-gray-100
+                w-[90%]
+                justify-between
+                items-center
+                flex
+                text-md
+                lg:text-[1.5em]
+              "
+            >
+              <div className="flex border-2 border-gray-150 w-[200px] items-center justify-evenly rounded-full px">
+                <MdOutlineCircle />
+                <p>Requested</p>
+              </div>
               <p>Employee Douments </p>
-              <AiOutlineDoubleRight />
+              <AiOutlineDoubleRight className="w-[200px] cursor-pointer" />
             </div>
-            <div>
-              <MdOutlineCircle />
+            <div
+              className="
+                hover:bg-gray-100
+                w-[90%]
+                justify-between
+                items-center
+                flex
+                text-md
+                lg:text-[1.5em]
+              "
+            >
+              <div className="flex border-2 border-gray-150 w-[200px] items-center justify-evenly rounded-full px">
+                <MdOutlineCircle />
+                <p>Requested</p>
+              </div>
               <p>Health Assessment </p>
-              <AiOutlineDoubleRight />
+              <AiOutlineDoubleRight className="w-[200px] cursor-pointer" />
             </div>
-            <div>
-              <MdOutlineCircle />
+            <div
+              className="
+                hover:bg-gray-100
+                w-[90%]
+                justify-between
+                items-center
+                flex
+                text-md
+                lg:text-[1.5em]
+              "
+            >
+              <div className="flex border-2 border-gray-150 w-[200px] items-center justify-evenly rounded-full px">
+                <MdOutlineCircle />
+                <p>Requested</p>
+              </div>
               <p>Welcome Call</p>
-              <AiOutlineDoubleRight />
+              <AiOutlineDoubleRight className="w-[200px] cursor-pointer" />
             </div>
-            <div>
-              <MdOutlineCircle />
+
+            <div
+              className="
+                hover:bg-gray-100
+                w-[90%]
+                justify-between
+                items-center
+                flex
+                text-md
+                lg:text-[1.5em]
+              "
+            >
+              <div className="flex border-2 border-gray-150 w-[200px] items-center justify-evenly rounded-full px">
+                <MdOutlineCircle />
+                <p>Requested</p>
+              </div>
               <p>Enrollment Orientation</p>
-              <AiOutlineDoubleRight />
+              <AiOutlineDoubleRight className="w-[200px] cursor-pointer" />
             </div>
           </div>
         </Tab.Panel>
+
+        {/* patient panel */}
         <Tab.Panel
           className="
             bg-gray-50
@@ -133,38 +193,106 @@ const HomeTabs = (): JSX.Element => {
           <div
             className="
                h-full
-               p-5
-               flex
-               flex-col
-               justify-evenly 
-               items-center
-               w-[90%]
+            p-5
+            flex
+            flex-col
+            justify-evenly 
+            items-center
             "
           >
-            <div>
-              <MdOutlineCircle />
+            <div
+              className="
+                hover:bg-gray-100
+                w-[90%]
+                justify-between
+                items-center
+                flex
+                text-md
+                lg:text-[1.5em]
+              "
+            >
+              <div className="flex border-2 border-gray-150 w-[200px] items-center justify-evenly rounded-full px">
+                <MdOutlineCircle />
+                <p>Requested</p>
+              </div>
               <p>Intake Information </p>
-              <AiOutlineDoubleRight />
+              <AiOutlineDoubleRight className="w-[200px] cursor-pointer" />
             </div>
-            <div>
-              <MdOutlineCircle />
+
+            <div
+              className="
+                hover:bg-gray-100
+                w-[90%]
+                justify-between
+                items-center
+                flex
+                text-md
+                lg:text-[1.5em]
+              "
+            >
+              <div className="flex border-2 border-gray-150 w-[200px] items-center justify-evenly rounded-full px">
+                <MdOutlineCircle />
+                <p>Requested</p>
+              </div>
               <p>Medicaid Nurse Visit</p>
-              <AiOutlineDoubleRight />
+              <AiOutlineDoubleRight className="w-[200px] cursor-pointer" />
             </div>
-            <div>
-              <MdOutlineCircle />
+
+            <div
+              className="
+                hover:bg-gray-100
+                w-[90%]
+                justify-between
+                items-center
+                flex
+                text-md
+                lg:text-[1.5em]
+              "
+            >
+              <div className="flex border-2 border-gray-150 w-[200px] items-center justify-evenly rounded-full px">
+                <MdOutlineCircle />
+                <p>Requested</p>
+              </div>
               <p>Doctor Order - DOH</p>
-              <AiOutlineDoubleRight />
+              <AiOutlineDoubleRight className="w-[200px] cursor-pointer" />
             </div>
-            <div>
-              <MdOutlineCircle />
+
+            <div
+              className="
+                hover:bg-gray-100
+                w-[90%]
+                justify-between
+                items-center
+                flex
+                text-md
+                lg:text-[1.5em]
+              "
+            >
+              <div className="flex border-2 border-gray-150 w-[200px] items-center justify-evenly rounded-full px">
+                <MdOutlineCircle />
+                <p>Requested</p>
+              </div>
               <p>Authorization</p>
-              <AiOutlineDoubleRight />
+              <AiOutlineDoubleRight className="w-[200px] cursor-pointer" />
             </div>
-            <div>
-              <MdOutlineCircle />
+
+            <div
+              className="
+                hover:bg-gray-100
+                w-[90%]
+                justify-between
+                items-center
+                flex
+                text-md
+                lg:text-[1.5em]
+              "
+            >
+              <div className="flex border-2 border-gray-150 w-[200px] items-center justify-evenly rounded-full px">
+                <MdOutlineCircle />
+                <p>Requested</p>
+              </div>
               <p>Orientation</p>
-              <AiOutlineDoubleRight />
+              <AiOutlineDoubleRight className="w-[200px] cursor-pointer" />
             </div>
           </div>
         </Tab.Panel>
