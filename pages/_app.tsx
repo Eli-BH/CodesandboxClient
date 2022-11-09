@@ -29,14 +29,14 @@ export default function App({
       bg-white
     "
     >
-      <div className="h-[8vh]">
+      <div className="h-[10vh]">
         <Navbar />
       </div>
       <div
         className="
           flex
           w-full
-          h-[92vh]
+          h-[90vh]
         "
       >
         <LeftSidebar />

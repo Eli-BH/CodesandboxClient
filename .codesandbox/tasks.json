@@ -13,6 +13,10 @@
       "name": "npm run dev",
       "command": "npm run dev",
       "runAtStart": true
+    },
+    "next start": {
+      "name": "next start",
+      "command": "next start"
     }
   }
 }
