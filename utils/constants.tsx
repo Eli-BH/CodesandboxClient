@@ -82,7 +82,7 @@ export const contactItems = {
     },
     {
       title: "Melville, Long Island",
-      address: "445 Broad Hollow Road,",
+      address: "445 Broad Hollow Road",
       address2: "Suite 25",
       local: "Melville, New York 11747",
       number: "(718) 989-3734",

@@ -10,11 +10,14 @@ const ContactPage = (): JSX.Element => {
         rounded-lg
         border-2
         border-gray-400
+
         "
     >
-      <div className="pl-5">
-        <p className="text-[3em] font-bold">Our New York Locations</p>
-        <p className="text-xl font-semibold">
+      <div className="pl-5 h-[15%]">
+        <p className="text-[1.5em] lg:text-[3em] font-bold">
+          Our New York Locations
+        </p>
+        <p className="text-sm w-[280px] md:w-full lg:w-full xl:w-full lg:text-xl font-semibold">
           All office visits are by appointment only. Call (877) 771-5875 to
           schedule.
         </p>
@@ -22,15 +25,17 @@ const ContactPage = (): JSX.Element => {
 
       <div
         className="
-          h-[75vh]
-          overflow-y-scroll
+          h-[85%]
+          bg-white
+          overflow-auto
           gap-5
           flex
-          flex-wrap
-          bg-white
+          w-full
           items-start
           p-5
-        "
+          flex-wrap
+          rounded-lg
+      "
       >
         {contactItems.newYork.map((item, index) => (
           <a
@@ -47,12 +52,14 @@ const ContactPage = (): JSX.Element => {
           border-2
           border-gray-600
           rounded-lg
-          p-5
-          w-[200px]
-          h-[250px]
+          p-3
+          w-[210px]
+          h-[210px]
           shadow-lg
           opacity-75
           shadow-black
+          bg-gray-50
+          
         "
             >
               <p className="font-bold">{item.title}</p>
