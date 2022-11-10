@@ -41,7 +41,9 @@ const Navbar = () => {
 
   const resolutions = {
     navbarContainer100 : "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-white",
-    navbarContainer150 : "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-blue-100" 
+    navbarContainer150 : "border-b-2 w-full h-15 justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-blue-100",
+    logoContainer100 : "md:w-[200px] xs:w-[100px]",
+    logoContainer150 : "md:w-[150px] xs:w-[75px] w-1/5"
   }
 
 
@@ -68,7 +70,7 @@ const Navbar = () => {
                 
             "
       />
-      <div className="md:w-[200px] xs:w-[100px]">
+      <div className={window.devicePixelRatio >= 1.5 ? resolutions.logoContainer150 : resolutions.logoContainer100}>
         <Image
           className="py-2"
           src={Logo}

@@ -5,8 +5,6 @@ import Navbar from "../components/Navbar";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
 
-import Head from 'next/head';
-
 export default function App({
   Component,
   pageProps,
@@ -21,6 +19,14 @@ export default function App({
     return null;
   }
 
+  const resolutions = {
+    nav100 : "h-[10vh]",
+    nav150 : "h-[12vh]",
+    mainContent100 : "flex w-full h-[90vh]",
+    mainContent150 : "flex w-full h-[88vh]",
+  }
+
+
   return (
     <div
       className="
@@ -31,18 +37,12 @@ export default function App({
       bg-white
     "
     >
-    <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    </Head>
-      <div className="h-[10vh]">
+    
+      <div className={window.devicePixelRatio >= 1.5 ? resolutions.nav150 : resolutions.nav100 }>
         <Navbar />
       </div>
       <div
-        className="
-          flex
-          w-full
-          h-[90vh]
-        "
+        className={window.devicePixelRatio >= 1.5 ? resolutions.mainContent150 : resolutions.mainContent100 }
       >
         <LeftSidebar />
         <div className="h-full w-full">

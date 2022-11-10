@@ -29,18 +29,16 @@ export default function Home() {
   };
 
   console.log(page);
+
+  const resolutions = {
+    mainPage100 : "md:w-[100%] lg:w-full h-full rounded-b-lg m-auto bg-gray-100 p-3 pb-5",
+    mainPage150 : "md:w-[100%] lg:w-full h-full rounded-b-lg m-auto bg-gray-100 p-3 pb-3"
+
+  }
+  
   return (
     <div
-      className="
-        md:w-[100%]
-        lg:w-full
-        h-full
-        rounded-b-lg
-        m-auto
-        bg-gray-100
-        p-3
-        pb-5
-      "
+      className= {window.devicePixelRatio >= 1.5 ? resolutions.mainPage150 : resolutions.mainPage100 }
     >
     
       {pageRoutes()}

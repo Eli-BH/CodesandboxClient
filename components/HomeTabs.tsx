@@ -11,8 +11,14 @@ import {
 import { AiOutlineDoubleRight } from "react-icons/ai";
 
 const HomeTabs = (): JSX.Element => {
+
+  const resolutions = {
+    homeTab100 : "h-[95%]",
+    homeTab150 : "h-[90%]"
+  }
+
   return (
-    <div className="h-[95%]">
+    <div className={window.devicePixelRatio >= 1.5 ? resolutions.homeTab150 : resolutions.homeTab100 }>
       <Tab.Group>
         <Tab.List>
           <Tab
