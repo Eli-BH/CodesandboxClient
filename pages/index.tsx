@@ -11,6 +11,7 @@ import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
 import Image from "next/image";
 
+import Caregiver from "../utils/caregiver.jpg";
 import Background from "../utils/background.png";
 
 export default function Home() {
@@ -38,15 +39,14 @@ export default function Home() {
 
   const LoggedOut = (): JSX.Element => {
     return (
-      <div className="relative w-[100vw] h-[100vh] bg-[url('../utils/background.png')] bg-cover  bg-blend-hard-light ">
-        <div className="absolute z-10 top-0 bottom-0 left-0 right-0 backdrop-blur-sm bg-white/30 opacity-50"></div>
+      <div className="relative w-[100vw] h-[100vh] bg-[url('../utils/background.png')] bg-cover bg-no-repeat  bg-blend-hard-light flex justify-between">
         <div className=" inline-block z-30 w-[20%] h-[50%] bg-white z-100">
           login
         </div>
-        <div className="">
+        <div className="w-[50%] h-[100%]">
           <Image
-            src={Background}
-            className="w-[50vw]"
+            src={Caregiver}
+            className="w-[100%] h-[100%]"
             alt="FreedomCare users"
           />
         </div>
