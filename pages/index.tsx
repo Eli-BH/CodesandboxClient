@@ -9,6 +9,9 @@ import ProfilePage from "./ProfilePage";
 import Navbar from "../components/Navbar";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
+import Image from "next/image";
+
+import Background from "../utils/background.png";
 
 export default function Home() {
   const router = useRouter();
@@ -34,7 +37,21 @@ export default function Home() {
   const loggedIn: boolean = false;
 
   const LoggedOut = (): JSX.Element => {
-    return <div className="w-full h-full">You are not logged in</div>;
+    return (
+      <div className="relative w-[100vw] h-[100vh] bg-[url('../utils/background.png')] bg-cover  bg-blend-hard-light ">
+        <div className="absolute z-10 top-0 bottom-0 left-0 right-0 backdrop-blur-sm bg-white/30 opacity-50"></div>
+        <div className=" inline-block z-30 w-[20%] h-[50%] bg-white z-100">
+          login
+        </div>
+        <div className="">
+          <Image
+            src={Background}
+            className="w-[50vw]"
+            alt="FreedomCare users"
+          />
+        </div>
+      </div>
+    );
   };
 
   return loggedIn ? (

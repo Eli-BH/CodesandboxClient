@@ -24,6 +24,7 @@ export default function App({
       className="
       w-[100vw]
       m-auto
+      h-[100vh]
       overflow-hidden
       portrait:h-[100vh]
       bg-white
