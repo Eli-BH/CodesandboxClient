@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -46,5 +47,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@headlessui/tailwindcss")({ prefix: "ui" })],
+  plugins: [
+    require("@headlessui/tailwindcss")({ prefix: "ui" }),
+    require("@tailwindcss/forms"),
+  ],
 };
