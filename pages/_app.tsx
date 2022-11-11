@@ -29,23 +29,7 @@ export default function App({
       bg-white
     "
     >
-      <div className="h-[10vh]">
-        <Navbar />
-      </div>
-      <div
-        className="
-          flex
-          w-full
-          h-[90vh]
-        "
-      >
-        <LeftSidebar />
-        <div className="h-full w-full">
-          <Component {...pageProps} />
-        </div>
-
-        <RightSidebar />
-      </div>
+      <Component {...pageProps} />
     </div>
   );
 }

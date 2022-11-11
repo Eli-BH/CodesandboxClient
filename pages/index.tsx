@@ -6,6 +6,9 @@ import SettingsPage from "./SettingsPage";
 import ManagePatientsPage from "./ManagePatientsPage";
 import ContactPage from "./ContactPage";
 import ProfilePage from "./ProfilePage";
+import Navbar from "../components/Navbar";
+import LeftSidebar from "../components/LeftSidebar";
+import RightSidebar from "../components/RightSidebar";
 
 export default function Home() {
   const router = useRouter();
@@ -28,10 +31,28 @@ export default function Home() {
     }
   };
 
-  console.log(page);
-  return (
-    <div
-      className="
+  const loggedIn: boolean = false;
+
+  const LoggedOut = (): JSX.Element => {
+    return <div className="w-full h-full">You are not logged in</div>;
+  };
+
+  return loggedIn ? (
+    <>
+      <div className="h-[10vh]">
+        <Navbar />
+      </div>
+      <div
+        className="
+      flex
+      w-full
+      h-[90vh]
+    "
+      >
+        <LeftSidebar />
+        <div className="h-full w-full">
+          <div
+            className="
         md:w-[100%]
         lg:w-full
         h-full
@@ -41,8 +62,15 @@ export default function Home() {
         p-3
         pb-5
       "
-    >
-      {pageRoutes()}
-    </div>
+          >
+            {pageRoutes()}
+          </div>
+        </div>
+
+        <RightSidebar />
+      </div>
+    </>
+  ) : (
+    <LoggedOut />
   );
 }
