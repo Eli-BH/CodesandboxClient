@@ -1,6 +1,6 @@
 import React from "react";
 
-const ForgotPasswordForm = () => {
+const ForgotPasswordForm = (): JSX.Element => {
   return (
     <form
       autoComplete="off"
@@ -38,7 +38,7 @@ const ForgotPasswordForm = () => {
   outline-none 
   focus:border-green-500"
       >
-        Login
+        Submit
       </button>
     </form>
   );
