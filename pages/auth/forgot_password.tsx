@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import logo from "../../utils/Logo-Orange.svg";
 import LoginPage from "../LoginPage";
 import ForgotPasswordForm from "../../components/ForgotPasswordForm";
 

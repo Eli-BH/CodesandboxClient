@@ -45,6 +45,9 @@ module.exports = {
       height: {
         "88vh": "88vh",
       },
+      boxShadow: {
+        dark: "6px 6px 8px rgba(0,0,0,.7)",
+      },
     },
   },
   plugins: [

@@ -1,12 +1,28 @@
 import React from "react";
 
 const LoginForm = (): JSX.Element => {
+  const alertType = (type: string): string | undefined => {
+    switch (type) {
+      case "error":
+        return "red";
+      case "info":
+        return "yellow";
+      case "success":
+        return "green";
+      default:
+        return;
+    }
+  };
   return (
     <form
       autoComplete="off"
       className="h-[80%] flex flex-col p-5 justify-evenly items-center"
     >
-      <div className="w-3/4 h-10 flex items-center justify-center border-green-400 border-2 rounded-md bg-green-200">
+      <div
+        className={`w-3/4 h-10 flex items-center justify-center border-${alertType(
+          "success"
+        )}-400 border-2 rounded-md bg-${alertType("success")}-200`}
+      >
         This is a sample
       </div>
       <input

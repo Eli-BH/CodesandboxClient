@@ -9,8 +9,9 @@ async function dbConnect() {
     return;
   }
 
+  console.log(process.env.NEXT_PUBLIC_MONGO_URI);
   /* connecting to our database */
-  const db = await mongoose.connect(process.env.MONGODB_URI, {
+  const db = await mongoose.connect(`${process.env.NEXT_PUBLIC_MONGO_URI}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });

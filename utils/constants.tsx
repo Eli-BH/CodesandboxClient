@@ -2,7 +2,7 @@ export const menuItems = {
   caregiver: [
     "Intake Information",
     "Employee Documents",
-    "Health Assesment",
+    "Health Assessment",
     "Welcome Call",
     "Enrollment Orientation",
   ],

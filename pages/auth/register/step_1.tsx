@@ -18,6 +18,7 @@ const step_1 = () => {
             src={logo}
             className=" w-[250px] lg:w-[400px] h-auto"
             alt="freedom care logo"
+            priority
           />
         </div>
         <hr />
