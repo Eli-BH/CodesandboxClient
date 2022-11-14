@@ -76,6 +76,7 @@ const Navbar = () => {
           src={Logo}
           alt="Freedom care logo"
           layout="responsive"
+          priority
         />
       </div>
 
@@ -95,7 +96,7 @@ const Navbar = () => {
           <CgClose
             className="
                     xs:top-2
-                    xs:rigt-2
+                    xs:right-2
                     lg:top-10
                     lg:right-10
                     absolute text-[54px]

@@ -6,6 +6,9 @@ import SettingsPage from "./SettingsPage";
 import ManagePatientsPage from "./ManagePatientsPage";
 import ContactPage from "./ContactPage";
 import ProfilePage from "./ProfilePage";
+import Navbar from "../components/Navbar";
+import LeftSidebar from "../components/LeftSidebar";
+import RightSidebar from "../components/RightSidebar";
 
 export default function Home() {
   const router = useRouter();
