@@ -93,7 +93,7 @@ const RightSidebar = () => {
           })}
         </div>
       </div>
-      <div
+      {/* <div
         className="
       items-center 
       flex 
@@ -112,7 +112,7 @@ const RightSidebar = () => {
           title="freedom care blog"
           className="w-full h-full"
         ></iframe>
-      </div>
+      </div> */}
     </div>
   );
 };
