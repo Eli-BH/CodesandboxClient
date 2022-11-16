@@ -108,7 +108,7 @@ patientSchema.methods.matchPasswords = async function (password: string) {
 };
 
 patientSchema.methods.getSignedToken = function (): never {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+  return jwt.sign({ id: this._id }, process.env.NEXT_PUBLIC_JWT_SECRET, {
     expiresIn: "3 days",
   });
 };
