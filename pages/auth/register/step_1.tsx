@@ -25,7 +25,7 @@ const step_1 = () => {
           <p className="text-[1.2em] lg:text-[1.8em] px-5 py-2">
             Are you applying as a Patient or a Caregiver?
           </p>
-          <form className="w-full h-full flex flex-wrap">
+          <div className="w-full h-full flex flex-wrap">
             <div className="w-full h-[90%] flex justify-evenly items-center">
               {/* Caregiver Panel */}
               <div
@@ -108,15 +108,7 @@ const step_1 = () => {
                 </p>
               </div>
             </div>
-            <div className="h-[15%] flex justify-around items-center p-5  w-full">
-              <button
-                type="submit"
-                className="border-2 border-[#eb5e1a] px-3 py-2   w-[300px] md:w-[300px] lg:w-[300px] rounded-md cursor-pointer hover:transition-all hover:scale-95 hover:shadow-sm hover:bg-[#eb5e1a] hover:border-[#15284b] shadow-md shadow-slate-500 outline-none bg-[#12385a] font-semibold text-white"
-              >
-                Next
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

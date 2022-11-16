@@ -6,6 +6,8 @@ import { HiOutlineChevronDoubleDown } from "react-icons/hi";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
 import axios from "axios";
+import { useRouter } from "next/router";
+import { NextRouter } from "next/router";
 
 interface IFormInput {
   firstName: string;
@@ -31,6 +33,7 @@ const step_2 = () => {
     formState: { errors },
     control,
   } = useForm<IFormInput>();
+  const router: NextRouter = useRouter();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
@@ -399,7 +402,9 @@ const step_2 = () => {
 
             <hr />
             <div className="h-[10%] flex justify-around items-center w-full py-[50px] md:py-0">
-              <button className={nextButtonStyle}>Back</button>
+              <button className={nextButtonStyle} onClick={() => router.back()}>
+                Back
+              </button>
               <button type="submit" className={nextButtonStyle}>
                 Submit
               </button>

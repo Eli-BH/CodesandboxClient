@@ -4,6 +4,9 @@ import logo from "../../../utils/Logo-Orange.svg";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { nextButtonStyle } from "../../../utils/constants";
+import { useRouter } from "next/router";
+import { NextRouter } from "next/router";
 
 interface IPatientForm {
   email: string;
@@ -22,6 +25,8 @@ const step_2_patient = () => {
   } = useForm<IPatientForm>();
   const onSubmit: SubmitHandler<IPatientForm> = async (data) =>
     console.log(data);
+
+  const router: NextRouter = useRouter();
 
   return (
     <div className="w-full h-full  bg-[url('../utils/background.png')] bg-no-repeat bg-cover bg-center flex items-center justify-center">
@@ -103,11 +108,11 @@ const step_2_patient = () => {
                 )}
               </label>
             </div>
-            <div className="h-[10%] flex justify-around items-center w-full">
-              <button
-                type="submit"
-                className="border-2 border-[#eb5e1a] px-3 py-2 mb-5  w-[300px] md:w-[300px] lg:w-[300px] rounded-md cursor-pointer hover:transition-all hover:scale-95 hover:shadow-sm hover:bg-[#eb5e1a] hover:border-[#15284b] shadow-md shadow-slate-500 outline-none bg-[#12385a] font-semibold text-white"
-              >
+            <div className="h-[10%] flex justify-around items-center w-full pb-5">
+              <button className={nextButtonStyle} onClick={() => router.back()}>
+                Back
+              </button>
+              <button type="submit" className={nextButtonStyle}>
                 Submit
               </button>
             </div>
