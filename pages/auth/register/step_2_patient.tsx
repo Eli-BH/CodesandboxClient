@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import logo from "../../../utils/Logo-Orange.svg";
+import axios from "axios";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -23,10 +24,21 @@ const step_2_patient = () => {
     watch,
     formState: { errors },
   } = useForm<IPatientForm>();
-  const onSubmit: SubmitHandler<IPatientForm> = async (data) =>
-    console.log(data);
-
   const router: NextRouter = useRouter();
+  const errorStyle = "border-red-600 bg-red-100";
+
+  const onSubmit: SubmitHandler<IPatientForm> = async (data) => {
+    try {
+      await axios.post("http://localhost:3000/api/auth/register", {
+        ...data,
+        role: "Patient",
+      });
+
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="w-full h-full  bg-[url('../utils/background.png')] bg-no-repeat bg-cover bg-center flex items-center justify-center">
@@ -52,49 +64,99 @@ const step_2_patient = () => {
               <label className="w-[95%] md:w-[45%] lg:w-[45%] relative">
                 Medicaid ID #:
                 <input
-                  className="w-full  rounded-sm border-black border"
+                  className={`w-full  rounded-sm border-black border  ${
+                    errors.medicaidId && errorStyle
+                  }`}
                   type="text"
                   placeholder="Medicaid ID #"
+                  id="medicaidId"
                   {...register("medicaidId")}
                 />
+                <div
+                  className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
+                    errors.medicaidId ? "block" : "hidden"
+                  }`}
+                >
+                  <p className="font-semibold text-red-800">
+                    {errors.medicaidId && errors.medicaidId.message}
+                  </p>
+                </div>
               </label>
 
               <label className="w-[95%] md:w-[45%] lg:w-[45%] relative ">
                 Email:
                 <input
-                  className="w-full  rounded-sm border-black border"
+                  className={`w-full  rounded-sm border-black border  ${
+                    errors.email && errorStyle
+                  }`}
                   type="email"
                   placeholder="Email"
-                  {...register("email")}
+                  {...register("email", {
+                    required: { value: true, message: "email required" },
+                  })}
                 />
+                <div
+                  className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
+                    errors.email ? "block" : "hidden"
+                  }`}
+                >
+                  <p className="font-semibold text-red-800">
+                    {errors.email && errors.email.message}
+                  </p>
+                </div>
               </label>
 
               <label className="w-[95%] md:w-[45%] lg:w-[45%] relative">
                 Password:
                 <input
-                  className="w-full  rounded-sm border-black border"
+                  className={`w-full  rounded-sm border-black border  ${
+                    errors.password && errorStyle
+                  }`}
                   type={`${passwordVisibility ? "text" : "password"}`}
                   placeholder="Password"
                   {...register("password", { required: true })}
                 />
+                <div
+                  className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
+                    errors.password ? "block" : "hidden"
+                  }`}
+                >
+                  <p className="font-semibold text-red-800">
+                    {errors.password && errors.password.message}
+                  </p>
+                </div>
               </label>
 
               <label className="w-[95%] md:w-[45%] lg:w-[45%] relative">
                 Confirm Password:
                 <input
-                  className="w-full  rounded-sm border-black border"
+                  className={`w-full  rounded-sm border-black border  ${
+                    errors.confirmPassword && errorStyle
+                  }`}
                   type={`${passwordVisibility ? "text" : "password"}`}
                   placeholder="Confirm Password"
                   {...register("confirmPassword", {
-                    required: true,
+                    required: {
+                      value: true,
+                      message: "Please confirm your password",
+                    },
+
                     validate: (val: string) => {
                       if (watch("password") != val) {
-                        console.log({ val, pass: watch("password") });
                         return "Your passwords do no match";
                       }
                     },
                   })}
                 />
+                <div
+                  className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
+                    errors.confirmPassword ? "block" : "hidden"
+                  }`}
+                >
+                  <p className="font-semibold text-red-800">
+                    {errors.confirmPassword && errors.confirmPassword.message}
+                  </p>
+                </div>
                 {passwordVisibility ? (
                   <AiFillEye
                     className="text-2xl"
@@ -109,10 +171,20 @@ const step_2_patient = () => {
               </label>
             </div>
             <div className="h-[10%] flex justify-around items-center w-full pb-5">
-              <button className={nextButtonStyle} onClick={() => router.back()}>
+              <button
+                className={
+                  "border-2 border-[#eb5e1a] px-3 py-2  w-[150px] md:w-[200px] lg:w-[200px] rounded-md cursor-pointer hover:transition-all hover:scale-95 hover:shadow-sm hover:bg-[#eb5e1a] hover:border-[#15284b] shadow-md shadow-slate-500 outline-none bg-[#12385a] font-semibold text-white"
+                }
+                onClick={() => router.back()}
+              >
                 Back
               </button>
-              <button type="submit" className={nextButtonStyle}>
+              <button
+                type="submit"
+                className={
+                  "border-2 border-[#eb5e1a] px-3 py-2  w-[150px] md:w-[200px] lg:w-[200px] rounded-md cursor-pointer hover:transition-all hover:scale-95 hover:shadow-sm hover:bg-[#eb5e1a] hover:border-[#15284b] shadow-md shadow-slate-500 outline-none bg-[#12385a] font-semibold text-white"
+                }
+              >
                 Submit
               </button>
             </div>

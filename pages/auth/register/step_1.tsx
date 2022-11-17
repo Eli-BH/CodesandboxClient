@@ -39,7 +39,7 @@ const step_1 = () => {
                 w-[35%] 
                 p-4 
                 border-2
-                border-slate-50
+                border-slate-200
                 items-center 
                 shadow-md 
                 justify-evenly 
@@ -80,7 +80,7 @@ const step_1 = () => {
                 w-[35%] 
                 p-4 
                 border-2
-                border-slate-50
+                border-slate-200
                 items-center 
                 shadow-md 
                 justify-evenly 

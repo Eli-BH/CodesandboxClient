@@ -34,6 +34,7 @@ const step_2 = () => {
     control,
   } = useForm<IFormInput>();
   const router: NextRouter = useRouter();
+  const errorStyle = "border-red-600 bg-red-100";
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
@@ -41,13 +42,12 @@ const step_2 = () => {
         ...data,
         role: "Caregiver",
       });
+
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
   };
-
-  const errorStyle = "border-red-600 bg-red-100";
-  const dateRegex = /^[1-2][0-9][0-9][0-9][-][0-1][0-2][-][0-3][0-9]$/;
 
   let emailRegex =
     /(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
@@ -242,7 +242,6 @@ const step_2 = () => {
                         required: true,
                         validate: (val: string) => {
                           if (watch("password") != val) {
-                            console.log({ val, pass: watch("password") });
                             return "Your passwords do no match";
                           }
                         },

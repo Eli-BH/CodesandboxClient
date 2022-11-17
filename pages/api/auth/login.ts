@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../utils/connectMongo";
 import Patient from "../../../models/PatientModel";
 import Caregiver from "../../../models/CaregiverModel";
-import crypto from "crypto";
+
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
   const { email, password } = req.body;
@@ -37,7 +37,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
 
     if (user.invalidLoginCounter >= 5) {
       user.accountLocked = true; //
-      user.accountLockTime = Date.now;
+      user.accountLockTime = Date.now();
 
       await user.save();
 

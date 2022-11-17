@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter, NextRouter } from "next/router";
+
+interface ILogin {
+  email: string;
+  password: string;
+}
 
 const LoginForm = (): JSX.Element => {
+  const [error, setError] = useState<string>("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILogin>();
+  const router: NextRouter = useRouter();
+
+  const onSubmit: SubmitHandler<ILogin> = async (data) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/login",
+        data
+      );
+
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+      setError(error.response.data.message);
+    }
+  };
   const alertType = (type: string): string | undefined => {
     switch (type) {
       case "error":
@@ -16,30 +46,43 @@ const LoginForm = (): JSX.Element => {
   return (
     <form
       autoComplete="off"
-      className="h-[80%] flex flex-col p-5 justify-evenly items-center"
+      className="h-[80%] flex flex-col  p-5 justify-evenly items-center"
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div
-        className={`w-3/4 h-10 flex items-center justify-center border-${alertType(
-          "success"
-        )}-400 border-2 rounded-md bg-${alertType("success")}-200`}
+        className={`w-3/4 h-10 flex items-center justify-center  ${
+          error ? "block" : "hidden"
+        } border-${alertType("error")}-400 border-2 rounded-md bg-${alertType(
+          "error"
+        )}-200`}
       >
-        This is a sample
+        {error}
       </div>
-      <input
-        className="w-3/4"
-        type="email"
-        autoComplete="off"
-        placeholder="Email"
-      />
-      <input
-        className="w-3/4"
-        type="password"
-        placeholder="Password"
-        autoComplete="off"
-      />
+      <label className="w-3/4 md:w-3/4 lg:w-3/4   flex flex-col">
+        Email:{" "}
+        <input
+          className="w-full"
+          type="email"
+          autoComplete="off"
+          placeholder="Email"
+          {...register("email")}
+        />
+      </label>
+
+      <label className="w-3/4 md:w-3/4 lg:w-3/4  flex flex-col">
+        Password:
+        <input
+          className="w-full"
+          type="password"
+          placeholder="Password"
+          autoComplete="off"
+          {...register("password")}
+        />
+      </label>
+
       <div className="flex w-full justify-evenly ">
         <p className="text-blue-800 cursor-pointer">Forgot password</p>
-        <p className="text-blue-800 cursor-pointer">Register for FreedomCare</p>
+        <p className="text-blue-800 cursor-pointer">Register </p>
       </div>
 
       <button
