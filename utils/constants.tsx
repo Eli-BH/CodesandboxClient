@@ -1,17 +1,64 @@
+// export const menuItems = {
+//   caregiver: [
+//     "Intake Information",
+//     "Employee Documents",
+//     "Health Assessment",
+//     "Welcome Call",
+//     "Enrollment Orientation",
+//   ],
+//   patient: [
+//     "Intake Information",
+//     "Medicaid Nurse Visit",
+//     "Doctor Order - DOH",
+//     "Authorization",
+//     "Orientation",
+//   ],
+// };
+
 export const menuItems = {
   caregiver: [
-    "Intake Information",
-    "Employee Documents",
-    "Health Assessment",
-    "Welcome Call",
-    "Enrollment Orientation",
+    {
+      title: "Demographic Information",
+      link: "/?page=intake",
+    },
+    {
+      title: "Employee Documents",
+      link: "/?page=i9",
+    },
+    {
+      title: "Health Assessment",
+      link: "/?page=health_assessment",
+    },
+    {
+      title: "Welcome Call",
+      link: "/?page=welcome_call",
+    },
+    {
+      title: "Enrollment Orientation",
+      link: "/?page=orientation",
+    },
   ],
   patient: [
-    "Intake Information",
-    "Medicaid Nurse Visit",
-    "Doctor Order - DOH",
-    "Authorization",
-    "Orientation",
+    {
+      title: "Demographic Information",
+      link: "/?page=demographics",
+    },
+    {
+      title: "Medicaid Nurse Visit",
+      link: "/?page=nurse_visit",
+    },
+    {
+      title: "Doctor Order DOH",
+      link: "/?page=doh",
+    },
+    {
+      title: "Authorization",
+      link: "/?page=demographics",
+    },
+    {
+      title: "Enrollment Orientation",
+      link: "/?page=orientation",
+    },
   ],
 };
 

@@ -9,10 +9,14 @@ import ProfilePage from "./ProfilePage";
 import Navbar from "../components/Navbar";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
+import start from "../utils/connectSalesforce";
+import I9iFrame from "../components/I9iFrame";
 
 export default function Home() {
   const router = useRouter();
   const { page } = router.query;
+
+  start();
 
   const pageRoutes = (): JSX.Element => {
     switch (page) {
@@ -26,6 +30,8 @@ export default function Home() {
         return <SettingsPage />;
       case "profile":
         return <ProfilePage />;
+      case "i9":
+        return <I9iFrame />;
       default:
         return <HomeTabs />;
     }
