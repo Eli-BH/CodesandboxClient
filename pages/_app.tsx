@@ -19,14 +19,6 @@ export default function App({
     return null;
   }
 
-  const resolutions = {
-    nav100 : "h-[10vh]",
-    nav150 : "h-[12vh]",
-    mainContent100 : "flex w-full h-[90vh]",
-    mainContent150 : "flex w-full h-[88vh]",
-  }
-
-
   return (
     <div
       className="
@@ -38,20 +30,7 @@ export default function App({
       bg-white
     "
     >
-    
-      <div className={window.devicePixelRatio >= 1.5 ? resolutions.nav150 : resolutions.nav100 }>
-        <Navbar />
-      </div>
-      <div
-        className={window.devicePixelRatio >= 1.5 ? resolutions.mainContent150 : resolutions.mainContent100 }
-      >
-        <LeftSidebar />
-        <div className="h-full w-full">
-          <Component {...pageProps} />
-        </div>
-
-        <RightSidebar />
-      </div>
+      <Component {...pageProps} />
     </div>
   );
 }
