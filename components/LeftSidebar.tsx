@@ -7,10 +7,12 @@ import {
   MdOutlineSettings,
   MdOutlineHome,
 } from "react-icons/md";
+import { useRouter, NextRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 
 const LeftSidebar = () => {
+  const router: NextRouter = useRouter();
   const items = [
     {
       text: "Home",
@@ -23,7 +25,7 @@ const LeftSidebar = () => {
       link: "contact",
     },
     {
-      text: "Manage Patients",
+      text: "Add a patient",
       icon: <MdPersonAddAlt />,
       link: "manage_patients",
     },
@@ -98,6 +100,7 @@ const LeftSidebar = () => {
             )
           )}
         <button
+          onClick={() => router.push("/auth/login")}
           className="
       border-2
       p-1

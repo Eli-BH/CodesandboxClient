@@ -24,6 +24,19 @@ interface ICaregiver extends Document {
   medicaidNumber: string;
   stepNumber: number;
   accountFlag: string;
+  flags: any;
+  relationship: string;
+  patient: string;
+  pcrStatus: boolean;
+  address: string;
+  address2: string;
+  state: string;
+  zip: string;
+  city: string;
+  dateOfBirth: string;
+  phone: string;
+  mobile: string;
+  lastPage: string;
 }
 
 const caregiverSchema: Schema = new Schema<ICaregiver>(
@@ -182,8 +195,8 @@ caregiverSchema.methods.matchPasswords = async function (password: string) {
   return await bcrypt.compare(password, this.password);
 };
 
-caregiverSchema.methods.getSignedToken = function () {
-  return jwt.sign({ id: this._id }, process.env.NEXT_PUBLIC_MONGO_URI, {
+caregiverSchema.methods.getSignedToken = function (): never {
+  return jwt.sign({ id: this._id }, process.env.NEXT_PUBLIC_JWT_SECRET, {
     expiresIn: "3 days",
   });
 };

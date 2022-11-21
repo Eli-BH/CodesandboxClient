@@ -1,17 +1,78 @@
+import ContactPage from "../pages/ContactPage";
+import HomeTabs from "../components/HomeTabs";
+import SettingsPage from "../pages/SettingsPage";
+import ManagePatients from "../pages/ManagePatientsPage";
+import ManagePatientsPage from "../pages/ManagePatientsPage";
+import ProfilePage from "../pages/ProfilePage";
+import I9iFrame from "../components/I9iFrame";
+import DOH from "../components/DOH";
+import Enrollment from "../components/Enrollment";
+import DemoInfo from "../components/DemoInfo";
+import NurseVisit from "../components/NurseVisit";
+import WelcomeCall from "../components/WelcomeCall";
+import HealthAssessment from "../components/HealthAssessment";
+import Authorization from "../components/Authorization";
+// export const menuItems = {
+//   caregiver: [
+//     "Intake Information",
+//     "Employee Documents",
+//     "Health Assessment",
+//     "Welcome Call",
+//     "Enrollment Orientation",
+//   ],
+//   patient: [
+//     "Intake Information",
+//     "Medicaid Nurse Visit",
+//     "Doctor Order - DOH",
+//     "Authorization",
+//     "Orientation",
+//   ],
+// };
+
 export const menuItems = {
   caregiver: [
-    "Intake Information",
-    "Employee Documents",
-    "Health Assessment",
-    "Welcome Call",
-    "Enrollment Orientation",
+    {
+      title: "Demographic Information",
+      link: "/?page=intake",
+    },
+    {
+      title: "Employee Documents",
+      link: "/?page=i9",
+    },
+    {
+      title: "Health Assessment",
+      link: "/?page=health_assessment",
+    },
+    {
+      title: "Welcome Call",
+      link: "/?page=welcome_call",
+    },
+    {
+      title: "Enrollment Orientation",
+      link: "/?page=orientation",
+    },
   ],
   patient: [
-    "Intake Information",
-    "Medicaid Nurse Visit",
-    "Doctor Order - DOH",
-    "Authorization",
-    "Orientation",
+    {
+      title: "Demographic Information",
+      link: "/?page=demographics",
+    },
+    {
+      title: "Medicaid Nurse Visit",
+      link: "/?page=nurse_visit",
+    },
+    {
+      title: "Doctor Order DOH",
+      link: "/?page=doh",
+    },
+    {
+      title: "Authorization",
+      link: "/?page=demographics",
+    },
+    {
+      title: "Enrollment Orientation",
+      link: "/?page=orientation",
+    },
   ],
 };
 
@@ -161,3 +222,90 @@ export const contactItems = {
 
 export const nextButtonStyle =
   "border-2 border-[#eb5e1a] px-3 py-2  w-[150px] md:w-[200px] lg:w-[200px] rounded-md cursor-pointer hover:transition-all hover:scale-95 hover:shadow-sm hover:bg-[#eb5e1a] hover:border-[#15284b] shadow-md shadow-slate-500 outline-none bg-[#12385a] font-semibold text-white";
+
+export const statesArr: string[] = [
+  "AL",
+  "AK",
+  "AZ",
+  "AR",
+  "CA",
+  "CO",
+  "CT",
+  "DE",
+  "DC",
+  "FL",
+  "GA",
+  "HI",
+  "ID",
+  "IL",
+  "IN",
+  "IA",
+  "KS",
+  "KY",
+  "LA",
+  "ME",
+  "MD",
+  "MA",
+  "MI",
+  "MN",
+  "MS",
+  "MO",
+  "MT",
+  "NE",
+  "NV",
+  "NH",
+  "NJ",
+  "NM",
+  "NY",
+  "NC",
+  "ND",
+  "OH",
+  "OK",
+  "OR",
+  "PA",
+  "RI",
+  "SC",
+  "SD",
+  "TN",
+  "TX",
+  "UT",
+  "VT",
+  "VA",
+  "WA",
+  "WV",
+  "WI",
+  "WY",
+];
+
+export const pageRoutes = (page: string): JSX.Element => {
+  switch (page) {
+    case "home":
+      return <HomeTabs />;
+    case "contact":
+      return <ContactPage />;
+    case "manage_patients":
+      return <ManagePatientsPage />;
+    case "settings":
+      return <SettingsPage />;
+    case "profile":
+      return <ProfilePage />;
+    case "i9":
+      return <I9iFrame />;
+    case "doh":
+      return <DOH />;
+    case "enrollment":
+      return <Enrollment />;
+    case "demo":
+      return <DemoInfo />;
+    case "nurse_visit":
+      return <NurseVisit />;
+    case "welcome_call":
+      return <WelcomeCall />;
+    case "health_assessment":
+      return <HealthAssessment />;
+    case "authorization":
+      return <Authorization />;
+    default:
+      return <HomeTabs />;
+  }
+};

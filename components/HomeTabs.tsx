@@ -10,6 +10,7 @@ import {
 } from "react-icons/md";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { menuItems } from "../utils/constants";
+import { useRouter, NextRouter } from "next/router";
 
 const HomeTabs = (): JSX.Element => {
 
@@ -18,6 +19,7 @@ const HomeTabs = (): JSX.Element => {
     homeTab150 : "h-[90%]"
   }
 
+  const router: NextRouter = useRouter();
   return (
     <div className={window.devicePixelRatio >= 1.5 ? resolutions.homeTab150 : resolutions.homeTab100 }>
       <Tab.Group>
@@ -110,8 +112,11 @@ const HomeTabs = (): JSX.Element => {
                   <p>Incomplete</p>
                 </div>
 
-                <p className="font-bold">{item}</p>
-                <AiOutlineDoubleRight className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer" />
+                <p className="font-bold">{item.title}</p>
+                <AiOutlineDoubleRight
+                  className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer"
+                  onClick={() => router.push(item.link)}
+                />
               </div>
             ))}
           </div>
@@ -159,7 +164,7 @@ const HomeTabs = (): JSX.Element => {
                   <MdOutlineCircle className="text-xl" />
                   <p>Incomplete</p>
                 </div>
-                <p className="font-bold">{item}</p>
+                <p className="font-bold">{item.title}</p>
                 <AiOutlineDoubleRight className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer" />
               </div>
             ))}

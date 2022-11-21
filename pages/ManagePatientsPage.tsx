@@ -1,4 +1,4 @@
-const ManagePatients = () => {
+const ManagePatientsPage = () => {
   return (
     <div>
       <h1>Manage Patients</h1>
@@ -6,4 +6,4 @@ const ManagePatients = () => {
   );
 };
 
-export default ManagePatients;
+export default ManagePatientsPage;
