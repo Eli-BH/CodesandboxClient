@@ -1,4 +1,4 @@
-const ContactPage = (): JSX.Element => {
+const ProfilePage = (): JSX.Element => {
   return (
     <div>
       <p>Profile page</p>
@@ -6,4 +6,4 @@ const ContactPage = (): JSX.Element => {
   );
 };
 
-export default ContactPage;
+export default ProfilePage;

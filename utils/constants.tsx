@@ -1,3 +1,17 @@
+import ContactPage from "../pages/ContactPage";
+import HomeTabs from "../components/HomeTabs";
+import SettingsPage from "../pages/SettingsPage";
+import ManagePatients from "../pages/ManagePatientsPage";
+import ManagePatientsPage from "../pages/ManagePatientsPage";
+import ProfilePage from "../pages/ProfilePage";
+import I9iFrame from "../components/I9iFrame";
+import DOH from "../components/DOH";
+import Enrollment from "../components/Enrollment";
+import DemoInfo from "../components/DemoInfo";
+import NurseVisit from "../components/NurseVisit";
+import WelcomeCall from "../components/WelcomeCall";
+import HealthAssessment from "../components/HealthAssessment";
+import Authorization from "../components/Authorization";
 // export const menuItems = {
 //   caregiver: [
 //     "Intake Information",
@@ -262,3 +276,36 @@ export const statesArr: string[] = [
   "WI",
   "WY",
 ];
+
+export const pageRoutes = (page: string): JSX.Element => {
+  switch (page) {
+    case "home":
+      return <HomeTabs />;
+    case "contact":
+      return <ContactPage />;
+    case "manage_patients":
+      return <ManagePatientsPage />;
+    case "settings":
+      return <SettingsPage />;
+    case "profile":
+      return <ProfilePage />;
+    case "i9":
+      return <I9iFrame />;
+    case "doh":
+      return <DOH />;
+    case "enrollment":
+      return <Enrollment />;
+    case "demo":
+      return <DemoInfo />;
+    case "nurse_visit":
+      return <NurseVisit />;
+    case "welcome_call":
+      return <WelcomeCall />;
+    case "health_assessment":
+      return <HealthAssessment />;
+    case "authorization":
+      return <Authorization />;
+    default:
+      return <HomeTabs />;
+  }
+};

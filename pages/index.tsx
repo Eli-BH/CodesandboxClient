@@ -1,41 +1,17 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import HomeTabs from "../components/HomeTabs";
-import SettingsPage from "./SettingsPage";
-import ManagePatientsPage from "./ManagePatientsPage";
-import ContactPage from "./ContactPage";
-import ProfilePage from "./ProfilePage";
 import Navbar from "../components/Navbar";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
 import start from "../utils/connectSalesforce";
-import I9iFrame from "../components/I9iFrame";
+import { pageRoutes } from "../utils/constants";
 
 export default function Home() {
   const router = useRouter();
   const { page } = router.query;
 
   start();
-
-  const pageRoutes = (): JSX.Element => {
-    switch (page) {
-      case "home":
-        return <HomeTabs />;
-      case "contact":
-        return <ContactPage />;
-      case "manage_patients":
-        return <ManagePatientsPage />;
-      case "settings":
-        return <SettingsPage />;
-      case "profile":
-        return <ProfilePage />;
-      case "i9":
-        return <I9iFrame />;
-      default:
-        return <HomeTabs />;
-    }
-  };
 
   return (
     <>
@@ -63,7 +39,7 @@ export default function Home() {
         pb-5
       "
           >
-            {pageRoutes()}
+            {pageRoutes(page)}
           </div>
         </div>
 
