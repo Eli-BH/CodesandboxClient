@@ -1,7 +1,9 @@
 import { Schema, model, models, Document } from "mongoose";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import jwt, { Secret } from "jsonwebtoken";
 import crypto from "crypto";
+
+
 
 interface ICaregiver extends Document {
   firstName: string;
@@ -216,8 +218,8 @@ caregiverSchema.methods.matchPasswords = async function (password: string) {
   return await bcrypt.compare(password, this.password);
 };
 
-caregiverSchema.methods.getSignedToken = function (): never {
-  return jwt.sign({ id: this._id }, process.env.NEXT_PUBLIC_JWT_SECRET, {
+caregiverSchema.methods.getSignedToken = function (): string {
+  return jwt.sign({ id: this._id }, process.env.NEXT_PUBLIC_JWT_SECRET as Secret, {
     expiresIn: "3 days",
   });
 };
