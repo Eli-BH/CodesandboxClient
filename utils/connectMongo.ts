@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 
 
-const connection = {}; /* creating connection object*/
+const connection: any = {}; /* creating connection object*/
 
 async function dbConnect() {
   /* check if we have connection to our databse*/
@@ -12,10 +12,7 @@ async function dbConnect() {
 
   console.log(process.env.NEXT_PUBLIC_MONGO_URI);
   /* connecting to our database */
-  const db = await mongoose.connect(`${process.env.NEXT_PUBLIC_MONGO_URI}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  const db: any = await mongoose.connect(`${process.env.NEXT_PUBLIC_MONGO_URI}`);
 
   connection.isConnected = db.connections[0].readyState;
 }
