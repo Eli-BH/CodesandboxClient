@@ -98,26 +98,47 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
     },
 
     flags: {
-      intake: {
-        type: String,
-        default: false,
+      employeeDocs: {
+        title: {
+          type: String,
+          default: "Employee Documents"
+        },
+        status: {
+          type: String,
+          default: 'pending'
+        }
       },
       healthAssessment: {
-        type: String,
-        default: "incomplete",
+        title: {
+          type: String,
+          default: "Health Assessment"
+        },
+        status: {
+          type: String,
+          default: 'pending'
+        }
       },
-      i9: {
-        type: String,
-        default: "incomplete",
+      welcomeCall: {
+        title: {
+          type: String,
+          default: "Welcome Call"
+        },
+        status: {
+          type: String,
+          default: 'pending'
+        }
       },
-      enrollment: {
-        type: String,
-        default: "incomplete",
+      enrollmentOrientation: {
+        tite: {
+          type: String,
+          default: "Enrollment Orientation"
+        },
+        status: {
+          type: String,
+          default: 'pending'
+        }
       },
-      welcome: {
-        type: String,
-        default: "incomplete",
-      },
+
     },
     relationship: String,
     patients: [

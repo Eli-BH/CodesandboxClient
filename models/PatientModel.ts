@@ -15,6 +15,7 @@ interface IPatient extends Document {
   accountStatus: string;
   accountLockTime: Date;
   caregiver: string; //
+  flags: any //write the type for this
 }
 
 const patientSchema: Schema = new Schema<IPatient>(
@@ -47,10 +48,57 @@ const patientSchema: Schema = new Schema<IPatient>(
     DateOfBirth: String,
     County: String,
     flags: {
-      intake: {
-        type: String,
-        default: "incomplete",
+      employeeDocs: {
+        title: {
+          type: String,
+          default: "Employee Documents"
+        },
+        status: {
+          type: String,
+          default: 'pending'
+        }
       },
+      medicaidVisit: {
+        title: {
+          type: String,
+          default: "Medicaid Nurse Visit"
+        },
+        status: {
+          type: String,
+          default: 'pending'
+        }
+      },
+      doctorOrder: {
+        title: {
+          type: String,
+          default: "Doctor Order - DOH"
+        },
+        status: {
+          type: String,
+          default: 'pending'
+        }
+      },
+      authorization: {
+        tite: {
+          type: String,
+          default: "Authorization"
+        },
+        status: {
+          type: String,
+          default: 'pending'
+        }
+      },
+      orientation: {
+        title: {
+          type: String,
+          default: "Orientation"
+        },
+        status: {
+          type: String,
+          default: 'pending'
+        }
+
+      }
     },
     email: {
       type: String,

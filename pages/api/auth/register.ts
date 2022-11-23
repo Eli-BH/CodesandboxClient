@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../utils/connectMongo";
 import Patient from "../../../models/PatientModel";
 import Caregiver from "../../../models/CaregiverModel";
-
+import axios from 'axios'
 
 dbConnect()
 
@@ -58,6 +58,30 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
                 zip,
                 city,
             })
+        }
+
+        const melissaCheck = async () => {
+            const params = {
+                id: process.env.MELISSA_KEY,
+                format: "json",
+                act: "Check,Verify,Append",
+                a1: address,
+                a2: address2 || null,
+                city,
+                state,
+                postal: zip,
+                ctry: 'US',
+                email
+            }
+
+            try {
+                const { data } = await axios.get("https://personator.melissadata.net/v3/WEB/ContactVerify/doContactVerify", { params })
+
+                console.log(data)
+            } catch (error) {
+                return false
+            }
+
         }
 
         //salesforce update
