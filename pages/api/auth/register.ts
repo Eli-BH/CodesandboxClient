@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../utils/connectMongo";
 import Patient from "../../../models/PatientModel";
 import Caregiver from "../../../models/CaregiverModel";
+import pool from "../../../utils/connectSalesforce";
 import axios from 'axios'
 
 dbConnect()
@@ -22,6 +23,7 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
         phone,
     } = req.body
 
+    //need to take in the medicaid id
     try {
         //check for existing user 
         const existingUser = (await Caregiver.findOne({ email })) || (await Patient.findOne({ email }));
@@ -77,32 +79,34 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
             try {
                 const { data } = await axios.get("https://personator.melissadata.net/v3/WEB/ContactVerify/doContactVerify", { params })
 
-                console.log(data)
+                return data
             } catch (error) {
                 return false
             }
 
         }
 
+        console.log(melissaCheck())
+
         //salesforce update
 
-        // await pool.query(
-        //     "INSERT INTO salesforce.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, Phone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
-        //     [
-        //         dateOfBirth,
-        //         firstName,
-        //         lastName,
-        //         email,
-        //         sfType,//role
-        //         _language,//english
-        //         phone,//phone
-        //         user.callerType,//newUser.callerType
-        //         MailingCity,//city
-        //         MailingPostalCode,//zip
-        //         MailingState,//state
-        //         address2 ? `${MailingStreet} ${address2}` : MailingStreet,//mailing street
-        //     ]
-        // );
+        await pool.query(
+            "INSERT INTO salesforce.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, Phone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
+            [
+                dateOfBirth,
+                firstName,
+                lastName,
+                email,
+                role,
+                'english',//english
+                phone,//phone
+                newUser.callerType,//newUser.callerType
+                city,//city
+                zip,//zip
+                state,//state
+                address2 ? `${address} ${address2}` : address,//mailing street
+            ]
+        );
 
 
         //update intake flag
