@@ -19,7 +19,7 @@ export default async function test(req: NextApiRequest, res: NextApiResponse) {
 
 
 
-        return res.status(200).send('done')
+        return res.status(200).send(user)
     } catch (error) {
         console.log(error)
     }
