@@ -1,17 +1,14 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 
 import Navbar from "../components/Navbar";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
-import start from "../utils/connectSalesforce";
+
 import { pageRoutes } from "../utils/constants";
 
 export default function Home() {
   const router = useRouter();
   const { page } = router.query;
-
-  start();
 
   return (
     <>
