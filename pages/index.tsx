@@ -36,7 +36,7 @@ export default function Home() {
         pb-5
       "
           >
-            {pageRoutes(page)}
+            {pageRoutes(page as string)}
           </div>
         </div>
 
