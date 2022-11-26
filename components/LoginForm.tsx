@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter, NextRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 interface ILogin {
   email: string;
@@ -18,19 +19,19 @@ const LoginForm = (): JSX.Element => {
   } = useForm<ILogin>();
   const router: NextRouter = useRouter();
 
-  const onSubmit: SubmitHandler<ILogin> = async (data) => {
-    try {
-      const res = await axios.post(
-        "http://localhost:3000/api/auth/login",
-        data
-      );
+  console.log(error);
 
-      router.push("/");
-    } catch (error: any) {
-      console.error(error);
-      setError(error.response.data.message);
-    }
+  const onSubmit: SubmitHandler<ILogin> = async (data) => {
+    const res = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+
+    console.log(res);
+    if (res?.status === 200) router.push("/");
   };
+
   const alertType = (type: string): string | undefined => {
     switch (type) {
       case "error":
@@ -43,6 +44,7 @@ const LoginForm = (): JSX.Element => {
         return;
     }
   };
+
   return (
     <form
       autoComplete="off"
@@ -102,8 +104,11 @@ const LoginForm = (): JSX.Element => {
   transition-all 
   outline-none 
   focus:border-green-500"
+        onClick={() => {
+          signIn();
+        }}
       >
-        Login
+        Login page
       </button>
     </form>
   );

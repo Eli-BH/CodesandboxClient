@@ -10,9 +10,27 @@ import {
 import { useRouter, NextRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import { signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 const LeftSidebar = () => {
-  const router: NextRouter = useRouter();
+  const [userInfo, setUserInfo]: any = useState(null);
+  const { data } = useSession();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.post("/api/user/getuser", {
+          email: data?.user?.email,
+        });
+        setUserInfo(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
   const items = [
     {
       text: "Home",
@@ -36,6 +54,15 @@ const LeftSidebar = () => {
     },
   ];
 
+  let capitalize = (word: string): string => {
+    let firstLetter: string = word.charAt(0);
+    let firstLetterCap: string = firstLetter?.toUpperCase();
+    let remainingLetters: string = word.slice(1);
+    const capitalizedWord: string = firstLetterCap + remainingLetters;
+
+    return capitalizedWord;
+  };
+
   return (
     <div
       className="
@@ -54,7 +81,9 @@ const LeftSidebar = () => {
           <Image src={User} alt="profile Image" className="w-[64px] " />
         </Link>
 
-        <h2 className="text-2xl font-medium font-sans">Hello, John!</h2>
+        <h2 className="text-2xl font-medium font-sans">
+          Hello, {`${userInfo && capitalize(userInfo?.firstName)}`}!
+        </h2>
       </div>
 
       <div className="border-b-2 h-[65%] flex flex-col items-center justify-evenly text-xl border-gray-200">
@@ -94,7 +123,7 @@ const LeftSidebar = () => {
             )
           )}
         <button
-          onClick={() => router.push("/auth/login")}
+          onClick={() => signOut()}
           className="
       border-2
       p-1

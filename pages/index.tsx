@@ -5,12 +5,21 @@ import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
 
 import { pageRoutes } from "../utils/constants";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { status, data } = useSession();
   const router = useRouter();
   const { page } = router.query;
 
-  return (
+  useEffect(() => {
+    if (status === "unauthenticated") router.replace("/auth/signin");
+  }, [status]);
+
+  console.log(data);
+
+  return status === "authenticated" ? (
     <>
       <div className="h-[10vh]">
         <Navbar />
@@ -43,5 +52,7 @@ export default function Home() {
         <RightSidebar />
       </div>
     </>
+  ) : (
+    <div>loading</div>
   );
 }

@@ -1,10 +1,6 @@
-import { useRouter } from "next/router";
 import React from "react";
 import Image from "next/image";
 import logo from "../utils/Logo-Orange.svg";
-import ForgotPasswordForm from "../components/ForgotPasswordForm";
-import LoginForm from "../components/LoginForm";
-import ResetPasswordForm from "../components/ResetPasswordForm";
 
 const LoginPage = ({ children }: any): JSX.Element => {
   return (

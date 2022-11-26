@@ -74,13 +74,7 @@ const Navbar = () => {
             "
       />
       <div className="md:w-[200px] xs:w-[100px]">
-        <Image
-          className="py-2"
-          src={Logo}
-          alt="Freedom care logo"
-          layout="responsive"
-          priority
-        />
+        <Image className="py-2" src={Logo} alt="Freedom care logo" priority />
       </div>
 
       <div
