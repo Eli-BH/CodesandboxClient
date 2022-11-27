@@ -3,7 +3,6 @@ import dbConnect from "../../../utils/connectMongo";
 import Patient from "../../../models/PatientModel";
 import Caregiver from "../../../models/CaregiverModel";
 
-
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
   const { email, password } = req.body;
   await dbConnect();
@@ -61,17 +60,12 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     //     [currentLoginTime, email]
     //   );
     // }
-    sendToken(user, 200, res);
+    return res.status(200).json({
+      success: true,
+      user: { id: user._id, email: user.email, name: user.firstName },
+    });
   } catch (error: any) {
-    console.log({ error: error.message, location: "login" });
+    //console.log({ error: error.message, location: "login" });
     res.status(500).json({ success: false, error: error.message });
   }
 }
-
-const sendToken = (user: any, statusCode: number, res: NextApiResponse) => {
-  const token = user.getSignedToken();
-
-  res
-    .status(statusCode)
-    .json({ success: true, token, userType: user.userType });
-};

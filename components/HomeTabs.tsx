@@ -11,9 +11,29 @@ import {
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { menuItems } from "../utils/constants";
 import { useRouter, NextRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+
+import axios from "axios";
 
 const HomeTabs = (): JSX.Element => {
   const router: NextRouter = useRouter();
+  const [userInfo, setUserInfo] = useState(null);
+  const { data } = useSession();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.post("/api/user/getuser", {
+          email: data?.user?.email,
+        });
+
+        setUserInfo(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
   return (
     <div className="h-[95%]">
       <Tab.Group>

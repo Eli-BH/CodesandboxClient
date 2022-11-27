@@ -3,8 +3,6 @@ import bcrypt from "bcryptjs";
 import jwt, { Secret } from "jsonwebtoken";
 import crypto from "crypto";
 
-
-
 interface ICaregiver extends Document {
   firstName: string;
   lastName: string;
@@ -103,44 +101,43 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
       employeeDocs: {
         title: {
           type: String,
-          default: "Employee Documents"
+          default: "Employee Documents",
         },
         status: {
           type: String,
-          default: 'pending'
-        }
+          default: "incomplete",
+        },
       },
       healthAssessment: {
         title: {
           type: String,
-          default: "Health Assessment"
+          default: "Health Assessment",
         },
         status: {
           type: String,
-          default: 'pending'
-        }
+          default: "incomplete",
+        },
       },
       welcomeCall: {
         title: {
           type: String,
-          default: "Welcome Call"
+          default: "Welcome Call",
         },
         status: {
           type: String,
-          default: 'pending'
-        }
+          default: "incomplete",
+        },
       },
       enrollmentOrientation: {
         tite: {
           type: String,
-          default: "Enrollment Orientation"
+          default: "Enrollment Orientation",
         },
         status: {
           type: String,
-          default: 'pending'
-        }
+          default: "incomplete",
+        },
       },
-
     },
     relationship: String,
     patients: [
@@ -219,9 +216,13 @@ caregiverSchema.methods.matchPasswords = async function (password: string) {
 };
 
 caregiverSchema.methods.getSignedToken = function (): string {
-  return jwt.sign({ id: this._id }, process.env.NEXT_PUBLIC_JWT_SECRET as Secret, {
-    expiresIn: "3 days",
-  });
+  return jwt.sign(
+    { id: this._id },
+    process.env.NEXT_PUBLIC_JWT_SECRET as Secret,
+    {
+      expiresIn: "3 days",
+    }
+  );
 };
 
 caregiverSchema.methods.getResetPassword = function () {

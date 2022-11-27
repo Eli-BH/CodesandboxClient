@@ -27,7 +27,6 @@ export default async function getuser(
       data: { firstName: firstName, userType: userType },
     });
   } catch (error: any) {
-    console.log(error);
     res.status(500).json({ success: false, error: error.message });
   }
 }

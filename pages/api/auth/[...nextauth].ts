@@ -1,8 +1,10 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
+
 import CredentialsProvider from "next-auth/providers/credentials";
 import Caregiver from "../../../models/CaregiverModel";
 import Patient from "../../../models/PatientModel";
 import dbConnect from "../../../utils/connectMongo";
+import axios from "axios";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -12,31 +14,24 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       type: "credentials",
       credentials: {},
-      async authorize(credentials, req) {
+
+      //@ts-ignore
+      async authorize(credentials) {
         const { email, password } = credentials as {
           email: string;
           password: string;
         };
 
-        dbConnect();
+        try {
+          const res = await axios.post("http://localhost:3000/api/auth/login", {
+            email,
+            password,
+          });
 
-        const user =
-          (await Patient.findOne({ email: email })) ||
-          (await Caregiver.findOne({ email: email }));
-
-        if (!user) {
-          throw new Error("No user found!");
+          return res.data.user;
+        } catch (error: any) {
+          throw new Error(error.response.data.message);
         }
-
-        //login logic
-        // find user in db
-
-        if (email !== "test@test.com" || password !== "password") {
-          throw new Error(`Invalid credentials`);
-        }
-
-        //passes validation
-        return user;
       },
     }),
   ],

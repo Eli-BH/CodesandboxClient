@@ -17,8 +17,6 @@ export default function Home() {
     if (status === "unauthenticated") router.replace("/auth/signin");
   }, [status]);
 
-  console.log(data);
-
   return status === "authenticated" ? (
     <>
       <div className="h-[10vh]">

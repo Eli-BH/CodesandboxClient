@@ -82,7 +82,6 @@ const RightSidebar = () => {
 
         <div className="w-full">
           {notifs.map((item, index) => {
-            console.log(item);
             return (
               <NotificationItem
                 text={item.text}

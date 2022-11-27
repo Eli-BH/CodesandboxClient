@@ -5,6 +5,7 @@ import logo from "../../utils/Logo-Orange.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter, NextRouter } from "next/router";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useState } from "react";
 import { NextPage } from "next";
 
 interface ILogin {
@@ -13,6 +14,7 @@ interface ILogin {
 }
 
 const SignIn: NextPage = (props): JSX.Element => {
+  const [error, setError] = useState<string | undefined>("");
   const {
     register,
     handleSubmit,
@@ -20,16 +22,20 @@ const SignIn: NextPage = (props): JSX.Element => {
   } = useForm<ILogin>();
 
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
-    const res = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-    });
+    try {
+      const res = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
 
-    if (res?.status === 200) router.push("/");
+      res?.status === 200 ? router.push("/") : setError(res?.error);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  let error = false;
+  console.log(error);
 
   const router = useRouter();
 
