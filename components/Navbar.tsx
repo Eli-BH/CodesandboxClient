@@ -7,6 +7,7 @@ import {
   MdOutlineHome,
 } from "react-icons/md";
 import { ImLinkedin, ImYoutube, ImFacebook } from "react-icons/im";
+import { signOut } from "next-auth/react";
 
 import Image from "next/image";
 import Logo from "../utils/Logo-Orange.svg";
@@ -150,6 +151,7 @@ const Navbar = () => {
                       hover:bg-[#f29b8a]
                       cursor-pointer
                     "
+                  onClick={() => signOut()}
                 >
                   Logout
                 </button>

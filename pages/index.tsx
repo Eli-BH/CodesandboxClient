@@ -53,6 +53,10 @@ export default function Home() {
       </div>
     </>
   ) : (
-    <div>loading</div>
+    <div className="w-full h-[100%] bg-no-repeat bg-cover bg-[url('../utils/background.png')] flex justify-center items-center">
+      <p className="text-[3rem] lg:text-[5rem] font-semibold text-white animate-pulse">
+        Loading
+      </p>
+    </div>
   );
 }
