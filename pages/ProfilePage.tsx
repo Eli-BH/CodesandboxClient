@@ -75,6 +75,8 @@ const ProfilePage = (): JSX.Element => {
             <p>Address: 123 Apple Lane, New York, NY, 12345</p>
             <p>Email: testingUser1234@test.com</p>
 
+            {/*If user logged in is a patient then display this, will do once we are able to pull information <p>Caregiver Name: John Doe</p>*/}
+
             <p>Number of Patients: 5</p>
             
 
