@@ -69,7 +69,7 @@ const Navbar = () => {
     navbarContainer100:
       "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-white",
     navbarContainer150:
-      "border-b-2 w-full h-15 justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-blue-100",
+      "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-white",
     logoContainer100: "md:w-[200px] xs:w-[100px]",
     logoContainer150: "md:w-[150px] xs:w-[75px] w-1/5",
   };
@@ -99,6 +99,7 @@ const Navbar = () => {
                 rounded-full
                 hover:bg-gray-200
                 
+                
             "
       />
       <div
@@ -121,7 +122,11 @@ const Navbar = () => {
             w-full
             bg-white
             transition-all
+            z-100
+            ease-in
+            
         `}
+        style={{ zIndex: "100" }}
       >
         <div className="relative w-full h-full">
           <CgClose
@@ -136,7 +141,7 @@ const Navbar = () => {
             onClick={() => setMenuShowing(false)}
           />
 
-          <div className="w-full h-full">
+          <div className="w-full h-full z-100">
             <div
               className="
                 border-r-2

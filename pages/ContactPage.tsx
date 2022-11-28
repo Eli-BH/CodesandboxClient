@@ -59,7 +59,7 @@ const ContactPage = (): JSX.Element => {
           opacity-75
           shadow-black
           bg-gray-50
-          
+          z-0
         "
             >
               <p className="font-bold">{item.title}</p>
