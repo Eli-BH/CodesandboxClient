@@ -121,7 +121,8 @@ const RightSidebar = () => {
           })}
         </div>
       </div>
-      <div className="h-[60%]">
+      <div className="h-[60%]  flex
+        flex-col content-center justify-center">
           <Calendar
             localizer={localizer}
             events={eventsList}
@@ -136,7 +137,7 @@ const RightSidebar = () => {
             startAccessor="start"
             endAccessor="end"
             toolbar = {false}
-            style={{ height: "300px" }}
+            style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "300px" }}
           />
         </div>
     </div>
