@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import logo from "../../../utils/Logo-Orange.svg";
 import { nextButtonStyle, statesArr } from "../../../utils/constants";
 import { HiOutlineChevronDoubleDown } from "react-icons/hi";
@@ -8,6 +8,7 @@ import { PatternFormat } from "react-number-format";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 interface IFormInput {
   firstName: string;
@@ -26,6 +27,7 @@ interface IFormInput {
 
 const step_2 = () => {
   const [scrollAnim, setScrollAnim] = useState(false);
+  const [error, setError] = useState<string | undefined>("");
   const {
     register,
     handleSubmit,
@@ -38,12 +40,24 @@ const step_2 = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      await axios.post("http://localhost:3000/api/auth/register", {
-        ...data,
-        role: "Caregiver",
+      const registerResponse = await axios.post(
+        "http://localhost:3000/api/auth/register",
+        {
+          ...data,
+          role: "Caregiver",
+        }
+      );
+
+      const authResponse = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
       });
 
-      router.push("/");
+      console.log(registerResponse.data);
+      authResponse?.status === 200
+        ? router.push("/")
+        : setError(authResponse?.error);
     } catch (error) {
       console.log(error);
     }
