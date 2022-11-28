@@ -17,6 +17,12 @@ import { useSession } from "next-auth/react";
 import axios from "axios";
 
 const HomeTabs = (): JSX.Element => {
+
+  const resolutions = {
+    homeTab100 : "h-[95%]",
+    homeTab150 : "h-[90%]"
+  }
+
   const router: NextRouter = useRouter();
   const [userInfo, setUserInfo]: any = useState(null);
   const { data } = useSession();
@@ -54,7 +60,7 @@ const HomeTabs = (): JSX.Element => {
   console.log(userInfo);
 
   return (
-    <div className="h-[95%]">
+    <div className={window.devicePixelRatio >= 1.5 ? resolutions.homeTab150 : resolutions.homeTab100 }>
       <Tab.Group>
         <Tab.List>
           <Tab
