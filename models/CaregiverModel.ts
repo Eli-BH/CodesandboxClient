@@ -98,6 +98,20 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
     },
 
     flags: {
+      demographicInformation: {
+        title: {
+          type: String,
+          default: "Demographic Information",
+        },
+        status: {
+          type: String,
+          default: "incomplete",
+        },
+        link: {
+          type: String,
+          default: '/?page=profile'
+        }
+      },
       employeeDocs: {
         title: {
           type: String,
@@ -107,6 +121,10 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
           type: String,
           default: "incomplete",
         },
+        link: {
+          type: String,
+          default: '/?page=intake'
+        }
       },
       healthAssessment: {
         title: {
@@ -117,6 +135,10 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
           type: String,
           default: "incomplete",
         },
+        link: {
+          type: String,
+          deafult: '/?page=health_assessment'
+        }
       },
       welcomeCall: {
         title: {
@@ -127,9 +149,13 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
           type: String,
           default: "incomplete",
         },
+        link: {
+          type: String,
+          default: '/?page=welcome_call'
+        }
       },
       enrollmentOrientation: {
-        tite: {
+        title: {
           type: String,
           default: "Enrollment Orientation",
         },
@@ -137,6 +163,10 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
           type: String,
           default: "incomplete",
         },
+        link: {
+          type: String,
+          default: "/?page=orientation"
+        }
       },
     },
     relationship: String,

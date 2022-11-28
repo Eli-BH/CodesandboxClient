@@ -122,7 +122,7 @@ export default async function register(
     // );
 
     //update intake flag
-    newUser.flags.intake = "pending";
+    newUser.flags.employeeDocs.status = "pending";
 
     //save new user updates to mongo
     await newUser.save();

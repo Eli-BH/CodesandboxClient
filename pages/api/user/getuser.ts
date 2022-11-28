@@ -20,11 +20,13 @@ export default async function getuser(
       return res
         .status(404)
         .json({ success: false, message: "User not found" });
-    const { firstName, userType } = user;
+
+
+    const { firstName, userType, flags } = user;
 
     return res.status(200).json({
       success: true,
-      data: { firstName: firstName, userType: userType },
+      data: { firstName: firstName, userType: userType, flags: flags, caregiver: user.caregiver, patient: user.patient },
     });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });
