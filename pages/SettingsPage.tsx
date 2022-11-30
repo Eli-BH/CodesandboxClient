@@ -23,7 +23,7 @@ const SettingsPage = (): JSX.Element => {
 
   const resolutions = {
     homeTab100 : "h-[95%]",
-    homeTab150 : "h-[90%]"
+    homeTab150 : "h-[100%]"
   }
 
   const handleClick = (link) =>{
@@ -34,40 +34,17 @@ const SettingsPage = (): JSX.Element => {
   return (
     <div className={window.devicePixelRatio >= 1.5 ? resolutions.homeTab150 : resolutions.homeTab100 }>
       <Tab.Group>
-        <Tab.List>
-          <Tab
-            className="
-              ui-selected:bg-blue-50
-              ui-selected:text-black
-              ui-not-selected:bg-white
-              ui-not-selected:text-gray-800
-              ui-selected:border-t-2
-              ui-selected:border-x-2
-              ui-selected:border-b-green
-              border-gray-400
-              lg:w-[200px]
-              w-[45%]
-              p-2
-              rounded-t-lg
-              font-bold
-              outline-0
-              mr-1
-            "
-          >
-            Settings
-          </Tab>
-          
-        </Tab.List>
-
+        
         <Tab.Panel
           className="
             bg-blue-50
             h-full
             border-x-2
             border-b-2
-            border-t
+            border-t-2
             border-gray-400
             rounded-b-lg
+            rounded-t-lg
           "
         >
           <div
@@ -113,6 +90,9 @@ const SettingsPage = (): JSX.Element => {
               h-[90%]
               w-1/2
               rounded-sm
+              flex
+              flex-col
+              justify-evenly
               absolute
               ${active ? "translate-x-44 opacity-100 z-10" : "opacity-0 translate-x-0 z-0"}
               transition-all

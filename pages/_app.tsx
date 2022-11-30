@@ -1,9 +1,21 @@
 import "../styles/globals.css";
+
+import Router from 'next/router';
+import NProgress from 'nprogress'; //nprogress module
+import 'nprogress/nprogress.css'; //styles of nprogress
+
 import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
+
+Router.events.on('routeChangeStart', () => NProgress.start()); 
+Router.events.on('routeChangeComplete', () => NProgress.done()); 
+Router.events.on('routeChangeError', () => NProgress.done());
+
+
+NProgress.configure({ parent: '#mainContainer' });
 
 export default function App({
   Component,

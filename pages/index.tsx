@@ -33,7 +33,7 @@ export default function Home() {
     "
       >
         <LeftSidebar />
-        <div className="h-full w-full">
+        <div className="h-full w-full" id="mainContainer">
           <div
             className={window.devicePixelRatio >= 1.5 ? resolutions.mainContent150 : resolutions.mainContent100 }
           >
