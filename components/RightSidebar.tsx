@@ -137,7 +137,7 @@ const RightSidebar = () => {
             startAccessor="start"
             endAccessor="end"
             toolbar = {false}
-            style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "300px" }}
+            style={{ display: "contents"}}
           />
         </div>
     </div>

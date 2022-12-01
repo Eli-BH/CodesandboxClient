@@ -4,6 +4,7 @@ import SettingsPage from "../pages/SettingsPage";
 import ManagePatients from "../pages/ManagePatientsPage";
 import ManagePatientsPage from "../pages/ManagePatientsPage";
 import ProfilePage from "../pages/ProfilePage";
+import CalendarPage from "../pages/CalendarPage";
 import I9iFrame from "../components/I9iFrame";
 import DOH from "../components/DOH";
 import Enrollment from "../components/Enrollment";
@@ -51,6 +52,7 @@ export const menuItems = {
       title: "Enrollment Orientation",
       link: "/?page=orientation",
     },
+    
   ],
   patient: [
     {
@@ -305,6 +307,8 @@ export const pageRoutes = (page: string): JSX.Element => {
       return <HealthAssessment />;
     case "authorization":
       return <Authorization />;
+    case "calendar":
+      return <CalendarPage />;
     default:
       return <HomeTabs />;
   }
