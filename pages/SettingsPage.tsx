@@ -37,7 +37,7 @@ const SettingsPage = (): JSX.Element => {
         
         <Tab.Panel
           className="
-            bg-blue-50
+            bg-gray-50
             h-full
             border-x-2
             border-b-2
@@ -49,7 +49,7 @@ const SettingsPage = (): JSX.Element => {
         >
           <div
             className="
-            bg-blue-50
+            bg-gray-50
             rounded-b-lg
             h-full
             p-2
@@ -74,7 +74,7 @@ const SettingsPage = (): JSX.Element => {
             `}
           >
            {settings.map((item,index) =>(
-            <li key={index} className="hover:bg-gray-50 w-full cursor-pointer py-5 pl-2 rounded-l-sm ease-in duration-300" 
+            <li key={index} className="hover:bg-gray-100 w-full cursor-pointer py-5 pl-2 rounded-l-sm ease-in duration-300" 
             onClick={
              ()=>handleClick(links[index])
              //()=>console.log(links[index])
@@ -83,10 +83,11 @@ const SettingsPage = (): JSX.Element => {
           </ul>
             
             <div className={`
+              rounded-md
               ease-in
               p-5
               duration-300
-              bg-gray-50
+              bg-gradient-to-tr from-red-600 to-orange-400
               h-[90%]
               w-1/2
               rounded-sm

@@ -4,7 +4,7 @@ const NameChange = ({title}):JSX.Element =>(
     
     <form
       autoComplete="off"
-      className="h-[80%] flex flex-col justify-evenly items-center"
+      className="h-[80%] flex flex-col justify-evenly items-center bg-stone-50 rounded-md"
     >
         
         <p>{title}</p>
@@ -36,7 +36,7 @@ const AddressChange = ({title}):JSX.Element =>(
     
     <form
       autoComplete="off"
-      className="h-[80%] flex flex-col justify-evenly items-center"
+      className="h-[90%] flex flex-col justify-evenly items-center bg-stone-50 rounded-md"
     >
         
         <p>{title}</p>
@@ -74,7 +74,7 @@ const AddressChange = ({title}):JSX.Element =>(
       <label className="w-3/4 flex flex-col">
             Zip Code: 
             <input
-                className="w-full"
+                className="w-full mb-3"
                 type="number"
                 autoComplete="off"
                 placeholder="Zip Code"
@@ -89,7 +89,7 @@ const NumberChange = ({title}):JSX.Element =>(
     
     <form
       autoComplete="off"
-      className="h-[80%] flex flex-col justify-evenly items-center"
+      className="h-[80%] flex flex-col justify-evenly items-center bg-stone-50 rounded-md"
     >
         
         <p>{title}</p>
@@ -111,7 +111,7 @@ const PasswordChange = ({title}):JSX.Element =>(
     
     <form
       autoComplete="off"
-      className="h-[80%] flex flex-col justify-evenly items-center"
+      className="h-[80%] flex flex-col justify-evenly items-center bg-stone-50 rounded-md"
     >
         
         <p>{title}</p>
