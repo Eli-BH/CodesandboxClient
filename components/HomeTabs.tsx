@@ -220,7 +220,7 @@ const HomeTabs = (): JSX.Element => {
                 </div>
               ))
             ) : (
-              <p className="text-[2rem] md:text-[3rem] lg:text-[4rem] font-bold text-orange-200 ">
+              <p className="text-[1.2rem] md:text-[3rem] lg:text-[4rem] font-bold text-orange-200 ">
                 You have not added a patient yet
               </p>
             )}

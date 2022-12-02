@@ -123,7 +123,7 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
         },
         link: {
           type: String,
-          default: '/?page=intake'
+          default: '/?page=i9'
         }
       },
       healthAssessment: {
@@ -255,7 +255,7 @@ caregiverSchema.methods.getSignedToken = function (): string {
   );
 };
 
-caregiverSchema.methods.getResetPassword = function () {
+caregiverSchema.methods.getResetPasswordToken = function () {
   const resetToken = crypto.randomBytes(20).toString("hex");
 
   this.resetPasswordToken = crypto

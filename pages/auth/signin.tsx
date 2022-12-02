@@ -35,7 +35,7 @@ const SignIn: NextPage = (props): JSX.Element => {
     }
   };
 
-  console.log(error);
+  console.log(errors);
 
   const router = useRouter();
 
@@ -86,7 +86,9 @@ const SignIn: NextPage = (props): JSX.Element => {
                 type="email"
                 autoComplete="off"
                 placeholder="Email"
-                {...register("email")}
+                {...register("email", {
+                  required: "Email Address is required",
+                })}
               />
             </label>
 
@@ -97,7 +99,7 @@ const SignIn: NextPage = (props): JSX.Element => {
                 type="password"
                 placeholder="Password"
                 autoComplete="off"
-                {...register("password")}
+                {...register("password", { required: "Password is required" })}
               />
             </label>
 
@@ -112,7 +114,7 @@ const SignIn: NextPage = (props): JSX.Element => {
                 className="text-blue-800 cursor-pointer"
                 onClick={() => router.push("/auth/register/step_1")}
               >
-                Register{" "}
+                Register
               </p>
             </div>
 

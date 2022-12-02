@@ -2,7 +2,9 @@ import React from "react";
 import Image from "next/image";
 import logo from "../utils/Logo-Orange.svg";
 
+import { useRouter } from "next/router";
 const LoginPage = ({ children }: any): JSX.Element => {
+  const router = useRouter();
   return (
     <div className="relative w-[100vw] h-[100vh] flex">
       <div className="w-full lg:w-[50%] h-[100%] bg-no-repeat bg-cover bg-center bg-[url('../utils/background.png')] flex justify-center items-center ">
@@ -13,6 +15,7 @@ const LoginPage = ({ children }: any): JSX.Element => {
               alt="Freedom care logo"
               className="w-[300px] h-auto"
               priority
+              onClick={() => router.push("/auth/signin")}
             />
           </div>
 

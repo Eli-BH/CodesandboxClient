@@ -1,7 +1,9 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import Caregiver from "../../../models/CaregiverModel";
+import Patient from "../../../models/PatientModel";
+import dbConnect from "../../../utils/connectMongo";
 import axios from "axios";
 
 export const authOptions: NextAuthOptions = {
