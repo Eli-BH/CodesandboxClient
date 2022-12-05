@@ -8,6 +8,7 @@ import {
   MdOutlineCircle,
   MdOutlineArrowRight,
 } from "react-icons/md";
+import { FaRegSquare } from 'react-icons/fa';
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { menuItems } from "../utils/constants";
 import { useRouter, NextRouter } from "next/router";
@@ -108,7 +109,7 @@ const HomeTabs = (): JSX.Element => {
                 key={index}
               >
                 <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
-                  <MdOutlineCircle className="text-xl" />
+                  <FaRegSquare className="text-xl" />
                   <p>Incomplete</p>
                 </div>
 
