@@ -1,6 +1,6 @@
 import { Schema, model, models, Document } from "mongoose";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import jwt, { Secret } from "jsonwebtoken";
 import crypto from "crypto";
 
 interface ICaregiver extends Document {
@@ -98,25 +98,75 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
     },
 
     flags: {
-      intake: {
-        type: String,
-        default: false,
+      demographicInformation: {
+        title: {
+          type: String,
+          default: "Demographic Information",
+        },
+        status: {
+          type: String,
+          default: "incomplete",
+        },
+        link: {
+          type: String,
+          default: '/?page=profile'
+        }
+      },
+      employeeDocs: {
+        title: {
+          type: String,
+          default: "Employee Documents",
+        },
+        status: {
+          type: String,
+          default: "incomplete",
+        },
+        link: {
+          type: String,
+          default: '/?page=i9'
+        }
       },
       healthAssessment: {
-        type: String,
-        default: "incomplete",
+        title: {
+          type: String,
+          default: "Health Assessment",
+        },
+        status: {
+          type: String,
+          default: "incomplete",
+        },
+        link: {
+          type: String,
+          deafult: '/?page=health_assessment'
+        }
       },
-      i9: {
-        type: String,
-        default: "incomplete",
+      welcomeCall: {
+        title: {
+          type: String,
+          default: "Welcome Call",
+        },
+        status: {
+          type: String,
+          default: "incomplete",
+        },
+        link: {
+          type: String,
+          default: '/?page=welcome_call'
+        }
       },
-      enrollment: {
-        type: String,
-        default: "incomplete",
-      },
-      welcome: {
-        type: String,
-        default: "incomplete",
+      enrollmentOrientation: {
+        title: {
+          type: String,
+          default: "Enrollment Orientation",
+        },
+        status: {
+          type: String,
+          default: "incomplete",
+        },
+        link: {
+          type: String,
+          default: "/?page=orientation"
+        }
       },
     },
     relationship: String,
@@ -195,13 +245,17 @@ caregiverSchema.methods.matchPasswords = async function (password: string) {
   return await bcrypt.compare(password, this.password);
 };
 
-caregiverSchema.methods.getSignedToken = function (): never {
-  return jwt.sign({ id: this._id }, process.env.NEXT_PUBLIC_JWT_SECRET, {
-    expiresIn: "3 days",
-  });
+caregiverSchema.methods.getSignedToken = function (): string {
+  return jwt.sign(
+    { id: this._id },
+    process.env.NEXT_PUBLIC_JWT_SECRET as Secret,
+    {
+      expiresIn: "3 days",
+    }
+  );
 };
 
-caregiverSchema.methods.getResetPassword = function () {
+caregiverSchema.methods.getResetPasswordToken = function () {
   const resetToken = crypto.randomBytes(20).toString("hex");
 
   this.resetPasswordToken = crypto

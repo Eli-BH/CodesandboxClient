@@ -6,22 +6,20 @@ import 'nprogress/nprogress.css'; //styles of nprogress
 
 import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
-import LeftSidebar from "../components/LeftSidebar";
-import RightSidebar from "../components/RightSidebar";
+import { SessionProvider } from "next-auth/react";
 
-Router.events.on('routeChangeStart', () => NProgress.start()); 
-Router.events.on('routeChangeComplete', () => NProgress.done()); 
-Router.events.on('routeChangeError', () => NProgress.done());
+//Router.events.on('routeChangeStart', () => NProgress.start()); 
+//Router.events.on('routeChangeComplete', () => NProgress.done()); 
+//Router.events.on('routeChangeError', () => NProgress.done());
 
 
-NProgress.configure({ parent: '#mainContainer' });
+//NProgress.configure({ parent: '#mainContainer' });
 
-NProgress.configure({ showSpinner: false });
+//NProgress.configure({ showSpinner: false });
 
 export default function App({
   Component,
-  pageProps,
+  pageProps: { session, ...pageProps },
 }: AppProps): JSX.Element | null {
   const [isSSR, setIsSSR] = useState(true);
 
@@ -34,8 +32,9 @@ export default function App({
   }
 
   return (
-    <div
-      className="
+    <SessionProvider session={pageProps.session}>
+      <div
+        className="
       w-[100vw]
       m-auto
       h-[100vh]
@@ -43,8 +42,9 @@ export default function App({
       portrait:h-[100vh]
       bg-white
     "
-    >
-      <Component {...pageProps} />
-    </div>
+      >
+        <Component {...pageProps} />
+      </div>
+    </SessionProvider>
   );
 }

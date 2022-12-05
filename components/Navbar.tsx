@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CgMenu, CgClose } from "react-icons/cg";
 import {
   MdPersonAddAlt,
@@ -7,14 +7,32 @@ import {
   MdOutlineHome,
 } from "react-icons/md";
 import { ImLinkedin, ImYoutube, ImFacebook } from "react-icons/im";
+import { signOut, useSession } from "next-auth/react";
 
 import Image from "next/image";
 import Logo from "../utils/Logo-Orange.svg";
 import Link from "next/link";
 import User from "../utils/user.png";
+import axios from "axios";
 
 const Navbar = () => {
   const [menuShowing, setMenuShowing] = useState<Boolean>(false);
+  const [userInfo, setUserInfo]: any = useState(null);
+  const { data } = useSession();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.post("/api/user/getuser", {
+          email: data?.user?.email,
+        });
+
+        setUserInfo(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   const items = [
     {
@@ -39,18 +57,31 @@ const Navbar = () => {
     },
   ];
 
-  const resolutions = {
-    navbarContainer100 : "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-white",
-    navbarContainer150 : "border-b-2 w-full h-15 justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-white",
-    logoContainer100 : "md:w-[200px] xs:w-[100px]",
-    logoContainer150 : "md:w-[150px] xs:w-[75px] w-1/5"
-  }
+  let capitalize = (word: string): string => {
+    let firstLetter: string = word.charAt(0);
+    let firstLetterCap: string = firstLetter?.toUpperCase();
+    let remainingLetters: string = word.slice(1);
+    const capitalizedWord: string = firstLetterCap + remainingLetters;
 
+    return capitalizedWord;
+  };
+  const resolutions = {
+    navbarContainer100:
+      "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-white",
+    navbarContainer150:
+      "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-white",
+    logoContainer100: "md:w-[250px] xs:w-[150px]",
+    logoContainer150: "md:w-[150px] xs:w-[175px] w-1/5",
+  };
 
   return (
     <div
-        className={window.devicePixelRatio >= 1.5 ? resolutions.navbarContainer150 : resolutions.navbarContainer100 }
-        id="navbarContainer"
+      className={
+        window.devicePixelRatio >= 1.5
+          ? resolutions.navbarContainer150
+          : resolutions.navbarContainer100
+      }
+      id="navbarContainer"
     >
       <CgMenu
         onClick={() => setMenuShowing(true)}
@@ -68,16 +99,11 @@ const Navbar = () => {
                 rounded-full
                 hover:bg-gray-200
                 
+                
             "
       />
-      <div className={window.devicePixelRatio >= 1.5 ? resolutions.logoContainer150 : resolutions.logoContainer100}>
-        <Image
-          className="py-2"
-          src={Logo}
-          alt="Freedom care logo"
-          layout="responsive"
-          priority
-        />
+      <div className="md:w-[250px] xs:w-[150px]">
+        <Image className="py-2" src={Logo} alt="Freedom care logo" priority />
       </div>
 
       <div
@@ -90,7 +116,11 @@ const Navbar = () => {
             w-full
             bg-white
             transition-all
+            z-100
+            ease-in
+            
         `}
+        style={{ zIndex: "100" }}
       >
         <div className="relative w-full h-full">
           <CgClose
@@ -105,7 +135,7 @@ const Navbar = () => {
             onClick={() => setMenuShowing(false)}
           />
 
-          <div className="w-full h-full">
+          <div className="w-full h-full z-100">
             <div
               className="
                 border-r-2
@@ -119,7 +149,9 @@ const Navbar = () => {
               <div className="border-b-2 border-gray-200 h-[20%] flex-col flex items-center justify-center">
                 <Image src={User} alt="profile Image" className="w-[64px] " />
 
-                <h2 className="text-2xl font-medium font-sans">Hello, John</h2>
+                <h2 className="text-2xl font-medium font-sans">
+                  Hello, {`${userInfo && capitalize(userInfo?.firstName)}`}!
+                </h2>
               </div>
 
               <div className="border-b-2 h-[65%] flex flex-col items-center justify-evenly text-xl border-gray-200">
@@ -153,6 +185,7 @@ const Navbar = () => {
                       hover:bg-[#f29b8a]
                       cursor-pointer
                     "
+                  onClick={() => signOut()}
                 >
                   Logout
                 </button>

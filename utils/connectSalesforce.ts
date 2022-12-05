@@ -1,23 +1,22 @@
-let start = () => {
-
-    let jsforce = require('jsforce');
-    let conn = new jsforce.Connection({
-        // you can change loginUrl to connect to sandbox or prerelease env.
-        loginUrl: 'https://freedomcareny--lightning.sandbox.lightning.force.com'
-    });
-    conn.login('ebhenderson@freedomcareny.com', 'Techman eli salesforce 2022!', function (err, userInfo) {
-        if (err) { return console.error(err); }
-        // Now you can get the access token and instance URL information.
-        // Save them to establish connection next time.
-        console.log(conn.accessToken);
-        console.log(conn.instanceUrl);
-        // logged in user property
-        console.log("User ID: " + userInfo.id);
-        console.log("Org ID: " + userInfo.organizationId);
-        // ...
-    });
+import { Pool } from 'pg'
+import fs from 'fs'
+import path from 'path'
 
 
-}
+const user = process.env.PG_USER;
+const password = process.env.PG_PASSWORD;
+const host = process.env.PG_HOST;
+const port = process.env.PG_PORT;
+const database = process.env.PG_DATABASE;
 
-export default start
+const connectionString = `postgresql://${user}:${password}@${host}:${port}/${database}`;
+
+const pool = new Pool({
+    connectionString: connectionString,
+    ssl: {
+        rejectUnauthorized: false,
+    },
+});
+
+
+export default pool

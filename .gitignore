@@ -25,6 +25,8 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+yarn.lock
+
 # local env files
 .env*.local
 
@@ -43,3 +45,5 @@ next-env.d.ts
 /.env
 /.env.development
 */.env.development
+
+App not compatible with buildpack: https://github.com/mars/heroku-nextjs.git

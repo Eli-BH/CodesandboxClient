@@ -1,13 +1,13 @@
 import React, { JSXElementConstructor } from "react";
 import { JsxElement } from "typescript";
 
-import { Calendar, momentLocalizer } from 'react-big-calendar'
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
-const localizer = momentLocalizer(moment)
+const localizer = momentLocalizer(moment);
 
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { Views } from "@react-next-calendar/core";
 
 type NotificationType = {
@@ -67,21 +67,19 @@ const RightSidebar = () => {
   const eventsList = [
     {
       allDay: false,
-      start: new Date('November 25, 2022 11:00:00'),
-      end: new Date('November 25, 2022 12:00:00'),
-      title: 'Hiya!',
-      desc: "Test"
+      start: new Date("November 25, 2022 11:00:00"),
+      end: new Date("November 25, 2022 12:00:00"),
+      title: "Hiya!",
+      desc: "Test",
     },
     {
       allDay: true,
-      start: new Date('November 24, 2022 11:00:00'),
-      end: new Date('November 24, 2022 12:00:00'),
-      title: 'Thanksgiving',
-      desc: "Test2"
+      start: new Date("November 24, 2022 11:00:00"),
+      end: new Date("November 24, 2022 12:00:00"),
+      title: "Thanksgiving",
+      desc: "Test2",
     },
   ];
-   
-
 
   return (
     <div
@@ -110,7 +108,6 @@ const RightSidebar = () => {
 
         <div className="w-full">
           {notifs.map((item, index) => {
-            console.log(item);
             return (
               <NotificationItem
                 text={item.text}
@@ -121,25 +118,27 @@ const RightSidebar = () => {
           })}
         </div>
       </div>
-      <div className="h-[60%]  flex
-        flex-col content-center justify-center">
-          <Calendar
-            localizer={localizer}
-            events={eventsList}
-            onSelectEvent = {(info) => {
-              Swal.fire(
-                  info.title,
-                  "Description: " + info.desc,
-                  'info',
-                  console.log(info)
-                )            
+      <div
+        className="h-[60%]  flex
+        flex-col content-center justify-center"
+      >
+        <Calendar
+          localizer={localizer}
+          events={eventsList}
+          onSelectEvent={(info: any) => {
+            Swal.fire(info.title, "Description: " + info.desc, "info");
           }}
-            startAccessor="start"
-            endAccessor="end"
-            toolbar = {false}
-            style={{ display: "contents"}}
-          />
-        </div>
+          startAccessor="start"
+          endAccessor="end"
+          toolbar={false}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            height: "300px",
+          }}
+        />
+      </div>
     </div>
   );
 };

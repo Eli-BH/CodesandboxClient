@@ -1,28 +1,41 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 
 import Navbar from "../components/Navbar";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
-import start from "../utils/connectSalesforce";
+
 import { pageRoutes } from "../utils/constants";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { status, data } = useSession();
   const router = useRouter();
   const { page } = router.query;
 
-  start();
-
   const resolutions = {
-    nav100 : "h-[10vh]",
-    nav150 : "h-[12vh]",
-    mainContent100 : "md:w-[100%] lg:w-full h-full rounded-b-lg m-auto bg-gray-100 p-3 pb-5",
-    mainContent150 : "md:w-[100%] lg:w-full h-[88vh] rounded-b-lg m-auto bg-gray-100 p-3 pb-5",
-  }
+    nav100: "h-[10vh]",
+    nav150: "h-[12vh]",
+    mainContent100:
+      "md:w-[100%] lg:w-full h-full rounded-b-lg m-auto bg-gray-100 p-3 pb-5",
+    mainContent150:
+      "md:w-[100%] lg:w-full h-[88vh] rounded-b-lg m-auto bg-gray-100 p-3 pb-5",
+  };
 
-  return (
+  useEffect(() => {
+    if (status === "unauthenticated") router.replace("/auth/signin");
+  }, [status]);
+
+  console.log(status);
+  return status === "authenticated" ? (
     <>
-      <div className={window.devicePixelRatio >= 1.5 ? resolutions.nav150 : resolutions.nav100 }>
+      <div
+        className={
+          window.devicePixelRatio >= 1.5
+            ? resolutions.nav150
+            : resolutions.nav100
+        }
+      >
         <Navbar />
       </div>
       <div
@@ -35,14 +48,24 @@ export default function Home() {
         <LeftSidebar />
         <div className="h-full w-full" id="mainContainer">
           <div
-            className={window.devicePixelRatio >= 1.5 ? resolutions.mainContent150 : resolutions.mainContent100 }
+            className={
+              window.devicePixelRatio >= 1.5
+                ? resolutions.mainContent150
+                : resolutions.mainContent100
+            }
           >
-            {pageRoutes(page)}
+            {pageRoutes(page as string)}
           </div>
         </div>
 
         <RightSidebar />
       </div>
     </>
+  ) : (
+    <div className="w-full h-[100%] bg-no-repeat bg-cover bg-[url('../utils/background.png')] flex justify-center items-center">
+      <p className="text-[3rem] lg:text-[5rem] font-semibold text-white animate-pulse">
+        Loading
+      </p>
+    </div>
   );
 }

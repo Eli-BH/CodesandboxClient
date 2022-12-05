@@ -22,7 +22,7 @@ const step_1 = () => {
         <hr />
 
         <div className="w-full h-[85%] flex flex-col  items-center">
-          <p className="text-[1.2em] lg:text-[1.8em] px-5 py-2">
+          <p className="text-[1.4em] lg:text-[1.8em] px-5 py-2 font-semibold">
             Are you applying as a Patient or a Caregiver?
           </p>
           <div className="w-full h-full flex flex-wrap">

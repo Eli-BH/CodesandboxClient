@@ -10,9 +10,27 @@ import {
 import { useRouter, NextRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import { signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 const LeftSidebar = () => {
-  const router: NextRouter = useRouter();
+  const [userInfo, setUserInfo]: any = useState(null);
+  const { data } = useSession();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.post("/api/user/getuser", {
+          email: data?.user?.email,
+        });
+        setUserInfo(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
   const items = [
     {
       text: "Home",
@@ -36,12 +54,20 @@ const LeftSidebar = () => {
     },
   ];
 
-  const resolutions = {
-    profileIcon100 : "w-[64px]",
-    profileIcon150 : "w-[55px]"
-  }
+  let capitalize = (word: string): string => {
+    let firstLetter: string = word.charAt(0);
+    let firstLetterCap: string = firstLetter?.toUpperCase();
+    let remainingLetters: string = word.slice(1);
+    const capitalizedWord: string = firstLetterCap + remainingLetters;
 
-  
+    return capitalizedWord;
+  };
+
+  const resolutions = {
+    profileIcon100: "w-[64px]",
+    profileIcon150: "w-[55px]",
+  };
+
   return (
     <div
       className="
@@ -57,10 +83,20 @@ const LeftSidebar = () => {
     >
       <div className="border-b-2 border-gray-200 h-[20%] flex-col flex items-center justify-center">
         <Link href="/?page=profile">
-          <Image src={User} alt="profile Image" className={window.devicePixelRatio >= 1.5 ? resolutions.profileIcon150 : resolutions.profileIcon100 } />
+          <Image
+            src={User}
+            alt="profile Image"
+            className={
+              window.devicePixelRatio >= 1.5
+                ? resolutions.profileIcon150
+                : resolutions.profileIcon100
+            }
+          />
         </Link>
 
-        <h2 className="text-2xl font-medium font-sans">Hello, John!</h2>
+        <h2 className="text-2xl font-medium font-sans">
+          Hello, {`${userInfo && capitalize(userInfo?.firstName)}`}!
+        </h2>
       </div>
 
       <div className="border-b-2 h-[65%] flex flex-col items-center justify-evenly text-xl border-gray-200">
@@ -100,7 +136,7 @@ const LeftSidebar = () => {
             )
           )}
         <button
-          onClick={() => router.push("/auth/login")}
+          onClick={() => signOut()}
           className="
       border-2
       p-1

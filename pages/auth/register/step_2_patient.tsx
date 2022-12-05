@@ -4,37 +4,55 @@ import logo from "../../../utils/Logo-Orange.svg";
 import axios from "axios";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { PatternFormat } from "react-number-format";
 import { nextButtonStyle } from "../../../utils/constants";
 import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 interface IPatientForm {
   email: string;
   password: string;
   confirmPassword: string;
   medicaidId: string;
+  phone: string;
 }
 
 const step_2_patient = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [error, setError] = useState<string | undefined>("");
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    control,
   } = useForm<IPatientForm>();
   const router: NextRouter = useRouter();
   const errorStyle = "border-red-600 bg-red-100";
 
   const onSubmit: SubmitHandler<IPatientForm> = async (data) => {
     try {
-      await axios.post("http://localhost:3000/api/auth/register", {
-        ...data,
-        role: "Patient",
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/patient_register",
+        {
+          ...data,
+        }
+      );
+
+      const authResponse = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
       });
 
-      router.push("/");
+      console.log(res.data);
+
+      authResponse?.status === 200
+        ? router.push("/")
+        : setError(authResponse?.error);
     } catch (error) {
       console.log(error);
     }
@@ -79,6 +97,35 @@ const step_2_patient = () => {
                 >
                   <p className="font-semibold text-red-800">
                     {errors.medicaidId && errors.medicaidId.message}
+                  </p>
+                </div>
+              </label>
+
+              <label className="w-[95%] md:w-[45%] lg:w-[45%] relative ">
+                Phone Number:
+                <Controller
+                  name="phone"
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <PatternFormat
+                      className={`w-[100%] border border-black rounded-sm ${
+                        errors.phone && errorStyle
+                      }`}
+                      format="1 (###) ###-####"
+                      allowEmptyFormatting
+                      mask="_"
+                      value={value}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+                <div
+                  className={`absolute w-[100%] h-[30px] flex items-center justify-start  border rounded-sm border-red-800 pl ${
+                    errors.phone ? "block" : "hidden"
+                  }`}
+                >
+                  <p className="font-semibold text-red-800">
+                    {errors.phone && errors.phone.message}
                   </p>
                 </div>
               </label>

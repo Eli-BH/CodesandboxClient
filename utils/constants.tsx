@@ -4,31 +4,14 @@ import SettingsPage from "../pages/SettingsPage";
 import ManagePatients from "../pages/ManagePatientsPage";
 import ManagePatientsPage from "../pages/ManagePatientsPage";
 import ProfilePage from "../pages/ProfilePage";
-import CalendarPage from "../pages/CalendarPage";
-import I9iFrame from "../components/I9iFrame";
-import DOH from "../components/DOH";
-import Enrollment from "../components/Enrollment";
-import DemoInfo from "../components/DemoInfo";
-import NurseVisit from "../components/NurseVisit";
-import WelcomeCall from "../components/WelcomeCall";
-import HealthAssessment from "../components/HealthAssessment";
-import Authorization from "../components/Authorization";
-// export const menuItems = {
-//   caregiver: [
-//     "Intake Information",
-//     "Employee Documents",
-//     "Health Assessment",
-//     "Welcome Call",
-//     "Enrollment Orientation",
-//   ],
-//   patient: [
-//     "Intake Information",
-//     "Medicaid Nurse Visit",
-//     "Doctor Order - DOH",
-//     "Authorization",
-//     "Orientation",
-//   ],
-// };
+import I9iFrame from "../components/Tasks/I9iFrame";
+import DOH from "../components/Tasks/DOH";
+import Enrollment from "../components/Tasks/Enrollment";
+import DemoInfo from "../components/Tasks/DemoInfo";
+import NurseVisit from "../components/Tasks/NurseVisit";
+import WelcomeCall from "../components/Tasks/WelcomeCall";
+import HealthAssessment from "../components/Tasks/HealthAssessment";
+import Authorization from "../components/Tasks/Authorization";
 
 export const menuItems = {
   caregiver: [

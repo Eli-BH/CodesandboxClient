@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <soap:Envelope
+        xmlns:xsi  = "http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xsd  = "http://www.w3.org/2001/XMLSchema\"
+        xmlns:soap = "http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+            <CheckEligibility xmlns ="http://outdash.com/EligibilityIncyranceWebService">
+                <returnCode></returnCode>
+                <returnData></returnData>
+                <requestCode>EO</requestCode>
+                <vendorCode>DDC</vendorCode>
+                <facilityProviderNpi>1922467554</facilityProviderNpi>
+                <patientFirstName></patientFirstName>
+                <patientLastName></patientLastName>
+                <patientDateOfBirth></patientDateOfBirth>
+                <patientSex></patientSex>
+                <payerCode>AID18</payerCode>
+                <policyNumber></policyNumber>
+                <dateOfServiceForEligibilityChecking></dateOfServiceForEligibilityChecking>
+            </CheckEligibility>
+        </soap:Body>
+    </soap:Envelope>
+

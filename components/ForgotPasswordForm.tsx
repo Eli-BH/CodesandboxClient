@@ -1,24 +1,80 @@
 import React from "react";
+import axios from "axios";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useState } from "react";
+import { useRouter } from "next/router";
+
+interface IForm {
+  email: string;
+}
 
 const ForgotPasswordForm = (): JSX.Element => {
+  const [success, setSuccess] = useState(false);
+  const [axiosError, setAxiosError] = useState<string>("");
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IForm>();
+
+  const onSubmit: SubmitHandler<IForm> = async (data) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:3000/api/forgot_password`,
+        {
+          email: data.email,
+        }
+      );
+
+      setSuccess(true);
+    } catch (error: any) {
+      console.error(error);
+      setAxiosError(error.response.data.message);
+    }
+  };
+
   return (
     <form
       autoComplete="off"
       className="h-[80%] flex flex-col p-5 justify-evenly items-center"
+      onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="w-3/4 h-10 flex items-center justify-center border-green-400 border-2 rounded-md bg-green-200">
-        This is a sample
-      </div>
+      {errors?.email?.message && (
+        <div className="w-3/4 h-10 flex items-center justify-center border-red-400 border-2 rounded-md bg-red-200">
+          {errors?.email?.message}
+        </div>
+      )}
+      {axiosError && (
+        <div className="w-3/4 h-10 flex items-center justify-center border-red-400 border-2 rounded-md bg-red-200">
+          {axiosError}
+        </div>
+      )}
+
       <p className="font-semibold w-3/4">
-        Enter your email address, if we find it in our system you will be sent a
-        link to your email.
+        Enter your email address, you will be sent a link to your email.
       </p>
-      <input
-        className="w-3/4"
-        type="email"
-        autoComplete="off"
-        placeholder="Email"
-      />
+
+      {success ? (
+        <div
+          className="w-3/4 h-10 flex items-center justify-center border-green-400 border-2 rounded-md bg-green-200 font-semibold cursor-pointer "
+          onClick={() => router.push("/auth/signin")}
+        >
+          Thanks! Click here to go back to login
+        </div>
+      ) : (
+        <label className="w-3/4 md:w-3/4 lg:w-3/4   flex flex-col">
+          Email:
+          <input
+            className="w-full"
+            type="email"
+            autoComplete="off"
+            placeholder="Email"
+            {...register("email", { required: "Email Address is required" })}
+          />
+        </label>
+      )}
 
       <button
         className="
