@@ -53,7 +53,7 @@ export default async function resetPassword(
         // clear users account of login errors
         foundUser.accountLocked = false;
 
-        foundUser.invalidLoginCount = 0;
+        foundUser.invalidLoginCounter = 0;
 
         //reset the token and expire, we no longer need them
         foundUser.resetPasswordToken = undefined;

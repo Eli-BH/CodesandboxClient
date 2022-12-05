@@ -48,18 +48,30 @@ const step_2 = () => {
         }
       );
 
-      const authResponse = await signIn("credentials", {
-        email: data.email,
-        password: data.password,
-        redirect: false,
-      });
-
       console.log(registerResponse.data);
-      authResponse?.status === 200
-        ? router.push("/")
-        : setError(authResponse?.error);
-    } catch (error) {
-      console.log(error);
+
+      if (registerResponse.data.success === false) {
+        console.log(registerResponse.data.message);
+      }
+
+      if (registerResponse.data.success === true) {
+        console.log(registerResponse.data);
+      }
+
+      if (registerResponse.data.success === true) {
+        const authResponse = await signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          redirect: false,
+        });
+
+        authResponse?.status === 200
+          ? router.push("/")
+          : setError(authResponse?.error);
+      }
+    } catch (error: any) {
+      setError(error.response.data.message);
+      console.log(error.response.data.message);
     }
   };
 

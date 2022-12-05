@@ -14,6 +14,7 @@ import { useRouter, NextRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
+import cron from "node-cron";
 import axios from "axios";
 
 const HomeTabs = (): JSX.Element => {
@@ -24,6 +25,7 @@ const HomeTabs = (): JSX.Element => {
 
   const router: NextRouter = useRouter();
   const [userInfo, setUserInfo]: any = useState(null);
+  const [check, setCheck] = useState(0);
   const { data } = useSession();
 
   useEffect(() => {
@@ -40,6 +42,20 @@ const HomeTabs = (): JSX.Element => {
     })();
   }, []);
 
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCheck(check + 1);
+    }, 3000);
+
+    console.log(check);
+
+    if (check === 15) {
+      console.log("done");
+      clearInterval(id);
+    }
+    return () => clearInterval(id);
+  }, [check]);
+
   const statusIcon = (status: string): JSX.Element | null => {
     switch (status) {
       case "incomplete":
@@ -55,8 +71,6 @@ const HomeTabs = (): JSX.Element => {
         return null;
     }
   };
-
-  console.log(userInfo);
 
   return (
     <div

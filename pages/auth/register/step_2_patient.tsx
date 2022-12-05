@@ -33,6 +33,9 @@ const step_2_patient = () => {
   const router: NextRouter = useRouter();
   const errorStyle = "border-red-600 bg-red-100";
 
+  const formatText =
+    "The number you entered (XXX) does not appear to be a valid New York State Medicaid ID. The format in that state is :  AA12345A   Where A=alphabet letter If you think this is a valid Medicaid ID then please contact FreedomCare.";
+
   const onSubmit: SubmitHandler<IPatientForm> = async (data) => {
     try {
       const res = await axios.post(
@@ -78,6 +81,11 @@ const step_2_patient = () => {
             autoComplete="off"
             onSubmit={handleSubmit(onSubmit)}
           >
+            {(error || errors) && (
+              <div>
+                <p>{(error as string) || (errors as string)}</p>
+              </div>
+            )}
             <div className="w-full h-[90%] flex justify-evenly flex-col items-center">
               <label className="w-[95%] md:w-[45%] lg:w-[45%] relative">
                 Medicaid ID #:
@@ -88,7 +96,16 @@ const step_2_patient = () => {
                   type="text"
                   placeholder="Medicaid ID #"
                   id="medicaidId"
-                  {...register("medicaidId")}
+                  {...register("medicaidId", {
+                    required: {
+                      value: true,
+                      message: "Medicaid ID is required",
+                    },
+                    pattern: {
+                      value: /^[A-Z]{2}[1-9]{5}[A-Z]$/,
+                      message: "Not a valid Medicaid ID",
+                    },
+                  })}
                 />
                 <div
                   className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
