@@ -70,6 +70,11 @@ const SignIn: NextPage = (props): JSX.Element => {
             className="h-[80%] flex flex-col  p-5 justify-evenly items-center"
             onSubmit={handleSubmit(onSubmit)}
           >
+            {(errors?.email?.message || errors?.password?.message) && (
+              <div className="w-3/4 h-10 flex items-center justify-center border-red-400 border-2 rounded-md bg-red-200">
+                {errors?.email?.message || errors?.password?.message}
+              </div>
+            )}
             <div
               className={`w-3/4 h-10 flex items-center justify-center  ${
                 error ? "block" : "hidden"
