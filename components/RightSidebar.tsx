@@ -47,6 +47,8 @@ const NotificationItem = ({ text, variant }: NotificationType) => {
     </div>
   );
 };
+const date = new Date();
+const month = date.getMonth();
 
 const RightSidebar = () => {
   const notifs = [
@@ -81,6 +83,21 @@ const RightSidebar = () => {
     },
   ];
 
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   return (
     <div
       className="
@@ -106,7 +123,7 @@ const RightSidebar = () => {
       >
         <p className="text-2xl">Notifications</p>
 
-        <div className="w-full">
+        <div className="w-full overflow-y-scroll">
           {notifs.map((item, index) => {
             return (
               <NotificationItem
@@ -120,8 +137,12 @@ const RightSidebar = () => {
       </div>
       <div
         className="h-[60%]  flex
-        flex-col content-center justify-center"
+        flex-col content-center  justify-center"
       >
+        <div className="w-full text-center mb-5">
+          <p className="font-semibold text-2xl">{monthNames[month] || ""}</p>
+        </div>
+
         <Calendar
           localizer={localizer}
           events={eventsList}

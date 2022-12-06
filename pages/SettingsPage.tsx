@@ -9,30 +9,40 @@ import {
   MdOutlineArrowRight,
 } from "react-icons/md";
 import { AiOutlineDoubleRight } from "react-icons/ai";
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-import DemoSettings from '../components/settingsComponents/DemoSettings'
+import DemoSettings from "../components/settingsComponents/DemoSettings";
 
 const SettingsPage = (): JSX.Element => {
-  
   const [active, setActive] = useState(false);
   const [activeSetting, setActiveSetting] = useState("");
 
-  const settings:string[] = ["Change Name", "Change Address", "Change Number","Change Password", "Change Profile Photo"];
-  const links:string[] = ["name", "address", "number", "password", "photo"];
+  const settings: string[] = [
+    "Change Name",
+    "Change Address",
+    "Change Number",
+    "Change Password",
+  ];
+  const links: string[] = ["name", "address", "number", "password", "photo"];
 
   const resolutions = {
-    homeTab100 : "h-[95%]",
-    homeTab150 : "h-[90%]"
-  }
+    homeTab100: "h-[95%]",
+    homeTab150: "h-[90%]",
+  };
 
-  const handleClick = (link) =>{
+  const handleClick = (link: string) => {
     setActive(true);
     setActiveSetting(link);
-  }
+  };
 
   return (
-    <div className={window.devicePixelRatio >= 1.5 ? resolutions.homeTab150 : resolutions.homeTab100 }>
+    <div
+      className={
+        window.devicePixelRatio >= 1.5
+          ? resolutions.homeTab150
+          : resolutions.homeTab100
+      }
+    >
       <Tab.Group>
         <Tab.List>
           <Tab
@@ -56,7 +66,6 @@ const SettingsPage = (): JSX.Element => {
           >
             Settings
           </Tab>
-          
         </Tab.List>
 
         <Tab.Panel
@@ -84,7 +93,8 @@ const SettingsPage = (): JSX.Element => {
           "
           >
             {/*Unorder List for Settings */}
-          <ul className={`
+            <ul
+              className={`
             ease-in
             duration-300
             h-full
@@ -92,20 +102,32 @@ const SettingsPage = (): JSX.Element => {
             flex
             flex-col
             justify-evenly
-            ${active ? "-translate-x-44 text-left z-0" : "translate-x-15 text-center z-10"}
+            ${
+              active
+                ? "-translate-x-44 text-left z-0"
+                : "translate-x-15 text-center z-10"
+            }
             transition-all
             `}
-          >
-           {settings.map((item,index) =>(
-            <li key={index} className="hover:bg-gray-50 w-full cursor-pointer py-5 pl-2 rounded-l-sm ease-in duration-300" 
-            onClick={
-             ()=>handleClick(links[index])
-             //()=>console.log(links[index])
-            }>{item}</li>
-           ))}
-          </ul>
-            
-            <div className={`
+            >
+              {settings.map((item, index) => (
+                <li
+                  key={index}
+                  className={`hover:bg-gray-50 w-full cursor-pointer py-5 pl-2 rounded-l-sm ease-in duration-300 ${
+                    activeSetting === links[index] && "bg-gray-50"
+                  }`}
+                  onClick={
+                    () => handleClick(links[index])
+                    //()=>console.log(links[index])
+                  }
+                >
+                  <p className="text-lg md:text-2xl lg:text-2xl">{item}</p>
+                </li>
+              ))}
+            </ul>
+
+            <div
+              className={`
               ease-in
               p-5
               duration-300
@@ -114,19 +136,18 @@ const SettingsPage = (): JSX.Element => {
               w-1/2
               rounded-sm
               absolute
-              ${active ? "translate-x-44 opacity-100 z-10" : "opacity-0 translate-x-0 z-0"}
+              ${
+                active
+                  ? "translate-x-44 opacity-100 z-10"
+                  : "opacity-0 translate-x-0 z-0"
+              }
               transition-all
-              `}>
-                <DemoSettings setting={activeSetting}/>
+              `}
+            >
+              <DemoSettings setting={activeSetting} />
             </div>
-
-
-
-         
           </div>
         </Tab.Panel>
-
-        
       </Tab.Group>
     </div>
   );
