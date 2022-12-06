@@ -29,7 +29,7 @@ const SignIn: NextPage = (props): JSX.Element => {
         redirect: false,
       });
 
-      console.log({ si: res });
+      console.log({ si: res, data });
 
       res?.status === 200 ? router.push("/") : setError(res?.error);
     } catch (error) {

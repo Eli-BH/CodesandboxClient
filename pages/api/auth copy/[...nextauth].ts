@@ -23,10 +23,12 @@ export const authOptions: NextAuthOptions = {
         };
 
         try {
-          const res = await axios.post(`https://localhost:${process.env.PORT}/api/auth/login`, {
+          const res = await axios.post(`https://fc-iss-server.herokuap.com:${process.env.PORT}/api/auth/login`, {
             email,
             password,
           });
+
+          console.log(res)
 
           return res.data.user;
         } catch (error: any) {

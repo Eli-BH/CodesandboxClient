@@ -41,7 +41,7 @@ const step_2 = () => {
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
       const registerResponse = await axios.post(
-        `https://localhost:${process.env.PORT}/api/auth/register`,
+        `https://fc-iss-server.herokuap.com:${process.env.PORT}/api/auth/register`,
         {
           ...data,
           role: "Caregiver",
