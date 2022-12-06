@@ -13,6 +13,7 @@ export const authOptions: NextAuthOptions = {
       type: "credentials",
       credentials: {},
 
+
       //@ts-ignore
       async authorize(credentials) {
         const { email, password } = credentials as {
@@ -34,10 +35,12 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
+
   ],
   pages: {
     signIn: "/auth/signin",
   },
+  secret: process.env.NEXTAUTH_SECRET
 };
 
 export default NextAuth(authOptions);
