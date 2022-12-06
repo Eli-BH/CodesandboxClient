@@ -24,7 +24,7 @@ const resetPasswordPage = (): JSX.Element => {
   const onSubmit: SubmitHandler<IForm> = async (data) => {
     try {
       await axios.post(
-        `https://fc-iss-server.herokuapp.com:${process.env.PORT}/api/reset_password/${reset_token}`,
+        `https://fc-iss-server.herokuap.com/api/reset_password/${reset_token}`,
         {
           newPassword: data.password,
         }
