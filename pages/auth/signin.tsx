@@ -3,8 +3,8 @@ import Image from "next/image";
 import logo from "../../utils/Logo-Orange.svg";
 
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useRouter, NextRouter } from "next/router";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { NextPage } from "next";
 
@@ -28,6 +28,8 @@ const SignIn: NextPage = (props): JSX.Element => {
         password: data.password,
         redirect: false,
       });
+
+      console.log({ si: res });
 
       res?.status === 200 ? router.push("/") : setError(res?.error);
     } catch (error) {

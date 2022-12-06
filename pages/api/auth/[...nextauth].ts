@@ -26,6 +26,8 @@ export const authOptions: NextAuthOptions = {
             password,
           });
 
+          console.log({ na: res })
+
           return res.data.user;
         } catch (error: any) {
           throw new Error(error.response.data.message);
