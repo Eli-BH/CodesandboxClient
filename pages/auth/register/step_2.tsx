@@ -41,7 +41,7 @@ const step_2 = () => {
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
       const registerResponse = await axios.post(
-        "http://localhost:3000/api/auth/register",
+        `https://localhost:${process.env.PORT}/api/auth/register`,
         {
           ...data,
           role: "Caregiver",

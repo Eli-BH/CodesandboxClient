@@ -39,7 +39,7 @@ const step_2_patient = () => {
   const onSubmit: SubmitHandler<IPatientForm> = async (data) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/auth/patient_register",
+        `https://localhost:${process.env.PORT}/api/auth/patient_register`,
         {
           ...data,
         }
