@@ -51,7 +51,7 @@ const step_2_patient = () => {
         redirect: false,
       });
 
-      console.log(res.data);
+      console.log({ data: res.data, res: res });
 
       authResponse?.status === 200
         ? router.push("/")
