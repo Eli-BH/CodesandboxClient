@@ -61,6 +61,8 @@ const step_2_patient = () => {
     }
   };
 
+  console.log({ error, errors });
+
   return (
     <div className="w-full h-full  bg-[url('../utils/background.png')] bg-no-repeat bg-cover bg-center flex items-center justify-center">
       <div className="w-full h-full lg:w-[60%] lg:h-[85%]   bg-white  lg:rounded-md shadow-black shadow-xl overflow-y-auto ">
@@ -81,11 +83,6 @@ const step_2_patient = () => {
             autoComplete="off"
             onSubmit={handleSubmit(onSubmit)}
           >
-            {(error || errors) && (
-              <div>
-                <p>{(error as string) || (errors as string)}</p>
-              </div>
-            )}
             <div className="w-full h-[90%] flex justify-evenly flex-col items-center">
               <label className="w-[95%] md:w-[45%] lg:w-[45%] relative">
                 Medicaid ID #:
@@ -212,6 +209,17 @@ const step_2_patient = () => {
                     },
                   })}
                 />
+                <div className="w-3/4 md:w-3/4 mt-4 lg:w-3/4  flex items-center justify-start">
+                  <input
+                    type="checkbox"
+                    id="topping"
+                    name="topping"
+                    value="Paneer"
+                    className="mr-2 "
+                    onChange={() => setPasswordVisibility((prev) => !prev)}
+                  />
+                  Show passwords
+                </div>
                 <div
                   className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
                     errors.confirmPassword ? "block" : "hidden"
@@ -221,17 +229,6 @@ const step_2_patient = () => {
                     {errors.confirmPassword && errors.confirmPassword.message}
                   </p>
                 </div>
-                {passwordVisibility ? (
-                  <AiFillEye
-                    className="text-2xl"
-                    onClick={() => setPasswordVisibility(false)}
-                  />
-                ) : (
-                  <AiFillEyeInvisible
-                    className="text-2xl"
-                    onClick={() => setPasswordVisibility(true)}
-                  />
-                )}
               </label>
             </div>
             <div className="h-[10%] flex justify-around items-center w-full pb-5">
