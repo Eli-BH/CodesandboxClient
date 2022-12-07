@@ -70,8 +70,10 @@ const step_2 = () => {
           : setError(authResponse?.error);
       }
     } catch (error: any) {
-      setError(error.response.data.message);
-      console.log(error.response.data.message);
+      console.log(error);
+
+      setError(error?.response?.data?.message);
+      // console.log(error.response.data.message);
     }
   };
 

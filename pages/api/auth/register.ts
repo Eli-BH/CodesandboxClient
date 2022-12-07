@@ -73,71 +73,71 @@ export default async function register(
       });
     }
 
-    const melissaCheck = async () => {
-      const params = {
-        id: process.env.MELISSA_KEY,
-        format: "json",
-        act: "Check,Verify,Append",
-        a1: address,
-        a2: address2 || null,
-        city,
-        state,
-        postal: zip,
-        ctry: "US",
-        email,
-      };
+    // const melissaCheck = async () => {
+    //   const params = {
+    //     id: process.env.MELISSA_KEY,
+    //     format: "json",
+    //     act: "Check,Verify,Append",
+    //     a1: address,
+    //     a2: address2 || null,
+    //     city,
+    //     state,
+    //     postal: zip,
+    //     ctry: "US",
+    //     email,
+    //   };
 
-      try {
-        const { data } = await axios.get(
-          "https://personator.melissadata.net/v3/WEB/ContactVerify/doContactVerify",
-          { params }
-        );
+    //   try {
+    //     const { data } = await axios.get(
+    //       "https://personator.melissadata.net/v3/WEB/ContactVerify/doContactVerify",
+    //       { params }
+    //     );
 
-        // check against the errors array
+    //     // check against the errors array
 
-        return data;
-      } catch (error) {
-        return false;
-      }
-    };
+    //     return data;
+    //   } catch (error) {
+    //     return false;
+    //   }
+    // };
 
     // console.log(melissaCheck());
 
     //salesforce update
 
     // check if the user is already in salesforce 
-    const existingSfUser = await pool.query(
-      "SELECT id FROM salesforce.Contact WHERE Email = $1",
-      [email]
-    );
+    // const existingSfUser = await pool.query(
+    //   "SELECT id FROM salesforce.Contact WHERE Email = $1",
+    //   [email]
+    // );
 
 
-    const existingSfUserPhone = await pool.query(
-      "SELECT id FROM salesforce.Contact WHERE Phone = $1",
-      [phone]
-    );
+    // const existingSfUserPhone = await pool.query(
+    //   "SELECT id FROM salesforce.Contact WHERE Phone = $1",
+    //   [phone]
+    // );
 
-    if (existingSfUser.rows || existingSfUserPhone) {
-      return res.status(500).json({ success: false, code: 'sf', message: "User already has freedomcare information on file" })
-    }
+    // if (existingSfUser.rows) {
+    //   return res.status(500).json({ success: false, code: 'sf', message: "User already has freedomcare information on file" })
+    // }
 
-    await pool.query(
-      "INSERT INTO salesforce.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, Phone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
-      [
-        dateOfBirth,
-        firstName,
-        lastName,
-        email,
-        role,
-        "english", //english
-        phone, //phone
-        newUser.callerType, //newUser.callerType
-        city, //city
-        zip, //zip
-        state, //state
-        address2 ? `${address} ${address2}` : address, //mailing street
-      ]
-    );
+    // await pool.query(
+    //   "INSERT INTO salesforce.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, Phone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
+    //   [
+    //     dateOfBirth,
+    //     firstName,
+    //     lastName,
+    //     email,
+    //     role,
+    //     "english", //english
+    //     phone, //phone
+    //     newUser.callerType, //newUser.callerType
+    //     city, //city
+    //     zip, //zip
+    //     state, //state
+    //     address2 ? `${address} ${address2}` : address, //mailing street
+    //   ]
+    // );
 
     //update intake flag
     newUser.flags.demographicInformation.status = "pending";
