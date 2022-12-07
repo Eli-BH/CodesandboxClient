@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
         };
 
         try {
-          const res = await axios.post(`https://fc-iss-server.herokuapp.com/api/auth/login`, {
+          const res = await axios.post(`http://mysteps.freedomcare.com/api/auth/login`, {
             email,
             password,
           });

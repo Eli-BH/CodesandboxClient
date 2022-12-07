@@ -36,7 +36,7 @@ export default async function forgotPassword(
 
 
         //create a reset url 
-        const resetUrl = `https://fc-iss-server.herokuapp.com/reset_password/${resetToken}`
+        const resetUrl = `http://mysteps.freedomcare.com/reset_password/${resetToken}`
 
 
         try {

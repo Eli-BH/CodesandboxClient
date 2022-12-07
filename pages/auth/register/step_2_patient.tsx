@@ -39,7 +39,7 @@ const step_2_patient = () => {
   const onSubmit: SubmitHandler<IPatientForm> = async (data) => {
     try {
       const res = await axios.post(
-        `https://fc-iss-server.herokuapp.com/api/auth/patient_register`,
+        `http://mysteps.freedomcare.com/api/auth/patient_register`,
         {
           ...data,
         }
