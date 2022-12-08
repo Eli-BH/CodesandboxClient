@@ -15,6 +15,7 @@ interface ILogin {
 
 const SignIn: NextPage = (props): JSX.Element => {
   const [error, setError] = useState<string | undefined>("");
+  const [visibility, setVisibility] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -102,12 +103,23 @@ const SignIn: NextPage = (props): JSX.Element => {
               Password:
               <input
                 className="w-full"
-                type="password"
+                type={visibility ? "text" : "password"}
                 placeholder="Password"
                 autoComplete="off"
                 {...register("password", { required: "Password is required" })}
               />
             </label>
+            <div className="w-3/4 md:w-3/4 lg:w-3/4  flex items-center justify-start">
+              <input
+                type="checkbox"
+                id="topping"
+                name="topping"
+                value="Paneer"
+                className="mr-2"
+                onChange={() => setVisibility((prev) => !prev)}
+              />
+              Show password
+            </div>
 
             <div className="flex w-full justify-evenly ">
               <p
