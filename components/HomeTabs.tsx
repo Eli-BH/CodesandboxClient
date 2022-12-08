@@ -25,7 +25,7 @@ const HomeTabs = (): JSX.Element => {
 
   const router: NextRouter = useRouter();
   const [userInfo, setUserInfo]: any = useState(null);
-  const [check, setCheck] = useState(0);
+  const [check, setCheck] = useState(false);
   const { data } = useSession();
 
   useEffect(() => {
@@ -43,13 +43,20 @@ const HomeTabs = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setCheck(check + 1);
-    }, 3000);
+    const id = setInterval(async () => {
+      const res = await axios.post(
+        "https://mysteps.freedomcare.com/api/checkForSfid",
+        {
+          email: data?.user?.email,
+        }
+      );
 
-    console.log(check);
+      if (res.data.success) {
+        setCheck(true);
+      }
+    }, 5000);
 
-    if (check === 15) {
+    if (check === true) {
       console.log("done");
       clearInterval(id);
     }

@@ -18,9 +18,10 @@ export default async function handler(
         const user = await Caregiver.findOne({ email }) || await Patient.findOne({ email })
 
 
-        if (queryUser.rows) {
+        if (queryUser.rowCount) {
 
             user.flags.demographicInformation.status = 'complete'
+            user.sfid = queryUser.rows[0].sfid
             await user.save()
             return res.status(200).json({ success: true, message: 'Contact information accepted' })
         } else {
