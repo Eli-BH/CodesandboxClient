@@ -78,7 +78,14 @@ const HomeTabs = (): JSX.Element => {
         return null;
     }
   };
+  let capitalize = (word: string): string => {
+    let firstLetter: string = word.charAt(0);
+    let firstLetterCap: string = firstLetter?.toUpperCase();
+    let remainingLetters: string = word.slice(1);
+    const capitalizedWord: string = firstLetterCap + remainingLetters;
 
+    return capitalizedWord;
+  };
   return (
     <div
       className={
@@ -176,7 +183,7 @@ const HomeTabs = (): JSX.Element => {
                   >
                     <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
                       {statusIcon(item.status)}
-                      <p>{item.status}</p>
+                      <p className="font-semibold">{capitalize(item.status)}</p>
                     </div>
 
                     <p className="font-bold">{item.title}</p>
