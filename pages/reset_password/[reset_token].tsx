@@ -24,7 +24,7 @@ const resetPasswordPage = (): JSX.Element => {
   const onSubmit: SubmitHandler<IForm> = async (data) => {
     try {
       await axios.post(
-        `http://mysteps.freedomcare.com/api/reset_password/${reset_token}`,
+        `https://mysteps.freedomcare.com/api/reset_password/${reset_token}`,
         {
           newPassword: data.password,
         }

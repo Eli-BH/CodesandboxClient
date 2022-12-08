@@ -41,7 +41,7 @@ const step_2 = () => {
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
       const registerResponse = await axios.post(
-        `http://mysteps.freedomcare.com/api/auth/register`,
+        `https://mysteps.freedomcare.com/api/auth/register`,
         {
           ...data,
           role: "Caregiver",
