@@ -29,6 +29,7 @@ const SignIn: NextPage = (props): JSX.Element => {
         redirect: false,
       });
 
+      console.log(res);
       res?.status === 200 ? router.push("/") : setError(res?.error);
     } catch (error) {
       console.log(error);
@@ -56,7 +57,7 @@ const SignIn: NextPage = (props): JSX.Element => {
     <div className="relative w-[100vw] h-[100vh] flex">
       <div className="w-full lg:w-[50%] h-[100%] bg-[url('../utils/background.png')] flex justify-center items-center ">
         <div className="w-[450px] md:h-[550px] lg:h-[550px] xl:h-[550px] h-full bg-white  lg:rounded-md shadow-lg opacity-100 shadow-black ">
-          <div className="h-[20%]  flex justify-center items-center  ">
+          <div className="h-[20%] flex justify-center items-center  ">
             <Image
               src={logo}
               alt="Freedom care logo"

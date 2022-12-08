@@ -21,9 +21,12 @@ const ForgotPasswordForm = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<IForm> = async (data) => {
     try {
-      await axios.post(`http://mysteps.freedomcare.com/api/forgot_password`, {
-        email: data.email,
-      });
+      await axios.post(
+        `https://fc-iss-server.herokuapp.com/api/forgot_password`,
+        {
+          email: data.email,
+        }
+      );
 
       setSuccess(true);
     } catch (error: any) {
