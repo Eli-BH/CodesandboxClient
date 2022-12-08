@@ -118,7 +118,7 @@ export default async function register(
     // );
 
     if (existingSfUser.rows) {
-      return res.status(500).json({ success: false, code: 'sf', message: "User already has freedomcare information on file" })
+      return res.status(500).json({ success: false, code: 'sf', message: "User already has freedomcare information on file", existingSfUser })
     }
 
     await pool.query(
