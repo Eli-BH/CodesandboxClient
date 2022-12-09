@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../../utils/Logo-Orange.svg";
 import { nextButtonStyle, statesArr } from "../../../utils/constants";
 import { HiOutlineChevronDoubleDown } from "react-icons/hi";
@@ -37,6 +37,25 @@ const step_2 = () => {
   } = useForm<IFormInput>();
   const router: NextRouter = useRouter();
   const errorStyle = "border-red-600 bg-red-100";
+
+  const email = "temp";
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const result = await axios.post(
+          "https://mysteps.freedomcare.com/api/auth/patient_register",
+          { email: email }
+        );
+
+        console.log(result.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  console.log(error);
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {

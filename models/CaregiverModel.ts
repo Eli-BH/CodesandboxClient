@@ -140,10 +140,10 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
           deafult: '/?page=health_assessment'
         }
       },
-      welcomeCall: {
+      welcomeOrientation: {
         title: {
           type: String,
-          default: "Welcome Call",
+          default: "Welcome Orientation",
         },
         status: {
           type: String,
@@ -151,23 +151,10 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
         },
         link: {
           type: String,
-          default: '/?page=welcome_call'
+          default: '/?page=orientation'
         }
       },
-      enrollmentOrientation: {
-        title: {
-          type: String,
-          default: "Enrollment Orientation",
-        },
-        status: {
-          type: String,
-          default: "incomplete",
-        },
-        link: {
-          type: String,
-          default: "/?page=orientation"
-        }
-      },
+
     },
     relationship: String,
     patients: [

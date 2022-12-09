@@ -86,7 +86,7 @@ const patientSchema: Schema = new Schema<IPatient>(
         },
         status: {
           type: String,
-          default: 'pending'
+          default: 'incomplete'
         },
         link: {
           type: String,
@@ -100,7 +100,7 @@ const patientSchema: Schema = new Schema<IPatient>(
         },
         status: {
           type: String,
-          default: 'pending'
+          default: 'incomplete'
         },
         link: {
           type: String,
@@ -114,21 +114,21 @@ const patientSchema: Schema = new Schema<IPatient>(
         },
         status: {
           type: String,
-          default: 'pending'
+          default: 'incomplete'
         },
         link: {
           type: String,
           default: '/?page=authorization'
         }
       },
-      orientation: {
+      welcomeOrientation: {
         title: {
           type: String,
-          default: "Orientation"
+          default: "Welcome Orientation"
         },
         status: {
           type: String,
-          default: 'pending'
+          default: 'incomplete'
         },
         link: {
           type: String,
