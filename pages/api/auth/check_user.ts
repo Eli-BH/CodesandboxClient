@@ -13,18 +13,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
+        //redirect sends the user to the login page 
+        // redirect only if the user is foundin the mongo db
 
-        let foundUser = await pool.query('SELECT FirstName, LastName, Birthdate,Sfid, Email, Primary_Language__c, Phone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet FROM salesforce.Contact WHERE Email = $1', [email])
+        let user = await Caregiver.findOne({ email })
+        if (user) return res.status(200).json({ success: true, message: 'user found', redirect: true })
 
-        let usageCheck = await pool.query("SELECT * FROM salesforce.Contact WHERE Email = $1", [email])
+        let foundUser = await pool.query("SELECT * FROM salesforce.Contact WHERE Email = $1", [email])
 
         if (!foundUser) return res.status(404).json({ success: false, message: "No account", redirect: true })
 
-        foundUser = foundUser.rows[0]
-
-
-        res.status(200).json({ success: true, foundUser, usageCheck })
-
+        return res.status(200).json({ success: true, redirect: false, user: foundUser?.rows[0] })
 
     } catch (error: any) {
         console.log(error)
