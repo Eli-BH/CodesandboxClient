@@ -21,27 +21,17 @@ enum StatusEnum {
   success = "green",
 }
 
+const notificationVariation = {
+  errorNotif: "border-2 border-red-500 p-1 w-[80%] mt-2 text-red-500 rounded-md flex flex-col items-center justify-center hover:text-red-700 hover:bg-red-200 font-semibold cursor-pointer mx-auto",
+  infoNotif: "border-2 border-yellow-500 p-1 w-[80%] mt-2 text-yellow-500 rounded-md flex flex-col items-center justify-center hover:text-yellow-700 hover:bg-yellow-200 font-semibold cursor-pointer mx-auto",
+  successNotif: "border-2 border-green-500 p-1 w-[80%] mt-2 text-green-500 rounded-md flex flex-col items-center justify-center hover:text-green-700 hover:bg-green-200 font-semibold cursor-pointer mx-auto",
+}
+
 const NotificationItem = ({ text, variant }: NotificationType) => {
   return (
     <div
-      className={`
-        border-2 
-        border-${variant}-500 
-        p-1
-        w-[80%]
-        mt-2
-        text-${variant}-500
-        rounded-md
-        flex
-        flex-col
-        items-center
-        justify-center
-        hover:text-${variant}-700
-        hover:bg-${variant}-200
-        font-semibold
-        cursor-pointer
-        mx-auto
-      `}
+      className={variant === "error" ? notificationVariation.errorNotif 
+        : variant === "info" ? notificationVariation.infoNotif : variant === "success" ? notificationVariation.successNotif : null}
     >
       {text}
     </div>
@@ -52,15 +42,27 @@ const RightSidebar = () => {
   const notifs = [
     {
       text: "Form Error",
-      variant: StatusEnum.error,
+      variant: "error",
     },
     {
       text: "New Patient Added",
-      variant: StatusEnum.success,
+      variant: "success",
     },
     {
       text: "Date reminder",
-      variant: StatusEnum.info,
+      variant: "info",
+    },
+    {
+      text: "Form Error",
+      variant: "error",
+    },
+    {
+      text: "New Patient Added",
+      variant: "success",
+    },
+    {
+      text: "Date reminder",
+      variant: "info",
     },
   ];
 
@@ -106,7 +108,7 @@ const RightSidebar = () => {
       >
         <p className="text-2xl">Notifications</p>
 
-        <div className="w-full">
+        <div className="w-full overflow-y-scroll">
           {notifs.map((item, index) => {
             return (
               <NotificationItem
@@ -132,10 +134,7 @@ const RightSidebar = () => {
           endAccessor="end"
           toolbar={false}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            height: "300px",
+            display: "content",
           }}
         />
       </div>

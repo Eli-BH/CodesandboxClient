@@ -1,13 +1,14 @@
 import { Tab } from "@headlessui/react";
 import {
-  MdCheckCircle,
-  MdPending,
+  BsFillCheckSquareFill,
   MdError,
   MdRemoveCircle,
   MdCancel,
-  MdOutlineCircle,
+  MdCropDin,
   MdOutlineArrowRight,
 } from "react-icons/md";
+import {IoSquareOutline} from "react-icons/io5"
+import { CiSquareMore } from "react-icons/ci"; 
 import { FaRegSquare } from 'react-icons/fa';
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { menuItems } from "../utils/constants";
@@ -44,13 +45,13 @@ const HomeTabs = (): JSX.Element => {
   const statusIcon = (status: string): JSX.Element | null => {
     switch (status) {
       case "incomplete":
-        return <MdOutlineCircle className="text-xl" />;
+        return <IoSquareOutline className="text-xl" />;
 
       case "pending":
-        return <MdPending className="text-xl text-yellow-600" />;
+        return <CiSquareMore className="text-2xl text-yellow-600" />;
 
       case "complete":
-        return <MdCheckCircle className="text-xl text-green-600" />;
+        return <BsFillCheckSquareFill className="text-2xl text-green-600" />;
 
       default:
         return null;
@@ -156,7 +157,7 @@ const HomeTabs = (): JSX.Element => {
                   >
                     <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
                       {statusIcon(item.status)}
-                      <p>{item.status}</p>
+                      <p>{item.status[0].toUpperCase() + item.status.substring(1) }</p>
                     </div>
 
                     <p className="font-bold">{item.title}</p>
@@ -221,7 +222,7 @@ const HomeTabs = (): JSX.Element => {
                 </div>
               ))
             ) : (
-              <p className="text-[1.2rem] md:text-[3rem] lg:text-[4rem] font-bold text-orange-200 ">
+              <p className="text-[1.2rem] md:text-[3rem] lg:text-[4rem] font-bold text-orange-200 text-center">
                 You have not added a patient yet
               </p>
             )}

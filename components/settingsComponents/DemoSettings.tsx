@@ -7,13 +7,13 @@ type SettingsType = {
 const NameChange = ({ title }: SettingsType): JSX.Element => (
   <form
     autoComplete="off"
-    className="h-[80%] flex flex-col justify-evenly items-center"
+    className="h-[80%] flex flex-col justify-evenly items-center bg-stone-50 rounded-md"
   >
     <p>{title}</p>
-    <label className="w-3/4 flex flex-col">
+    <label className="w-3/4 flex flex-col py-1">
       First Name:
       <input
-        className="w-full"
+        className="w-full "
         type="text"
         autoComplete="off"
         placeholder="First Name"
@@ -35,13 +35,13 @@ const NameChange = ({ title }: SettingsType): JSX.Element => (
 const AddressChange = ({ title }: SettingsType): JSX.Element => (
   <form
     autoComplete="off"
-    className="h-[80%] flex flex-col justify-evenly items-center"
+    className="h-full flex flex-col justify-evenly items-center bg-stone-50 rounded-md"
   >
     <p>{title}</p>
     <label className="w-3/4 flex flex-col">
       Address:
       <input
-        className="w-full"
+        className="w-full my-1"
         type="text"
         autoComplete="off"
         placeholder="Street Address"
@@ -51,7 +51,7 @@ const AddressChange = ({ title }: SettingsType): JSX.Element => (
     <label className="w-3/4 flex flex-col">
       City/Town:
       <input
-        className="w-full"
+        className="w-full my-1"
         type="text"
         autoComplete="off"
         placeholder="City"
@@ -61,7 +61,7 @@ const AddressChange = ({ title }: SettingsType): JSX.Element => (
     <label className="w-3/4 flex flex-col">
       State:
       <input
-        className="w-full"
+        className="w-full my-1"
         type="text"
         autoComplete="off"
         placeholder="State"
@@ -71,7 +71,7 @@ const AddressChange = ({ title }: SettingsType): JSX.Element => (
     <label className="w-3/4 flex flex-col">
       Zip Code:
       <input
-        className="w-full"
+        className="w-full my-1"
         type="number"
         autoComplete="off"
         placeholder="Zip Code"
@@ -83,7 +83,7 @@ const AddressChange = ({ title }: SettingsType): JSX.Element => (
 const NumberChange = ({ title }: SettingsType): JSX.Element => (
   <form
     autoComplete="off"
-    className="h-[80%] flex flex-col justify-evenly items-center"
+    className="h-[80%] flex flex-col justify-evenly items-center bg-stone-50 rounded-md"
   >
     <p>{title}</p>
     <label className="w-3/4 flex flex-col">
@@ -101,7 +101,7 @@ const NumberChange = ({ title }: SettingsType): JSX.Element => (
 const PasswordChange = ({ title }: SettingsType): JSX.Element => (
   <form
     autoComplete="off"
-    className="h-[80%] flex flex-col justify-evenly items-center"
+    className="h-[80%] flex flex-col justify-evenly items-center bg-stone-50 rounded-md"
   >
     <p>{title}</p>
     <label className="w-3/4 flex flex-col">

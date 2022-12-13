@@ -4,6 +4,7 @@ import SettingsPage from "../pages/SettingsPage";
 import ManagePatients from "../pages/ManagePatientsPage";
 import ManagePatientsPage from "../pages/ManagePatientsPage";
 import ProfilePage from "../pages/ProfilePage";
+import CalendarPage from "../pages/CalendarPage";
 import I9iFrame from "../components/Tasks/I9iFrame";
 import DOH from "../components/Tasks/DOH";
 import Enrollment from "../components/Tasks/Enrollment";
@@ -64,7 +65,7 @@ export const menuItems = {
 export const contactItems = {
   newYork: [
     {
-      title: "New Hyde park",
+      title: "New Hyde Park",
       address: "1979 Marcus Ave",
       address2: "Suite C115",
       local: "New Hyde Park, NY 11042",

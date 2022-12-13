@@ -22,6 +22,7 @@ export default function Home() {
       "md:w-[100%] lg:w-full h-[88vh] rounded-b-lg m-auto bg-gray-100 p-3 pb-5",
   };
 
+  
   useEffect(() => {
     if (status === "unauthenticated") router.replace("/auth/signin");
   }, [status]);
