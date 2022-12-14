@@ -65,7 +65,6 @@ const step_2 = () => {
     })();
   }, []);
 
-  console.log({ userInfo });
   console.log(error);
   console.log(errors);
 

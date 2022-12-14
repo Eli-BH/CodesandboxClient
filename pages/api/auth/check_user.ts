@@ -9,11 +9,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 
 
-
+    const { email } = req.body;
     try {
         //redirect sends the user to the login page 
         // redirect only if the user is foundin the mongo db
-        const { email } = req.body;
+
+
+        console.log(email)
         if (!email) {
             return res
                 .status(400)
