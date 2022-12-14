@@ -48,24 +48,22 @@ const step_2 = () => {
   });
   const { email } = router.query;
 
-  console.log(email);
+  // useEffect(() => {
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const result = await axios.post(
-          `https://mysteps.freedomcare.com/api/auth/check_user/${email}`
-        );
+  // }, [email]);
 
-        console.log(result.data);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [email]);
+  (async () => {
+    try {
+      console.log(email);
+      const result = await axios.post(
+        `https://mysteps.freedomcare.com/api/auth/check_user/${email as string}`
+      );
 
-  console.log(error);
-  console.log(errors);
+      console.log(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  })();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
