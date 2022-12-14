@@ -42,6 +42,7 @@ const step_2 = () => {
   const errorStyle = "border-red-600 bg-red-100";
 
   const { email } = router.query;
+  console.log(email);
 
   console.log({
     watch,
