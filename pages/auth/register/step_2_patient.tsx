@@ -70,7 +70,6 @@ const step_2_patient = () => {
           />
         </div>
         <hr />
-
         <div className="w-full h-[90%] flex flex-col items-center ">
           <h2 className="text-[1.6em] lg:text-[2em]">Patient Registration</h2>
           <form
@@ -78,8 +77,35 @@ const step_2_patient = () => {
             autoComplete="off"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="w-full h-[90%] flex justify-evenly flex-col items-center">
-              <label className="w-[95%] md:w-[45%] lg:w-[45%] relative">
+            <div className="w-[100%] md:w-[80%]  lg:w-[100%]  h-[80%]  flex flex-col justify-evenly items-center">
+            <div className="w-[100%] md:w-[85%] lg:w-[100%] h-full flex flex-col items-center justify-evenly ">
+            <div className="w-[60%] flex justify-evenly md:justify-between lg:justify-between">
+              <label className="w-[95%] md:w-[70%] lg:w-[100%] relative">
+                Email:
+                <input
+                  className={`w-full  rounded-sm border-black border  ${
+                    errors.email && errorStyle
+                  }`}
+                  type="email"
+                  placeholder="Email"
+                  {...register("email", {
+                    required: { value: true, message: "email required" },
+                  })}
+                />
+                <div
+                  className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
+                    errors.email ? "block" : "hidden"
+                  }`}
+                >
+                  <p className="font-semibold text-red-800">
+                    {errors.email && errors.email.message}
+                  </p>
+                </div>
+              </label>
+              </div>
+
+            <div className=" flex justify-evenly md:justify-between lg:justify-evenly">
+              <label className="w-[95%] md:w-[44%] lg:w-[44%] relative">
                 Medicaid ID #:
                 <input
                   className={`w-full  rounded-sm border-black border  ${
@@ -101,7 +127,7 @@ const step_2_patient = () => {
                 </div>
               </label>
 
-              <label className="w-[95%] md:w-[45%] lg:w-[45%] relative ">
+              <label className="w-[95%] md:w-[44%] lg:w-[44%] relative ">
                 Phone Number:
                 <Controller
                   name="phone"
@@ -129,30 +155,9 @@ const step_2_patient = () => {
                   </p>
                 </div>
               </label>
+            </div>
 
-              <label className="w-[95%] md:w-[45%] lg:w-[45%] relative ">
-                Email:
-                <input
-                  className={`w-full  rounded-sm border-black border  ${
-                    errors.email && errorStyle
-                  }`}
-                  type="email"
-                  placeholder="Email"
-                  {...register("email", {
-                    required: { value: true, message: "email required" },
-                  })}
-                />
-                <div
-                  className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
-                    errors.email ? "block" : "hidden"
-                  }`}
-                >
-                  <p className="font-semibold text-red-800">
-                    {errors.email && errors.email.message}
-                  </p>
-                </div>
-              </label>
-
+              <div className=" flex justify-evenly md:justify-between lg:justify-around">
               <label className="w-[95%] md:w-[45%] lg:w-[45%] relative">
                 Password:
                 <input
@@ -173,6 +178,7 @@ const step_2_patient = () => {
                   </p>
                 </div>
               </label>
+
 
               <label className="w-[95%] md:w-[45%] lg:w-[45%] relative">
                 Confirm Password:
@@ -216,7 +222,14 @@ const step_2_patient = () => {
                   />
                 )}
               </label>
+              </div>
+              
+              </div>
             </div>
+
+
+
+
             <div className="h-[10%] flex justify-around items-center w-full pb-5">
               <button
                 className={
