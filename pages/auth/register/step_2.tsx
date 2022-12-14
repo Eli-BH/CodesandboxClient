@@ -48,6 +48,7 @@ const step_2 = () => {
     register,
     control,
   });
+  console.log(email);
 
   useEffect(() => {
     (async () => {
