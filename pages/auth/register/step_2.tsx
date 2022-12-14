@@ -48,6 +48,8 @@ const step_2 = () => {
   });
   const { email } = router.query;
 
+  console.log(email);
+
   useEffect(() => {
     (async () => {
       try {
