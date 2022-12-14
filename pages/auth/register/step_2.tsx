@@ -41,20 +41,18 @@ const step_2 = () => {
   const router: NextRouter = useRouter();
   const errorStyle = "border-red-600 bg-red-100";
 
-  const { email } = router.query;
-
   console.log({
     watch,
     register,
     control,
   });
-  console.log(email);
+  console.log(router.query);
 
   useEffect(() => {
     (async () => {
       try {
         const result = await axios.post(
-          `https://mysteps.freedomcare.com/api/auth/check_user/${email}`
+          `https://mysteps.freedomcare.com/api/auth/check_user/${router.query.email}`
         );
 
         setUserInfo(result.data.user);
