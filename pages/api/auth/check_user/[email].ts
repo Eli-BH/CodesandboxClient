@@ -8,7 +8,7 @@ import dbConnect from '../../../../utils/connectMongo';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
 
-    dbConnect()
+
 
     try {
         //redirect sends the user to the login page 
@@ -22,8 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             body
         } = req
 
-        console.log(email)
-
+        dbConnect()
 
         if (!email) {
             return res
@@ -38,9 +37,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         let foundUser = await pool.query("SELECT * FROM salesforce.Contact WHERE Email = $1", [email])
 
-        console.log(foundUser)
-        if (!foundUser) return res.status(404).json({ success: false, message: "No account", redirect: true })
 
+        if (!foundUser.rowCount) return res.status(404).json({ success: false, message: "No account", redirect: true })
+        console.log(foundUser)
         return res.status(200).json({ success: true, redirect: false, user: foundUser?.rows[0] })
 
     } catch (error: any) {
