@@ -2,13 +2,13 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import pool from "../../../utils/connectSalesforce";
 import Caregiver from "../../../models/CaregiverModel";
 import dbConnect from '../../../utils/connectMongo';
-dbConnect()
+
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
 
-
+    dbConnect()
     const { email } = req.body;
     try {
         //redirect sends the user to the login page 
@@ -16,6 +16,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 
         console.log(email)
+
+
         if (!email) {
             return res
                 .status(400)

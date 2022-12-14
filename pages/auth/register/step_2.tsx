@@ -56,7 +56,10 @@ const step_2 = () => {
     try {
       console.log(email);
       const result = await axios.post(
-        `https://mysteps.freedomcare.com/api/auth/check_user/${email as string}`
+        `https://mysteps.freedomcare.com/api/auth/check_user`,
+        {
+          email: email,
+        }
       );
 
       console.log(result.data);
