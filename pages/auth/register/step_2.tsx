@@ -54,7 +54,7 @@ const step_2 = () => {
       try {
         const result = await axios.post(
           "https://mysteps.freedomcare.com/api/auth/check_user",
-          { email }
+          { email: email }
         );
 
         setUserInfo(result.data.user);
