@@ -106,8 +106,7 @@ const RightSidebar = () => {
         w-[30%]
         items-center
         flex
-        flex-col
-        hidden
+        flex-col 
         lg:block
         "
     >

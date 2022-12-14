@@ -140,6 +140,21 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
           deafult: '/?page=health_assessment'
         }
       },
+      otherTasks: {
+
+        title: {
+          type: String,
+          default: "Other Tasks"
+        },
+        status: {
+          type: String,
+          default: "incomplete"
+        },
+        link: {
+          type: String,
+          deafult: "/?page=other"
+        }
+      },
       welcomeOrientation: {
         title: {
           type: String,
@@ -154,6 +169,7 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
           default: '/?page=orientation'
         }
       },
+
 
     },
     relationship: String,

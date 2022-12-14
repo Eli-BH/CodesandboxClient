@@ -2,12 +2,14 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 import { SessionProvider } from "next-auth/react";
+import LogRocket from "logrocket";
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps): JSX.Element | null {
   const [isSSR, setIsSSR] = useState(true);
+  LogRocket.init("znl71w/mysteps");
 
   useEffect(() => {
     setIsSSR(false);
