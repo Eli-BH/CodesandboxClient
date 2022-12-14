@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import pool from "../../../utils/connectSalesforce";
 import Caregiver from "../../../models/CaregiverModel";
+import dbConnect from '../../../utils/connectMongo';
+dbConnect()
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -16,7 +18,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         //redirect sends the user to the login page 
         // redirect only if the user is foundin the mongo db
 
-        console.log(email)
 
 
         let user = await Caregiver.findOne({ email })
