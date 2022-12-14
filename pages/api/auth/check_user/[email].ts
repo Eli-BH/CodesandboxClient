@@ -8,21 +8,22 @@ import dbConnect from '../../../../utils/connectMongo';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
 
-
+    dbConnect()
+    const {
+        query: {
+            email
+        },
+        method,
+        body
+    } = req
 
     try {
         //redirect sends the user to the login page 
         // redirect only if the user is foundin the mongo db
 
-        const {
-            query: {
-                email
-            },
-            method,
-            body
-        } = req
+        console.log(email)
 
-        dbConnect()
+
 
         if (!email) {
             return res

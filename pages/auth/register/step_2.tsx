@@ -46,22 +46,21 @@ const step_2 = () => {
     register,
     control,
   });
-  console.log(router.query);
+  const { email } = router.query;
 
   useEffect(() => {
     (async () => {
       try {
         const result = await axios.post(
-          `https://mysteps.freedomcare.com/api/auth/check_user/${router.query.email}`
+          `https://mysteps.freedomcare.com/api/auth/check_user/${email}`
         );
 
-        setUserInfo(result.data.user);
         console.log(result.data);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [email]);
 
   console.log(error);
   console.log(errors);
