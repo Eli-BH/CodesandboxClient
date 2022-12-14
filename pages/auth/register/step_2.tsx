@@ -62,6 +62,10 @@ const step_2 = () => {
         }
       );
 
+      if (result.data.redirect) {
+        router.push("https://mysteps.freedomcare.com/auth/signin");
+      }
+
       console.log(result.data);
     } catch (error) {
       console.log(error);
