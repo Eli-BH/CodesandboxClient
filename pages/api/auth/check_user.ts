@@ -16,6 +16,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         //redirect sends the user to the login page 
         // redirect only if the user is foundin the mongo db
 
+        console.log(email)
+
+
         let user = await Caregiver.findOne({ email })
         if (user) return res.status(200).json({ success: true, message: 'user found', redirect: true })
 

@@ -42,7 +42,6 @@ const step_2 = () => {
   const errorStyle = "border-red-600 bg-red-100";
 
   const { email } = router.query;
-  console.log(email);
 
   console.log({
     watch,
@@ -55,7 +54,7 @@ const step_2 = () => {
       try {
         const result = await axios.post(
           "https://mysteps.freedomcare.com/api/auth/check_user",
-          { email: email }
+          { email }
         );
 
         setUserInfo(result.data.user);
