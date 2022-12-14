@@ -27,11 +27,20 @@ const notificationVariation = {
   successNotif: "border-2 border-green-500 p-1 w-[80%] mt-2 text-green-500 rounded-md flex flex-col items-center justify-center hover:text-green-700 hover:bg-green-200 font-semibold cursor-pointer mx-auto",
 }
 
+
 const NotificationItem = ({ text, variant }: NotificationType) => {
   return (
     <div
       className={variant === "error" ? notificationVariation.errorNotif 
         : variant === "info" ? notificationVariation.infoNotif : variant === "success" ? notificationVariation.successNotif : null}
+        onClick = {() =>
+          Swal.fire({
+            icon: `${variant}`,
+            title: `${text}`,
+            text: `${text}`,
+           
+          })          
+      }
     >
       {text}
     </div>
