@@ -8,13 +8,19 @@ import { NextRouter } from "next/router";
 
 const step_1 = () => {
   const router: NextRouter = useRouter();
+
+  const resolutions = {
+    reg100Icons: "border-t pt-4 text-xl hidden md:block lg:block border-gray-800",
+    reg150Icons: "border-t pt-4 text-[14px] hidden md:block lg:block border-gray-800",
+  };
+
   return (
     <div className="w-full h-full  bg-[url('../utils/background.png')] bg-no-repeat bg-cover bg-center flex items-center justify-center">
       <div className="w-full h-full lg:w-[60%] lg:h-[85%]   bg-white rounded-sm shadow-black shadow-xl overflow-y-auto ">
         <div className="w-full h-[10%] justify-center flex">
           <Image
             src={logo}
-            className=" w-[220px] py-5 lg:w-[400px] h-auto"
+            className="w-[220px] py-2 lg:w-[400px] h-auto"
             alt="freedom care logo"
             priority
           />
@@ -35,7 +41,7 @@ const step_1 = () => {
                 flex-col 
                 h-[40%]
                 md:h-[80%]
-                lg:h-[80%] 
+                lg:h-[90%] 
                 w-[35%] 
                 p-4 
                 border-2
@@ -54,13 +60,13 @@ const step_1 = () => {
               >
                 <Image
                   src={caregiver}
-                  className="w-[60%]"
-                  alt="freedom care logo"
+                  className="w-[50%]"
+                  alt="Caregiver Icon"
                   priority
                 />
                 <p className="text-[1.3em] font-semibold">Caregiver</p>
 
-                <p className="border-t pt-4 text-xl hidden md:block lg:block border-gray-800">
+                <p className={window.devicePixelRatio >= 1.5 ? resolutions.reg150Icons : resolutions.reg100Icons}>
                   Become a caregiver for your loved one. When those in need get
                   at-home care from family members, friends, or dedicated home
                   health aides, they live at home longer.
@@ -76,7 +82,7 @@ const step_1 = () => {
                 flex-col 
                 h-[40%]
                 md:h-[80%]
-                lg:h-[80%] 
+                lg:h-[90%] 
                 w-[35%] 
                 p-4 
                 border-2
@@ -95,13 +101,13 @@ const step_1 = () => {
               >
                 <Image
                   src={patient}
-                  className="w-[60%]"
-                  alt="freedom care logo"
+                  className="w-[50%] ml-8"
+                  alt="Patient Icon"
                   priority
                 />
                 <p className="text-[1.3em] font-semibold">Patient</p>
 
-                <p className="border-t pt-4 text-xl border-gray-800 hidden  md:block lg:block">
+                <p className={window.devicePixelRatio >= 1.5 ? resolutions.reg150Icons : resolutions.reg100Icons}>
                   Get the help you need from someone you love. Hire a family
                   member or friend to care for you and they’ll get paid. Get
                   ongoing care from a person who loves you!

@@ -243,7 +243,7 @@ const step_2 = () => {
                     </div>
                   </label>
 
-                  <label className="w-[46%] md:w-[50%] lg:w-[45%] relative">
+                  <label className="w-[46%] md:w-[50%] lg:w-[51%] relative">
                     Confirm Password:
                     <input
                       type="password"
