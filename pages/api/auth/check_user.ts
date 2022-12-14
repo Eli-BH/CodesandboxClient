@@ -6,22 +6,24 @@ dbConnect()
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { email } = req.body;
 
-    if (!email) {
-        return res
-            .status(400)
-            .json({ success: false, message: "Invalid email or password", redirect: false });
-    }
+
+
 
     try {
         //redirect sends the user to the login page 
         // redirect only if the user is foundin the mongo db
-
+        const { email } = req.body;
+        if (!email) {
+            return res
+                .status(400)
+                .json({ success: false, message: "Invalid email or password", redirect: false });
+        }
 
 
         let user = await Caregiver.findOne({ email })
         if (user) return res.status(200).json({ success: true, message: 'user found', redirect: true })
+
 
         let foundUser = await pool.query("SELECT * FROM salesforce.Contact WHERE Email = $1", [email])
 

@@ -63,7 +63,7 @@ const step_2 = () => {
         console.log(error);
       }
     })();
-  }, [email]);
+  }, []);
 
   console.log({ userInfo });
   console.log(error);
