@@ -70,9 +70,9 @@ const step_2 = () => {
 
       console.log(result.data);
 
-      if (result.data.user) {
-        setUserInfo(result.data.user);
-      }
+      // if (result.data.user) {
+      //   setUserInfo(result.data.user);
+      // }
     } catch (error) {
       console.log(error);
     }
