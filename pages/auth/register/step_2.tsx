@@ -189,6 +189,7 @@ const step_2 = () => {
                     First Name:
                     <input
                       type="text"
+                      disabled
                       placeholder="First Name"
                       value={userInfo.firstName}
                       className={`w-full border border-black rounded-sm ${
@@ -221,6 +222,7 @@ const step_2 = () => {
                     Last Name:
                     <input
                       type="text"
+                      disabled
                       placeholder="Last Name"
                       value={userInfo.lastName}
                       className={`w-full border border-black rounded-sm ${
@@ -254,6 +256,7 @@ const step_2 = () => {
                   <input
                     type="email"
                     value={email}
+                    disabled
                     placeholder="Email"
                     className={`w-full border border-black rounded-sm ${
                       errors.email && errorStyle
@@ -396,6 +399,7 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.address && errorStyle
                     }`}
+                    disabled
                     value={userInfo.street}
                     type="text"
                     placeholder="Address"
@@ -423,6 +427,7 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.address2 && errorStyle
                     }`}
+                    disabled
                     type="text"
                     placeholder="Apartment, suite, etc."
                     {...register("address2")}
@@ -444,6 +449,7 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.city && errorStyle
                     }`}
+                    disabled
                     value={userInfo.city}
                     type="text"
                     placeholder="City"
@@ -469,6 +475,7 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.state && errorStyle
                     }`}
+                    disabled
                     value={userInfo.state}
                     {...register("state", {
                       required: {
@@ -500,6 +507,7 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.zip && errorStyle
                     }`}
+                    disabled
                     value={userInfo.zip}
                     type="text"
                     placeholder="eg: 11209"
