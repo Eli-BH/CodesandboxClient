@@ -70,6 +70,15 @@ const step_2 = () => {
         // if (result.data.user) {
         //   setUserInfo(result.data.user);
         // }
+
+        if (result.data.user) {
+          const { firstname, lastname } = result.data.user;
+          setUserInfo({
+            ...userInfo,
+            firstName: firstname,
+            lastName: lastname,
+          });
+        }
       } catch (error) {
         console.log(error);
       }
