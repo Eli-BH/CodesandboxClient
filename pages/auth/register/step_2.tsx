@@ -39,7 +39,10 @@ const step_2 = () => {
     formState: { errors },
     control,
   } = useForm<IFormInput>({
-    defaultValues: userInfo,
+    defaultValues: {
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+    },
   });
 
   const router: NextRouter = useRouter();
