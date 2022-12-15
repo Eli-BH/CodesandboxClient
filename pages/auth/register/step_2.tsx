@@ -253,6 +253,7 @@ const step_2 = () => {
                   Email Address:
                   <input
                     type="email"
+                    value={email}
                     placeholder="Email"
                     className={`w-full border border-black rounded-sm ${
                       errors.email && errorStyle
