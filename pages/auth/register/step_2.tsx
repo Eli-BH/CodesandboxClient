@@ -151,7 +151,6 @@ const step_2 = () => {
                     <input
                       type="text"
                       placeholder="First Name"
-                      value={userInfo && userInfo.firstName}
                       className={`w-full border border-black rounded-sm ${
                         errors.firstName && errorStyle
                       }`}
@@ -183,7 +182,6 @@ const step_2 = () => {
                     <input
                       type="text"
                       placeholder="Last Name"
-                      value={userInfo && userInfo.lastName}
                       className={`w-full border border-black rounded-sm ${
                         errors.lastName && errorStyle
                       }`}
