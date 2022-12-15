@@ -38,7 +38,9 @@ const step_2 = () => {
     watch,
     formState: { errors },
     control,
-  } = useForm<IFormInput>();
+  } = useForm<IFormInput>({
+    defaultValues: userInfo,
+  });
 
   const router: NextRouter = useRouter();
   const errorStyle = "border-red-600 bg-red-100";
