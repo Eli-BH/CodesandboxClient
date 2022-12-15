@@ -54,29 +54,33 @@ const step_2 = () => {
 
   // }, [email]);
 
-  (async () => {
-    try {
-      console.log(email);
-      const result = await axios.post(
-        `https://mysteps.freedomcare.com/api/auth/check_user`,
-        {
-          email: email,
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        console.log(email);
+        const result = await axios.post(
+          `https://mysteps.freedomcare.com/api/auth/check_user`,
+          {
+            email: email,
+          }
+        );
+
+        if (result.data.redirect) {
+          router.push("https://mysteps.freedomcare.com/auth/signin");
         }
-      );
 
-      if (result.data.redirect) {
-        router.push("https://mysteps.freedomcare.com/auth/signin");
+        console.log(result.data);
+
+        // if (result.data.user) {
+        //   setUserInfo(result.data.user);
+        // }
+      } catch (error) {
+        console.log(error);
       }
+    };
 
-      console.log(result.data);
-
-      // if (result.data.user) {
-      //   setUserInfo(result.data.user);
-      // }
-    } catch (error) {
-      console.log(error);
-    }
-  })();
+    fetchUser();
+  }, []);
 
   console.log(userInfo);
 
