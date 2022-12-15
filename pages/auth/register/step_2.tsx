@@ -10,8 +10,6 @@ import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
 import { signIn } from "next-auth/react";
 
-import PasswordStrengthBar from "react-password-strength-bar";
-
 interface IFormInput {
   firstName: string;
   lastName: string;
@@ -30,7 +28,10 @@ interface IFormInput {
 const step_2 = () => {
   const [scrollAnim, setScrollAnim] = useState(false);
   const [error, setError] = useState<string | undefined>("");
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    lastName: "",
+  });
   const {
     register,
     handleSubmit,
@@ -67,10 +68,16 @@ const step_2 = () => {
       }
 
       console.log(result.data);
+
+      if (result.data.user) {
+        setUserInfo(result.data.user);
+      }
     } catch (error) {
       console.log(error);
     }
   })();
+
+  console.log(userInfo);
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
@@ -144,6 +151,7 @@ const step_2 = () => {
                     <input
                       type="text"
                       placeholder="First Name"
+                      value={userInfo && userInfo.firstName}
                       className={`w-full border border-black rounded-sm ${
                         errors.firstName && errorStyle
                       }`}
@@ -175,6 +183,7 @@ const step_2 = () => {
                     <input
                       type="text"
                       placeholder="Last Name"
+                      value={userInfo && userInfo.lastName}
                       className={`w-full border border-black rounded-sm ${
                         errors.lastName && errorStyle
                       }`}
