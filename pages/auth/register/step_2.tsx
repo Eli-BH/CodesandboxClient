@@ -45,6 +45,7 @@ const step_2 = () => {
     watch,
     formState: { errors },
     control,
+    formState,
   } = useForm<IFormInput>({
     defaultValues: {
       firstName: userInfo.firstName,
@@ -59,6 +60,7 @@ const step_2 = () => {
     watch,
     register,
     control,
+    formState,
   });
   const { email } = router.query;
 
