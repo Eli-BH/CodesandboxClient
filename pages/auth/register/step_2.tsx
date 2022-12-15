@@ -31,6 +31,13 @@ const step_2 = () => {
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
+    email: "",
+    phone: "",
+    city: "",
+    state: "",
+    zip: "",
+    street: "",
+    birthdate: "",
   });
   const {
     register,
@@ -77,11 +84,28 @@ const step_2 = () => {
         // }
 
         if (result.data.user) {
-          const { firstname, lastname } = result.data.user;
+          const {
+            firstname,
+            lastname,
+            email,
+            phone,
+            mailingstate,
+            mailingcity,
+            mailingpostalcode,
+            mailingstreet,
+            birthdate,
+          } = result.data.user;
           setUserInfo({
             ...userInfo,
             firstName: firstname,
             lastName: lastname,
+            email: email,
+            phone: phone,
+            state: mailingstate,
+            city: mailingcity,
+            zip: mailingpostalcode,
+            street: mailingstreet,
+            birthdate,
           });
         }
       } catch (error) {
@@ -275,6 +299,7 @@ const step_2 = () => {
                   Date of Birth:
                   <input
                     type="date"
+                    value={userInfo.birthdate}
                     className={`w-full border border-black rounded-sm`}
                     {...register("dateOfBirth", {
                       required: {
@@ -370,6 +395,7 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.address && errorStyle
                     }`}
+                    value={userInfo.street}
                     type="text"
                     placeholder="Address"
                     {...register("address", {
@@ -417,6 +443,7 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.city && errorStyle
                     }`}
+                    value={userInfo.city}
                     type="text"
                     placeholder="City"
                     {...register("city", {
@@ -441,6 +468,7 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.state && errorStyle
                     }`}
+                    value={userInfo.state}
                     {...register("state", {
                       required: {
                         value: true,
@@ -471,6 +499,7 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.zip && errorStyle
                     }`}
+                    value={userInfo.zip}
                     type="text"
                     placeholder="eg: 11209"
                     {...register("zip", {
