@@ -194,7 +194,7 @@ const step_2 = () => {
                       disabled
                       placeholder="First Name"
                       value={userInfo.firstName}
-                      className={`w-full border border-black rounded-sm ${
+                      className={`w-full border border-black rounded-sm bg-gray-300 ${
                         errors.firstName && errorStyle
                       }`}
                       required
@@ -227,7 +227,7 @@ const step_2 = () => {
                       disabled
                       placeholder="Last Name"
                       value={userInfo.lastName}
-                      className={`w-full border border-black rounded-sm ${
+                      className={`w-full border border-black bg-gray-300 rounded-sm ${
                         errors.lastName && errorStyle
                       }`}
                       {...register("lastName", {
@@ -260,7 +260,7 @@ const step_2 = () => {
                     value={email}
                     disabled
                     placeholder="Email"
-                    className={`w-full border border-black rounded-sm ${
+                    className={`w-full border bg-gray-300 border-black rounded-sm ${
                       errors.email && errorStyle
                     }`}
                     autoComplete="on"
@@ -278,7 +278,8 @@ const step_2 = () => {
                     control={control}
                     render={({ field: { onChange, value } }) => (
                       <PatternFormat
-                        className={`w-[100%] border border-black rounded-sm ${
+                        disabled
+                        className={`w-[100%] border bg-gray-300 border-black rounded-sm ${
                           errors.phone && errorStyle
                         }`}
                         format="1 (###) ###-####"
@@ -306,7 +307,7 @@ const step_2 = () => {
                   <input
                     type="date"
                     value={userInfo.birthdate}
-                    className={`w-full border border-black rounded-sm`}
+                    className={`w-full border border-black bg-gray-300 rounded-sm`}
                     {...register("dateOfBirth", {
                       required: {
                         value: true,
@@ -398,7 +399,7 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative ">
                   Address:
                   <input
-                    className={`w-full border border-black rounded-sm  ${
+                    className={`w-full border border-black bg-gray-300 rounded-sm  ${
                       errors.address && errorStyle
                     }`}
                     disabled
@@ -426,7 +427,7 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative ">
                   Address2:
                   <input
-                    className={`w-full border border-black rounded-sm  ${
+                    className={`w-full border border-black bg-gray-300 rounded-sm  ${
                       errors.address2 && errorStyle
                     }`}
                     disabled
@@ -448,7 +449,7 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative ">
                   City/Town:
                   <input
-                    className={`w-full border border-black rounded-sm  ${
+                    className={`w-full border border-black bg-gray-300 rounded-sm  ${
                       errors.city && errorStyle
                     }`}
                     disabled
@@ -474,7 +475,7 @@ const step_2 = () => {
                   State:
                   <select
                     placeholder="State"
-                    className={`w-full border border-black rounded-sm  ${
+                    className={`w-full border border-black bg-gray-300 rounded-sm  ${
                       errors.state && errorStyle
                     }`}
                     disabled
@@ -506,7 +507,7 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative">
                   Zip:
                   <input
-                    className={`w-full border border-black rounded-sm  ${
+                    className={`w-full border border-black bg-gray-300 rounded-sm  ${
                       errors.zip && errorStyle
                     }`}
                     disabled
