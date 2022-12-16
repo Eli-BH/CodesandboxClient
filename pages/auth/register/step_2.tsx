@@ -279,8 +279,7 @@ const step_2 = () => {
                     control={control}
                     render={({ field: { onChange, value } }) => (
                       <PatternFormat
-                        disabled
-                        className={`w-[100%] border bg-gray-300 border-black rounded-sm ${
+                        className={`w-[100%] border  border-black rounded-sm ${
                           errors.phone && errorStyle
                         }`}
                         format="1 (###) ###-####"
@@ -308,7 +307,7 @@ const step_2 = () => {
                   <input
                     type="date"
                     value={userInfo.birthdate}
-                    className={`w-full border border-black bg-gray-300 rounded-sm`}
+                    className={`w-full border border-black  rounded-sm`}
                     {...register("dateOfBirth", {
                       required: {
                         value: true,
@@ -400,10 +399,9 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative ">
                   Address:
                   <input
-                    className={`w-full border border-black bg-gray-300 rounded-sm  ${
+                    className={`w-full border border-black  rounded-sm  ${
                       errors.address && errorStyle
                     }`}
-                    disabled
                     value={userInfo.street}
                     type="text"
                     placeholder="Address"
@@ -428,10 +426,9 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative ">
                   Address2:
                   <input
-                    className={`w-full border border-black bg-gray-300 rounded-sm  ${
+                    className={`w-full border border-black  rounded-sm  ${
                       errors.address2 && errorStyle
                     }`}
-                    disabled
                     type="text"
                     placeholder="Apartment, suite, etc."
                     {...register("address2")}
@@ -450,10 +447,9 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative ">
                   City/Town:
                   <input
-                    className={`w-full border border-black bg-gray-300 rounded-sm  ${
+                    className={`w-full border border-black  rounded-sm  ${
                       errors.city && errorStyle
                     }`}
-                    disabled
                     value={userInfo.city}
                     type="text"
                     placeholder="City"
@@ -476,10 +472,9 @@ const step_2 = () => {
                   State:
                   <select
                     placeholder="State"
-                    className={`w-full border border-black bg-gray-300 rounded-sm  ${
+                    className={`w-full border border-black rounded-sm  ${
                       errors.state && errorStyle
                     }`}
-                    disabled
                     value={userInfo.state}
                     {...register("state", {
                       required: {
@@ -508,10 +503,9 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative">
                   Zip:
                   <input
-                    className={`w-full border border-black bg-gray-300 rounded-sm  ${
+                    className={`w-full border border-black  rounded-sm  ${
                       errors.zip && errorStyle
                     }`}
-                    disabled
                     value={userInfo.zip}
                     type="text"
                     placeholder="eg: 11209"
