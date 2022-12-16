@@ -46,12 +46,7 @@ const step_2 = () => {
     formState: { errors },
     control,
     formState,
-  } = useForm<IFormInput>({
-    defaultValues: {
-      firstName: userInfo.firstName,
-      lastName: userInfo.lastName,
-    },
-  });
+  } = useForm<IFormInput>({});
 
   const router: NextRouter = useRouter();
   const errorStyle = "border-red-600 bg-red-100";
@@ -118,15 +113,21 @@ const step_2 = () => {
     fetchUser();
   }, [email]);
 
-  console.log(userInfo);
-
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
       const registerResponse = await axios.post(
         `https://mysteps.freedomcare.com/api/auth/register`,
         {
-          ...data,
           role: "Caregiver",
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          email: userInfo.email,
+          address: userInfo.street,
+          state: userInfo.state,
+          zip: userInfo.zip,
+          city: userInfo.city,
+          dateOfBirth: userInfo.birthdate,
+          phone: userInfo.phone,
         }
       );
 
