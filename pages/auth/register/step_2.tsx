@@ -284,7 +284,7 @@ const step_2 = () => {
                         format="1 (###) ###-####"
                         allowEmptyFormatting
                         mask="_"
-                        value={value}
+                        value={userInfo.phone.slice(2)}
                         onChange={onChange}
                         required
                       />
