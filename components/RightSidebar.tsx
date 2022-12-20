@@ -108,6 +108,7 @@ const RightSidebar = () => {
         flex
         flex-col 
         lg:block
+        hidden
         "
     >
       <div
