@@ -456,7 +456,6 @@ const step_2 = () => {
                     className={`w-full border border-black  rounded-sm  ${
                       errors.city && errorStyle
                     }`}
-                    value={userInfo.city}
                     type="text"
                     placeholder="City"
                     {...register("city", {
