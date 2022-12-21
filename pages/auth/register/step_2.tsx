@@ -103,7 +103,7 @@ const step_2 = () => {
             city: mailingcity,
             zip: mailingpostalcode,
             address: mailingstreet,
-            birthdate: birthdate.split("T")[0],
+            birthdate: birthdate.split("T")[0] || "",
           });
         }
       } catch (error) {
