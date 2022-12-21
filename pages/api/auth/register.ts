@@ -112,18 +112,18 @@ export default async function register(
     // );
 
     await pool.query("UPDATE salesforce.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, Phone = $6, RecordTypeId = $7, MailingCity = $8, MailingPostalCode = $9, MailingState = $10, MailingStreet = $11 WHERE Email = $12", [
-      dateOfBirth,
-      firstName,
-      lastName,
-      role,
-      "english", //let them change this 
-      phone,
-      newUser.callerType, //caregiver in this case 
-      city,
-      zip,
-      state,
-      address2 ? `${address} ${address2}` : address,
-      email
+      dateOfBirth, //1
+      firstName,//2
+      lastName,//3
+      role,//4
+      "english", //let them change this //5
+      phone,//6
+      newUser.callerType, //caregiver in this case //7
+      city,//8
+      zip,//9
+      state,//10
+      address2 ? `${address} ${address2}` : address,//11
+      email//12
     ])
     // await pool.query(
     //   "INSERT INTO salesforce.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, Phone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",

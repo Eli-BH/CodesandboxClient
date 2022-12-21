@@ -95,15 +95,15 @@ const step_2 = () => {
           } = result.data.user;
           setUserInfo({
             ...userInfo,
-            firstName: firstname,
-            lastName: lastname,
-            email: email,
-            phone: phone,
-            state: mailingstate,
-            city: mailingcity,
-            zip: mailingpostalcode,
-            address: mailingstreet,
-            birthdate: birthdate.split("T")[0] || "",
+            firstName: firstname || "",
+            lastName: lastname || "",
+            email: email || "",
+            phone: phone || "",
+            state: mailingstate || "",
+            city: mailingcity || "",
+            zip: mailingpostalcode || "",
+            address: mailingstreet || "",
+            birthdate: (birthdate && birthdate?.split("T")[0]) || "",
           });
         }
       } catch (error) {
