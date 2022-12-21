@@ -124,6 +124,7 @@ const step_2 = () => {
   }, [userInfo]);
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    console.log(data);
     try {
       const registerResponse = await axios.post(
         `https://mysteps.freedomcare.com/api/auth/register`,
