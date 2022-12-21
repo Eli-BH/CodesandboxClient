@@ -70,6 +70,8 @@ const step_2 = () => {
           }
         );
 
+        console.log(result.data);
+
         if (result.data.redirect) {
           router.push("https://mysteps.freedomcare.com/auth/signin");
         }
