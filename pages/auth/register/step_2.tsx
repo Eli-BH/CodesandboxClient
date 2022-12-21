@@ -132,12 +132,13 @@ const step_2 = () => {
           firstName: userInfo.firstName,
           lastName: userInfo.lastName,
           email: userInfo.email,
-          address: userInfo.address,
-          state: userInfo.state,
-          zip: userInfo.zip,
-          city: userInfo.city,
-          dateOfBirth: userInfo.birthdate,
-          phone: userInfo.phone,
+          address: data.address,
+          state: data.state,
+          zip: data.zip,
+          city: data.city,
+          dateOfBirth: data.dateOfBirth,
+          phone: data.phone,
+          password: data.password,
         }
       );
 
