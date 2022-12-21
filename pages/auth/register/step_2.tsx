@@ -291,6 +291,7 @@ const step_2 = () => {
                           errors.phone && errorStyle
                         }`}
                         format="1 (###) ###-####"
+                        value={value}
                         allowEmptyFormatting
                         mask="_"
                         onChange={onChange}
