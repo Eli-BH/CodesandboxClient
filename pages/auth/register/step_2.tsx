@@ -118,6 +118,8 @@ const step_2 = () => {
     reset({
       ...userInfo,
       phone: userInfo.phone.slice(2),
+      password: "",
+      confirmPassword: "",
     });
   }, [userInfo]);
 
