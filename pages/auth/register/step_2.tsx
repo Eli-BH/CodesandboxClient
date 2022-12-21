@@ -36,7 +36,7 @@ const step_2 = () => {
     city: "",
     state: "",
     zip: "",
-    street: "",
+    address: "",
     birthdate: "",
   });
   const {
@@ -102,7 +102,7 @@ const step_2 = () => {
             state: mailingstate,
             city: mailingcity,
             zip: mailingpostalcode,
-            street: mailingstreet,
+            address: mailingstreet,
             birthdate: birthdate.split("T")[0],
           });
         }
