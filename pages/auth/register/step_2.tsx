@@ -46,6 +46,7 @@ const step_2 = () => {
     formState: { errors },
     control,
     formState,
+    reset,
   } = useForm<IFormInput>({});
 
   const router: NextRouter = useRouter();
@@ -112,6 +113,12 @@ const step_2 = () => {
 
     fetchUser();
   }, [email]);
+
+  useEffect(() => {
+    reset({
+      ...userInfo,
+    });
+  }, [userInfo]);
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
@@ -402,7 +409,6 @@ const step_2 = () => {
                     className={`w-full border border-black  rounded-sm  ${
                       errors.address && errorStyle
                     }`}
-                    value={userInfo.street}
                     type="text"
                     placeholder="Address"
                     {...register("address", {
