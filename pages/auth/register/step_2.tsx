@@ -129,7 +129,7 @@ const step_2 = () => {
           firstName: userInfo.firstName,
           lastName: userInfo.lastName,
           email: userInfo.email,
-          address: userInfo.street,
+          address: userInfo.address,
           state: userInfo.state,
           zip: userInfo.zip,
           city: userInfo.city,
