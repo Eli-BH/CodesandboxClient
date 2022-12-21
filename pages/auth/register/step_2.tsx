@@ -486,7 +486,6 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.state && errorStyle
                     }`}
-                    value={userInfo.state}
                     {...register("state", {
                       required: {
                         value: true,
