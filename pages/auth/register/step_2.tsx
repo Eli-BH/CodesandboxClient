@@ -121,7 +121,7 @@ const step_2 = () => {
       password: "",
       confirmPassword: "",
     });
-  }, [userInfo]);
+  }, []);
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     console.log(data);
