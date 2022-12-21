@@ -292,7 +292,6 @@ const step_2 = () => {
                         format="1 (###) ###-####"
                         allowEmptyFormatting
                         mask="_"
-                        value={userInfo.phone.slice(2)}
                         onChange={onChange}
                         required
                       />
@@ -313,7 +312,6 @@ const step_2 = () => {
                   Date of Birth:
                   <input
                     type="date"
-                    value={userInfo.birthdate}
                     className={`w-full border border-black  rounded-sm`}
                     {...register("dateOfBirth", {
                       required: {
@@ -480,7 +478,6 @@ const step_2 = () => {
                     className={`w-full border border-black rounded-sm  ${
                       errors.state && errorStyle
                     }`}
-                    value={userInfo.state}
                     {...register("state", {
                       required: {
                         value: true,
@@ -511,7 +508,6 @@ const step_2 = () => {
                     className={`w-full border border-black  rounded-sm  ${
                       errors.zip && errorStyle
                     }`}
-                    value={userInfo.zip}
                     type="text"
                     placeholder="eg: 11209"
                     {...register("zip", {
