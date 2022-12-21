@@ -522,7 +522,7 @@ const step_2 = () => {
                       },
                       maxLength: { value: 5, message: "invalid zip format" },
                       pattern: {
-                        value: /^\d{5}$/,
+                        value: /(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)/,
                         message: "invalid zip code format",
                       },
                     })}
