@@ -40,7 +40,7 @@ const HomeTabs = (): JSX.Element => {
         console.log(error);
       }
     })();
-  }, [userInfo]);
+  }, []);
 
   useEffect(() => {
     const id = setInterval(async () => {
