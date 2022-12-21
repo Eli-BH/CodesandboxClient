@@ -115,6 +115,7 @@ const step_2 = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
+      console.log(data);
       const registerResponse = await axios.post(
         `https://mysteps.freedomcare.com/api/auth/register`,
         {
@@ -260,7 +261,6 @@ const step_2 = () => {
                     type="email"
                     value={email}
                     disabled
-                    placeholder="Email"
                     className={`w-full border bg-gray-300 border-black rounded-sm ${
                       errors.email && errorStyle
                     }`}
@@ -285,7 +285,7 @@ const step_2 = () => {
                         format="1 (###) ###-####"
                         allowEmptyFormatting
                         mask="_"
-                        value={userInfo.phone.slice(2)}
+                        placeholder={userInfo.phone.slice(2)}
                         onChange={onChange}
                         required
                       />
@@ -306,7 +306,7 @@ const step_2 = () => {
                   Date of Birth:
                   <input
                     type="date"
-                    value={userInfo.birthdate}
+                    placeholder={userInfo.birthdate}
                     className={`w-full border border-black  rounded-sm`}
                     {...register("dateOfBirth", {
                       required: {
@@ -402,9 +402,8 @@ const step_2 = () => {
                     className={`w-full border border-black  rounded-sm  ${
                       errors.address && errorStyle
                     }`}
-                    value={userInfo.street}
+                    placeholder={userInfo.street}
                     type="text"
-                    placeholder="Address"
                     {...register("address", {
                       required: {
                         value: true,
@@ -430,7 +429,6 @@ const step_2 = () => {
                       errors.address2 && errorStyle
                     }`}
                     type="text"
-                    placeholder="Apartment, suite, etc."
                     {...register("address2")}
                   />
                   <div
@@ -450,9 +448,8 @@ const step_2 = () => {
                     className={`w-full border border-black  rounded-sm  ${
                       errors.city && errorStyle
                     }`}
-                    value={userInfo.city}
+                    placeholder={userInfo.city}
                     type="text"
-                    placeholder="City"
                     {...register("city", {
                       required: { value: true, message: "City name required" },
                     })}
@@ -471,11 +468,10 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative">
                   State:
                   <select
-                    placeholder="State"
                     className={`w-full border border-black rounded-sm  ${
                       errors.state && errorStyle
                     }`}
-                    value={userInfo.state}
+                    placeholder={userInfo.state}
                     {...register("state", {
                       required: {
                         value: true,
@@ -506,9 +502,8 @@ const step_2 = () => {
                     className={`w-full border border-black  rounded-sm  ${
                       errors.zip && errorStyle
                     }`}
-                    value={userInfo.zip}
+                    placeholder={userInfo.zip}
                     type="text"
-                    placeholder="eg: 11209"
                     {...register("zip", {
                       required: {
                         value: true,
