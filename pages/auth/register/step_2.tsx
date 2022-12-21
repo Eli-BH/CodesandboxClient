@@ -512,7 +512,6 @@ const step_2 = () => {
                     className={`w-full border border-black  rounded-sm  ${
                       errors.zip && errorStyle
                     }`}
-                    value={userInfo.zip}
                     type="text"
                     placeholder="eg: 11209"
                     {...register("zip", {
