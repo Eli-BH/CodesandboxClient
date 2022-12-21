@@ -117,7 +117,7 @@ const step_2 = () => {
   useEffect(() => {
     reset({
       ...userInfo,
-      phone: userInfo.phone.slice(2) || "",
+      phone: (userInfo.phone && userInfo?.phone.slice(2)) || "",
       password: "",
       confirmPassword: "",
     });
