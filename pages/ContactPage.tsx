@@ -31,7 +31,7 @@ const ContactPage = (): JSX.Element => {
           gap-5
           flex
           w-full
-          items-start
+          items-center
           p-5
           flex-wrap
           rounded-lg
