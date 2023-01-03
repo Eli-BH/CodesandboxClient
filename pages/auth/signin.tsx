@@ -26,7 +26,8 @@ const SignIn: NextPage = (props): JSX.Element => {
 
   const router = useRouter();
 
-  console.log(window.location.href);
+  if (window.location.href.includes("fc-iss-server.herokuapp.com"))
+    router.push("https://mysteps.freedomcare.com/auth/signin");
 
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
     try {
