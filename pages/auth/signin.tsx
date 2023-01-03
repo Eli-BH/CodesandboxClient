@@ -22,6 +22,12 @@ const SignIn: NextPage = (props): JSX.Element => {
     formState: { errors },
   } = useForm<ILogin>();
 
+  console.log(errors);
+
+  const router = useRouter();
+
+  console.log(window.location.href);
+
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
     try {
       const res = await signIn("credentials", {
@@ -36,10 +42,6 @@ const SignIn: NextPage = (props): JSX.Element => {
       console.log(error);
     }
   };
-
-  console.log(errors);
-
-  const router = useRouter();
 
   const alertType = (type: string): string | undefined => {
     switch (type) {
