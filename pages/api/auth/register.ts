@@ -115,7 +115,7 @@ export default async function register(
       dateOfBirth, //1
       firstName,//2
       lastName,//3
-      role,//4
+      role,//4  // get rid of this if the problem comes back
       "english", //let them change this //5
       phone,//6
       newUser.callerType, //caregiver in this case //7

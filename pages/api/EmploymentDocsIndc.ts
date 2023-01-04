@@ -6,12 +6,18 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import Caregiver from '../../models/CaregiverModel'
 
 type Data = {
-    name: string
+    success: boolean
+    message: string
 }
 
-export default function handler(
+export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    res.status(200).json({ name: 'John Doe' })
+    try {
+
+    } catch (error: any) {
+        console.log(error)
+        res.status(500).json({ success: false, message: error.message })
+    }
 }

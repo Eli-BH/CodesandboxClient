@@ -27,7 +27,49 @@ export default function Home() {
   }, [status]);
 
   console.log(status);
-  return status === "authenticated" ? (
+  // return status === "authenticated" ? (
+  //   <>
+  //     <div
+  //       className={
+  //         window.devicePixelRatio >= 1.5
+  //           ? resolutions.nav150
+  //           : resolutions.nav100
+  //       }
+  //     >
+  //       <Navbar />
+  //     </div>
+  //     <div
+  //       className="
+  //     flex
+  //     w-full
+  //     h-[90vh]
+  //   "
+  //     >
+  //       <LeftSidebar />
+  //       <div className="h-full w-full">
+  //         <div
+  //           className={
+  //             window.devicePixelRatio >= 1.5
+  //               ? resolutions.mainContent150
+  //               : resolutions.mainContent100
+  //           }
+  //         >
+  //           {pageRoutes(page as string)}
+  //         </div>
+  //       </div>
+
+  //       <RightSidebar />
+  //     </div>
+  //   </>
+  // ) : (
+  //   <div className="w-full h-[100%] bg-no-repeat bg-cover bg-[url('../utils/background.png')] flex justify-center items-center">
+  //     <p className="text-[3rem] lg:text-[5rem] font-semibold text-white animate-pulse">
+  //       Loading
+  //     </p>
+  //   </div>
+  // );
+
+  return (
     <>
       <div
         className={
@@ -61,11 +103,5 @@ export default function Home() {
         <RightSidebar />
       </div>
     </>
-  ) : (
-    <div className="w-full h-[100%] bg-no-repeat bg-cover bg-[url('../utils/background.png')] flex justify-center items-center">
-      <p className="text-[3rem] lg:text-[5rem] font-semibold text-white animate-pulse">
-        Loading
-      </p>
-    </div>
   );
 }
