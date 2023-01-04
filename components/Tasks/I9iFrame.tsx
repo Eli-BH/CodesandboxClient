@@ -29,7 +29,7 @@ const I9iFrame = (): JSX.Element => {
     <>
       <iframe
         id="documents"
-        src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/uploadDocuments?id=${sfid}&AppLogin=true`}
+        src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/uploadDocuments?id=${sfid}`}
         title="document management"
         className="w-full h-full"
       ></iframe>
