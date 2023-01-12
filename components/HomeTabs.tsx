@@ -168,7 +168,7 @@ const HomeTabs = (): JSX.Element => {
               Object.values(userInfo && userInfo?.flags).map(
                 (item: any, index) => (
                   <div
-                    className="
+                    className={`
                hover:bg-gray-100
                 w-[98%]
                 lg:w-[90%]
@@ -178,7 +178,8 @@ const HomeTabs = (): JSX.Element => {
                 text-xs
                 md:text-xl
                 lg:text-[1.5em]
-              "
+                ${index > 1 && "hidden"}
+                `}
                     key={index}
                   >
                     <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
@@ -249,7 +250,7 @@ const HomeTabs = (): JSX.Element => {
               ))
             ) : (
               <p className="text-[1.2rem] md:text-[3rem] lg:text-[4rem] font-bold text-orange-200 ">
-                You have not added a patient yet
+                Coming Soon
               </p>
             )}
           </div>
