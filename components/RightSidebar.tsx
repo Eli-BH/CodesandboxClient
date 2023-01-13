@@ -21,48 +21,73 @@ enum StatusEnum {
   success = "green",
 }
 
+const notificationVariation = {
+  errorNotif:
+    "border-2 border-red-500 p-1 w-[80%] mt-2 text-red-500 rounded-md flex flex-col items-center justify-center hover:text-red-700 hover:bg-red-200 font-semibold cursor-pointer mx-auto",
+  infoNotif:
+    "border-2 border-yellow-500 p-1 w-[80%] mt-2 text-yellow-500 rounded-md flex flex-col items-center justify-center hover:text-yellow-700 hover:bg-yellow-200 font-semibold cursor-pointer mx-auto",
+  successNotif:
+    "border-2 border-green-500 p-1 w-[80%] mt-2 text-green-500 rounded-md flex flex-col items-center justify-center hover:text-green-700 hover:bg-green-200 font-semibold cursor-pointer mx-auto",
+};
+
 const NotificationItem = ({ text, variant }: NotificationType) => {
   return (
     <div
-      className={`
-        border-2 
-        border-${variant}-500 
-        p-1
-        w-[80%]
-        mt-2
-        text-${variant}-500
-        rounded-md
-        flex
-        flex-col
-        items-center
-        justify-center
-        hover:text-${variant}-700
-        hover:bg-${variant}-200
-        font-semibold
-        cursor-pointer
-        mx-auto
-      `}
+      className={
+        variant === "error"
+          ? notificationVariation?.errorNotif
+          : variant === "info"
+          ? notificationVariation.infoNotif
+          : variant === "success"
+          ? notificationVariation.successNotif
+          : undefined
+      }
+      onClick={() =>
+        Swal.fire({
+          title: `${text}`,
+          text: `${text}`,
+          icon: `${
+            variant === "error"
+              ? "error"
+              : variant === "success"
+              ? "success"
+              : variant === "info"
+              ? "info"
+              : "error"
+          }`,
+        })
+      }
     >
       {text}
     </div>
   );
 };
-const date = new Date();
-const month = date.getMonth();
 
 const RightSidebar = () => {
   const notifs = [
     {
       text: "Form Error",
-      variant: StatusEnum.error,
+      variant: "error",
     },
     {
       text: "New Patient Added",
-      variant: StatusEnum.success,
+      variant: "success",
     },
     {
       text: "Date reminder",
-      variant: StatusEnum.info,
+      variant: "info",
+    },
+    {
+      text: "Form Error",
+      variant: "error",
+    },
+    {
+      text: "New Patient Added",
+      variant: "success",
+    },
+    {
+      text: "Date reminder",
+      variant: "info",
     },
   ];
 
@@ -83,21 +108,6 @@ const RightSidebar = () => {
     },
   ];
 
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
   return (
     <div
       className="
@@ -106,9 +116,9 @@ const RightSidebar = () => {
         w-[30%]
         items-center
         flex
-        flex-col 
-        lg:block
+        flex-col
         hidden
+        lg:block
         "
     >
       <div
@@ -137,12 +147,8 @@ const RightSidebar = () => {
       </div>
       <div
         className="h-[60%]  flex
-        flex-col content-center  justify-center"
+        flex-col content-center justify-center"
       >
-        <div className="w-full text-center mb-5">
-          <p className="font-semibold text-2xl">{monthNames[month] || ""}</p>
-        </div>
-
         <Calendar
           localizer={localizer}
           events={eventsList}
@@ -153,10 +159,7 @@ const RightSidebar = () => {
           endAccessor="end"
           toolbar={false}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            height: "300px",
+            display: "content",
           }}
         />
       </div>
