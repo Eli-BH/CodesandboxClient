@@ -242,6 +242,7 @@ const HomeTabs = (): JSX.Element => {
                 >
                   <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
                     <MdOutlineCircle className="text-xl" />
+
                     <p>Incomplete</p>
                   </div>
                   <p className="font-bold">{item.title}</p>
