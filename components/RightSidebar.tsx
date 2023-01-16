@@ -1,5 +1,4 @@
-import React, { JSXElementConstructor } from "react";
-import { JsxElement } from "typescript";
+import React from "react";
 
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
@@ -8,7 +7,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 const localizer = momentLocalizer(moment);
 
 import Swal from "sweetalert2";
-import { Views } from "@react-next-calendar/core";
 
 type NotificationType = {
   text: string;
