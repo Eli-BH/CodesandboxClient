@@ -9,17 +9,16 @@ export default async function editUserInfo(
     res: NextApiResponse
 ) {
     dbConnect();
-    const { email } = req.body;
+    const { sfid } = req.body;
     //`SELECT Id, Status__c, Contact__c, Name FROM Forms__c WHERE RecordType.Name = 'Employment Docs' AND IsMostRecent__c = True AND Contact__c = '${sfid}'`
     try {
 
 
-        const user = await Caregiver.findOne({ email })
+        // const user = await Caregiver.findOne({ email })
 
 
-        if (!user) return res.status(404).json({ success: false, message: "User not found" })
+        if (!sfid) return res.status(404).json({ success: false, message: "User not found" })
 
-        const { sfid } = user
 
 
 
