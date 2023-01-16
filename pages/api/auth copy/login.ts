@@ -18,7 +18,6 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
       (await Patient.findOne({ email: email })) ||
       (await Caregiver.findOne({ email: email }));
 
-
     if (!user)
       return res
         .status(404)

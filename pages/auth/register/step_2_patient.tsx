@@ -4,41 +4,64 @@ import logo from "../../../utils/Logo-Orange.svg";
 import axios from "axios";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { PatternFormat } from "react-number-format";
 import { nextButtonStyle } from "../../../utils/constants";
 import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 interface IPatientForm {
   email: string;
   password: string;
   confirmPassword: string;
   medicaidId: string;
+  phone: string;
 }
 
 const step_2_patient = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [error, setError] = useState<string | undefined>("");
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    control,
   } = useForm<IPatientForm>();
   const router: NextRouter = useRouter();
   const errorStyle = "border-red-600 bg-red-100";
 
+  const formatText =
+    "The number you entered (XXX) does not appear to be a valid New York State Medicaid ID. The format in that state is :  AA12345A   Where A=alphabet letter If you think this is a valid Medicaid ID then please contact FreedomCare.";
+
   const onSubmit: SubmitHandler<IPatientForm> = async (data) => {
     try {
-      await axios.post("http://localhost:3000/api/auth/register", {
-        ...data,
-        role: "Patient",
+      const res = await axios.post(
+        `https://mysteps.freedomcare.com/api/auth/patient_register`,
+        {
+          ...data,
+        }
+      );
+
+      const authResponse = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
       });
 
-      router.push("/");
+      console.log({ data: res.data, res: res });
+
+      authResponse?.status === 200
+        ? router.push("/")
+        : setError(authResponse?.error);
     } catch (error) {
       console.log(error);
     }
   };
+
+  console.log({ error, errors });
 
   return (
     <div className="w-full h-full  bg-[url('../utils/background.png')] bg-no-repeat bg-cover bg-center flex items-center justify-center">
@@ -70,7 +93,16 @@ const step_2_patient = () => {
                   type="text"
                   placeholder="Medicaid ID #"
                   id="medicaidId"
-                  {...register("medicaidId")}
+                  {...register("medicaidId", {
+                    required: {
+                      value: true,
+                      message: "Medicaid ID is required",
+                    },
+                    pattern: {
+                      value: /^[A-Z]{2}[1-9]{5}[A-Z]$/,
+                      message: "Not a valid Medicaid ID",
+                    },
+                  })}
                 />
                 <div
                   className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
@@ -79,6 +111,35 @@ const step_2_patient = () => {
                 >
                   <p className="font-semibold text-red-800">
                     {errors.medicaidId && errors.medicaidId.message}
+                  </p>
+                </div>
+              </label>
+
+              <label className="w-[95%] md:w-[45%] lg:w-[45%] relative ">
+                Phone Number:
+                <Controller
+                  name="phone"
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <PatternFormat
+                      className={`w-[100%] border border-black rounded-sm ${
+                        errors.phone && errorStyle
+                      }`}
+                      format="1 (###) ###-####"
+                      allowEmptyFormatting
+                      mask="_"
+                      value={value}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+                <div
+                  className={`absolute w-[100%] h-[30px] flex items-center justify-start  border rounded-sm border-red-800 pl ${
+                    errors.phone ? "block" : "hidden"
+                  }`}
+                >
+                  <p className="font-semibold text-red-800">
+                    {errors.phone && errors.phone.message}
                   </p>
                 </div>
               </label>
@@ -148,6 +209,17 @@ const step_2_patient = () => {
                     },
                   })}
                 />
+                <div className="w-3/4 md:w-3/4 mt-4 lg:w-3/4  flex items-center justify-start">
+                  <input
+                    type="checkbox"
+                    id="topping"
+                    name="topping"
+                    value="Paneer"
+                    className="mr-2 "
+                    onChange={() => setPasswordVisibility((prev) => !prev)}
+                  />
+                  Show passwords
+                </div>
                 <div
                   className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
                     errors.confirmPassword ? "block" : "hidden"
@@ -157,17 +229,6 @@ const step_2_patient = () => {
                     {errors.confirmPassword && errors.confirmPassword.message}
                   </p>
                 </div>
-                {passwordVisibility ? (
-                  <AiFillEye
-                    className="text-2xl"
-                    onClick={() => setPasswordVisibility(false)}
-                  />
-                ) : (
-                  <AiFillEyeInvisible
-                    className="text-2xl"
-                    onClick={() => setPasswordVisibility(true)}
-                  />
-                )}
               </label>
             </div>
             <div className="h-[10%] flex justify-around items-center w-full pb-5">

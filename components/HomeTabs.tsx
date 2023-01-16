@@ -11,11 +11,89 @@ import {
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { menuItems } from "../utils/constants";
 import { useRouter, NextRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+
+import cron from "node-cron";
+import axios from "axios";
 
 const HomeTabs = (): JSX.Element => {
+  const resolutions = {
+    homeTab100: "h-[95%]",
+    homeTab150: "h-[90%]",
+  };
+
   const router: NextRouter = useRouter();
+  const [userInfo, setUserInfo]: any = useState(null);
+  const [check, setCheck] = useState(false);
+  const { data } = useSession();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.post("/api/user/getuser", {
+          email: data?.user?.email,
+        });
+
+        setUserInfo(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(async () => {
+      const res = await axios.post(
+        "https://mysteps.freedomcare.com/api/checkForSfid",
+        {
+          email: data?.user?.email,
+        }
+      );
+
+      if (res.data.success) {
+        setCheck(true);
+      }
+    }, 5000);
+
+    if (check === true) {
+      console.log("done");
+      clearInterval(id);
+    }
+    return () => clearInterval(id);
+  }, [check]);
+
+  const statusIcon = (status: string): JSX.Element | null => {
+    switch (status) {
+      case "incomplete":
+        return <MdOutlineCircle className="text-xl" />;
+
+      case "pending":
+        return <MdPending className="text-xl text-yellow-600" />;
+
+      case "complete":
+        return <MdCheckCircle className="text-xl text-green-600" />;
+
+      default:
+        return null;
+    }
+  };
+  let capitalize = (word: string): string => {
+    let firstLetter: string = word.charAt(0);
+    let firstLetterCap: string = firstLetter?.toUpperCase();
+    let remainingLetters: string = word.slice(1);
+    const capitalizedWord: string = firstLetterCap + remainingLetters;
+
+    return capitalizedWord;
+  };
   return (
-    <div className="h-[95%]">
+    <div
+      className={
+        window.devicePixelRatio >= 1.5
+          ? resolutions.homeTab150
+          : resolutions.homeTab100
+      }
+    >
       <Tab.Group>
         <Tab.List>
           <Tab
@@ -86,9 +164,11 @@ const HomeTabs = (): JSX.Element => {
             items-center
           "
           >
-            {menuItems?.caregiver.map((item, index) => (
-              <div
-                className="
+            {userInfo &&
+              Object.values(userInfo && userInfo?.flags).map(
+                (item: any, index) => (
+                  <div
+                    className={`
                hover:bg-gray-100
                 w-[98%]
                 lg:w-[90%]
@@ -98,25 +178,28 @@ const HomeTabs = (): JSX.Element => {
                 text-xs
                 md:text-xl
                 lg:text-[1.5em]
-              "
-                key={index}
-              >
-                <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
-                  <MdOutlineCircle className="text-xl" />
-                  <p>Incomplete</p>
-                </div>
+                ${index > 1 && "hidden"}
+                `}
+                    key={index}
+                  >
+                    <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
+                      {statusIcon(item.status)}
+                      <p className="font-semibold">{capitalize(item.status)}</p>
+                    </div>
 
-                <p className="font-bold">{item.title}</p>
-                <AiOutlineDoubleRight
-                  className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer"
-                  onClick={() => router.push(item.link)}
-                />
-              </div>
-            ))}
+                    <p className="font-bold">{item.title}</p>
+                    <AiOutlineDoubleRight
+                      className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer"
+                      onClick={() => router.push(item.link)}
+                    />
+                  </div>
+                )
+              )}
           </div>
         </Tab.Panel>
 
         {/* patient panel */}
+
         <Tab.Panel
           className="
            bg-orange-50
@@ -139,29 +222,38 @@ const HomeTabs = (): JSX.Element => {
             items-center
             "
           >
-            {menuItems?.patient.map((item, index) => (
-              <div
-                className="
-               hover:bg-gray-100
-                w-[98%]
-                lg:w-[90%]
-                justify-between
-                items-center
-                flex
-                text-sm
-                md:text-lg
-                lg:text-[1.5em]
-              "
-                key={index}
-              >
-                <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
-                  <MdOutlineCircle className="text-xl" />
-                  <p>Incomplete</p>
+            {userInfo &&
+            userInfo.userType === "Caregiver" &&
+            userInfo.patient ? (
+              menuItems?.patient.map((item, index) => (
+                <div
+                  className="
+                   hover:bg-gray-100
+                    w-[98%]
+                    lg:w-[90%]
+                    justify-between
+                    items-center
+                    flex
+                    text-sm
+                    md:text-lg
+                    lg:text-[1.5em]
+                  "
+                  key={index}
+                >
+                  <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
+                    <MdOutlineCircle className="text-xl" />
+
+                    <p>Incomplete</p>
+                  </div>
+                  <p className="font-bold">{item.title}</p>
+                  <AiOutlineDoubleRight className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer" />
                 </div>
-                <p className="font-bold">{item.title}</p>
-                <AiOutlineDoubleRight className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer" />
-              </div>
-            ))}
+              ))
+            ) : (
+              <p className="text-[1.2rem] md:text-[3rem] lg:text-[4rem] font-bold text-orange-200 ">
+                Coming Soon
+              </p>
+            )}
           </div>
         </Tab.Panel>
       </Tab.Group>

@@ -31,7 +31,7 @@ const ContactPage = (): JSX.Element => {
           gap-5
           flex
           w-full
-          items-start
+          items-center
           p-5
           flex-wrap
           rounded-lg
@@ -59,7 +59,7 @@ const ContactPage = (): JSX.Element => {
           opacity-75
           shadow-black
           bg-gray-50
-          
+          z-0
         "
             >
               <p className="font-bold">{item.title}</p>

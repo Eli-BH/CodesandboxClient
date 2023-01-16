@@ -57,74 +57,52 @@ export default async function register(
         zip,
         city,
       });
+    } else if (role === "Patient") {
+      newUser = await Patient.create({
+        firstName,
+        lastName,
+        email,
+        password,
+        phone,
+        dateOfBirth,
+        address,
+        address2,
+        state,
+        zip,
+        city,
+      });
     }
 
-    // const melissaCheck = async () => {
-    //   const params = {
-    //     id: process.env.MELISSA_KEY,
-    //     format: "json",
-    //     act: "Check,Verify,Append",
-    //     a1: address,
-    //     a2: address2 || null,
-    //     city,
-    //     state,
-    //     postal: zip,
-    //     ctry: "US",
-    //     email,
-    //   };
+    const melissaCheck = async () => {
+      const params = {
+        id: process.env.MELISSA_KEY,
+        format: "json",
+        act: "Check,Verify,Append",
+        a1: address,
+        a2: address2 || null,
+        city,
+        state,
+        postal: zip,
+        ctry: "US",
+        email,
+      };
 
-    //   try {
-    //     const { data } = await axios.get(
-    //       "https://personator.melissadata.net/v3/WEB/ContactVerify/doContactVerify",
-    //       { params }
-    //     );
+      try {
+        const { data } = await axios.get(
+          "https://personator.melissadata.net/v3/WEB/ContactVerify/doContactVerify",
+          { params }
+        );
 
-    //     // check against the errors array
-
-    //     return data;
-    //   } catch (error) {
-    //     return false;
-    //   }
-    // };
+        return data;
+      } catch (error) {
+        return false;
+      }
+    };
 
     // console.log(melissaCheck());
 
     //salesforce update
 
-    // check if the user is already in salesforce 
-    // const existingSfUser = await pool.query(
-    //   "SELECT id FROM salesforce.Contact WHERE Email = $1",
-    //   [email]
-    // );
-
-
-    // const existingSfUserPhone = await pool.query(
-    //   "SELECT id FROM salesforce.Contact WHERE Phone = $1",
-    //   [phone]
-    // );
-
-    // if (existingSfUser.rowCount) {
-    //   return res.status(500).json({ success: false, code: 'sf', message: "User already has freedomcare information on file" })
-    // }
-    // await pool.query(
-    //   "UPDATE salesforce.Contact set LastWebAppLogin__c = $1 WHERE Email = $2",
-    //   [currentLoginTime, email]
-    // );
-
-    await pool.query("UPDATE salesforce.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, Phone = $6, RecordTypeId = $7, MailingCity = $8, MailingPostalCode = $9, MailingState = $10, MailingStreet = $11 WHERE Email = $12", [
-      dateOfBirth, //1
-      firstName,//2
-      lastName,//3
-      role,//4  // get rid of this if the problem comes back
-      "english", //let them change this //5
-      phone,//6
-      newUser.callerType, //caregiver in this case //7
-      city,//8
-      zip,//9
-      state,//10
-      address2 ? `${address} ${address2}` : address,//11
-      email//12
-    ])
     // await pool.query(
     //   "INSERT INTO salesforce.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, Phone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
     //   [
@@ -144,7 +122,7 @@ export default async function register(
     // );
 
     //update intake flag
-    newUser.flags.demographicInformation.status = "pending";
+    newUser.flags.employeeDocs.status = "pending";
 
     //save new user updates to mongo
     await newUser.save();

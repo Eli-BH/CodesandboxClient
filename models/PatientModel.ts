@@ -65,14 +65,18 @@ const patientSchema: Schema = new Schema<IPatient>(
     DateOfBirth: String,
     County: String,
     flags: {
-      employeeDocs: {
+      demographicInformation: {
         title: {
           type: String,
-          default: "Employee Documents"
+          default: "Demographic Information",
         },
         status: {
           type: String,
-          default: 'pending'
+          default: "incomplete",
+        },
+        link: {
+          type: String,
+          default: '/?page=profile'
         }
       },
       medicaidVisit: {
@@ -82,7 +86,11 @@ const patientSchema: Schema = new Schema<IPatient>(
         },
         status: {
           type: String,
-          default: 'pending'
+          default: 'incomplete'
+        },
+        link: {
+          type: String,
+          default: '/?page=medicaid_visit'
         }
       },
       doctorOrder: {
@@ -92,7 +100,11 @@ const patientSchema: Schema = new Schema<IPatient>(
         },
         status: {
           type: String,
-          default: 'pending'
+          default: 'incomplete'
+        },
+        link: {
+          type: String,
+          default: '/?page=doh'
         }
       },
       authorization: {
@@ -102,17 +114,25 @@ const patientSchema: Schema = new Schema<IPatient>(
         },
         status: {
           type: String,
-          default: 'pending'
+          default: 'incomplete'
+        },
+        link: {
+          type: String,
+          default: '/?page=authorization'
         }
       },
-      orientation: {
+      welcomeOrientation: {
         title: {
           type: String,
-          default: "Orientation"
+          default: "Welcome Orientation"
         },
         status: {
           type: String,
-          default: 'pending'
+          default: 'incomplete'
+        },
+        link: {
+          type: String,
+          default: '/?page=orientation'
         }
 
       }
