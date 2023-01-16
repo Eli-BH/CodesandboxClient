@@ -24,16 +24,16 @@ export default async function editUserInfo(
 
 
 
-        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c WHERE  (SELECT id FROM salesforce.RecordType WHERE name = 'Employment Docs') AND IsMostRecent__c = True `)
+        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c WHERE id name (SELECT name FROM salesforce.RecordType WHERE name = 'Employment Docs') AND IsMostRecent__c = True AND Contact__c = '${sfid: string}'`)
 
 
-        console.log(status.rows[0])
+    console.log(status.rows[0])
 
 
 
-        res.status(200).json({ success: true })
-    } catch (error) {
-        console.log(error)
-        return res.status(200).json({ success: false, error })
-    }
+    res.status(200).json({ success: true })
+} catch (error) {
+    console.log(error)
+    return res.status(200).json({ success: false, error })
+}
 }
