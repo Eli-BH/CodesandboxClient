@@ -13,6 +13,7 @@ import NurseVisit from "../components/Tasks/NurseVisit";
 import WelcomeCall from "../components/Tasks/WelcomeCall";
 import HealthAssessment from "../components/Tasks/HealthAssessment";
 import Authorization from "../components/Tasks/Authorization";
+import Other from "../components/Tasks/Other";
 
 export const menuItems = {
   caregiver: [
@@ -36,7 +37,10 @@ export const menuItems = {
       title: "Enrollment Orientation",
       link: "/?page=orientation",
     },
-    
+    {
+      title: "Other Documents",
+      link: "/?page=other",
+    },
   ],
   patient: [
     {
@@ -293,6 +297,8 @@ export const pageRoutes = (page: string): JSX.Element => {
       return <Authorization />;
     case "calendar":
       return <CalendarPage />;
+    case "other":
+      return <Other />;
     default:
       return <HomeTabs />;
   }

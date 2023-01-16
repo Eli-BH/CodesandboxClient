@@ -13,6 +13,7 @@ export const authOptions: NextAuthOptions = {
       type: "credentials",
       credentials: {},
 
+
       //@ts-ignore
       async authorize(credentials) {
         const { email, password } = credentials as {
@@ -21,10 +22,12 @@ export const authOptions: NextAuthOptions = {
         };
 
         try {
-          const res = await axios.post("http://localhost:3000/api/auth/login", {
+          const res = await axios.post(`https://mysteps.freedomcare.com/api/auth/login`, {
             email,
             password,
           });
+
+          console.log({ na: res })
 
           return res.data.user;
         } catch (error: any) {
@@ -32,10 +35,12 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
+
   ],
   pages: {
     signIn: "/auth/signin",
   },
+  secret: process.env.NEXTAUTH_SECRET
 };
 
 export default NextAuth(authOptions);

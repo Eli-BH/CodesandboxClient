@@ -7,6 +7,7 @@ import 'nprogress/nprogress.css'; //styles of nprogress
 import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 import { SessionProvider } from "next-auth/react";
+import LogRocket from "logrocket";
 
 //Router.events.on('routeChangeStart', () => NProgress.start()); 
 //Router.events.on('routeChangeComplete', () => NProgress.done()); 
@@ -22,6 +23,7 @@ export default function App({
   pageProps: { session, ...pageProps },
 }: AppProps): JSX.Element | null {
   const [isSSR, setIsSSR] = useState(true);
+  LogRocket.init("znl71w/mysteps");
 
   useEffect(() => {
     setIsSSR(false);

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../../utils/Logo-Orange.svg";
 import { nextButtonStyle, statesArr } from "../../../utils/constants";
 import { HiOutlineChevronDoubleDown } from "react-icons/hi";
@@ -28,43 +28,154 @@ interface IFormInput {
 const step_2 = () => {
   const [scrollAnim, setScrollAnim] = useState(false);
   const [error, setError] = useState<string | undefined>("");
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    city: "",
+    state: "",
+    zip: "",
+    address: "",
+    birthdate: "",
+  });
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
     control,
-  } = useForm<IFormInput>();
+    formState,
+    reset,
+  } = useForm<IFormInput>({});
+
   const router: NextRouter = useRouter();
   const errorStyle = "border-red-600 bg-red-100";
 
+  console.log({
+    watch,
+    register,
+    control,
+    formState,
+  });
+  const { email } = router.query;
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        console.log(email);
+        const result = await axios.post(
+          `https://mysteps.freedomcare.com/api/auth/check_user`,
+          {
+            email: email,
+          }
+        );
+
+        if (result.data.redirect) {
+          router.push("https://mysteps.freedomcare.com/auth/signin");
+        }
+
+        console.log(result.data);
+
+        // if (result.data.user) {
+        //   setUserInfo(result.data.user);
+        // }
+
+        if (result.data.user) {
+          const {
+            firstname,
+            lastname,
+            email,
+            phone,
+            mailingstate,
+            mailingcity,
+            mailingpostalcode,
+            mailingstreet,
+            birthdate,
+          } = result.data.user;
+          setUserInfo({
+            ...userInfo,
+            firstName: firstname || "",
+            lastName: lastname || "",
+            email: email || "",
+            phone: phone || "",
+            state: mailingstate || "",
+            city: mailingcity || "",
+            zip: mailingpostalcode || "",
+            address: mailingstreet || "",
+            birthdate: (birthdate && birthdate?.split("T")[0]) || "",
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUser();
+  }, [email]);
+
+  useEffect(() => {
+    reset({
+      ...userInfo,
+      phone: (userInfo.phone && userInfo?.phone.slice(2)) || "",
+      password: "",
+      confirmPassword: "",
+    });
+  }, [userInfo]);
+
+  console.log({ userInfo });
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    console.log(data);
     try {
       const registerResponse = await axios.post(
-        "http://localhost:3000/api/auth/register",
+        `https://mysteps.freedomcare.com/api/auth/register`,
         {
-          ...data,
           role: "Caregiver",
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          email: userInfo.email,
+          address: data.address,
+          state: data.state,
+          zip: data.zip,
+          city: data.city,
+          dateOfBirth: data.dateOfBirth,
+          phone: data.phone,
+          password: data.password,
         }
       );
 
-      const authResponse = await signIn("credentials", {
-        email: data.email,
-        password: data.password,
-        redirect: false,
-      });
-
       console.log(registerResponse.data);
-      authResponse?.status === 200
-        ? router.push("/")
-        : setError(authResponse?.error);
-    } catch (error) {
+
+      if (registerResponse.data.success === false) {
+        console.log(registerResponse.data.message);
+      }
+
+      if (registerResponse.data.success === true) {
+        console.log(registerResponse.data);
+      }
+
+      if (registerResponse.data.success === true) {
+        const authResponse = await signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          redirect: false,
+        });
+
+        authResponse?.status === 200
+          ? router.push("/")
+          : setError(authResponse?.error);
+      }
+    } catch (error: any) {
       console.log(error);
+
+      setError(error?.response?.data?.message);
+      // console.log(error.response.data.message);
     }
   };
 
   let emailRegex =
-    /(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+    /(?:[A-Za-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9A-Z](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 
   return (
     <div className="w-full h-full  bg-[url('../utils/background.png')] bg-no-repeat bg-cover bg-center flex items-center justify-center">
@@ -95,8 +206,10 @@ const step_2 = () => {
                     First Name:
                     <input
                       type="text"
+                      disabled
                       placeholder="First Name"
-                      className={`w-full border border-black rounded-sm ${
+                      value={userInfo.firstName}
+                      className={`w-full border border-black rounded-sm bg-gray-300 ${
                         errors.firstName && errorStyle
                       }`}
                       required
@@ -105,7 +218,10 @@ const step_2 = () => {
                           value: /^[A-Za-z]+$/,
                           message: "Letters only",
                         },
-                        required: true,
+                        required: {
+                          value: true,
+                          message: "First name required",
+                        },
                       })}
                     />
                     <div
@@ -123,16 +239,21 @@ const step_2 = () => {
                     Last Name:
                     <input
                       type="text"
+                      disabled
                       placeholder="Last Name"
-                      className={`w-full border border-black rounded-sm ${
+                      value={userInfo.lastName}
+                      className={`w-full border border-black bg-gray-300 rounded-sm ${
                         errors.lastName && errorStyle
                       }`}
                       {...register("lastName", {
                         pattern: {
-                          value: /^[A-Za-z]+$/,
+                          value: /^[A-Za-z]+(?:[-]\S[A-Za-z]*)?$/,
                           message: "Letters only",
                         },
-                        required: true,
+                        required: {
+                          value: true,
+                          message: "Last name required",
+                        },
                       })}
                     />
                     <div
@@ -151,25 +272,18 @@ const step_2 = () => {
                   Email Address:
                   <input
                     type="email"
+                    value={email}
+                    disabled
                     placeholder="Email"
-                    className={`w-full border border-black rounded-sm ${
+                    className={`w-full border bg-gray-300 border-black rounded-sm ${
                       errors.email && errorStyle
                     }`}
                     autoComplete="on"
                     {...register("email", {
                       pattern: { value: emailRegex, message: "Invalid email" },
-                      required: true,
+                      required: { value: true, message: "Email required" },
                     })}
                   />
-                  <div
-                    className={`absolute w-[100%] h-[30px] flex items-center justify-start  border rounded-sm border-red-800 pl ${
-                      errors.email ? "block" : "hidden"
-                    }`}
-                  >
-                    <p className="font-semibold text-red-800">
-                      {errors.email && errors.email.message}
-                    </p>
-                  </div>
                 </label>
 
                 <label className="w-[95%] md:w-full lg:w-full relative ">
@@ -179,14 +293,15 @@ const step_2 = () => {
                     control={control}
                     render={({ field: { onChange, value } }) => (
                       <PatternFormat
-                        className={`w-[100%] border border-black rounded-sm ${
+                        className={`w-[100%] border  border-black rounded-sm ${
                           errors.phone && errorStyle
                         }`}
                         format="1 (###) ###-####"
+                        value={value}
                         allowEmptyFormatting
                         mask="_"
-                        value={value}
                         onChange={onChange}
+                        required
                       />
                     )}
                   />
@@ -205,9 +320,12 @@ const step_2 = () => {
                   Date of Birth:
                   <input
                     type="date"
-                    className={`w-full border border-black rounded-sm`}
+                    className={`w-full border border-black  rounded-sm`}
                     {...register("dateOfBirth", {
-                      required: true,
+                      required: {
+                        value: true,
+                        message: "Date of birth required",
+                      },
                     })}
                   />
                   <div
@@ -230,7 +348,9 @@ const step_2 = () => {
                       className={`w-full border border-black rounded-sm ${
                         errors.password && errorStyle
                       }`}
-                      {...register("password", { required: true })}
+                      {...register("password", {
+                        required: { value: true, message: "Password required" },
+                      })}
                     />
                     <div
                       className={`absolute w-[100%] h-[30px] flex items-center justify-start  border rounded-sm border-red-800 pl ${
@@ -253,7 +373,7 @@ const step_2 = () => {
                       }`}
                       autoComplete="new-password"
                       {...register("confirmPassword", {
-                        required: true,
+                        required: { value: true, message: "Password required" },
                         validate: (val: string) => {
                           if (watch("password") != val) {
                             return "Your passwords do no match";
@@ -292,12 +412,17 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative ">
                   Address:
                   <input
-                    className={`w-full border border-black rounded-sm  ${
+                    className={`w-full border border-black  rounded-sm  ${
                       errors.address && errorStyle
                     }`}
                     type="text"
                     placeholder="Address"
-                    {...register("address", { required: true })}
+                    {...register("address", {
+                      required: {
+                        value: true,
+                        message: "Street addr. required",
+                      },
+                    })}
                   />
                   <div
                     className={`absolute w-[100%] h-[30px] flex items-center justify-start  border rounded-sm border-red-800 pl ${
@@ -313,7 +438,7 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative ">
                   Address2:
                   <input
-                    className={`w-full border border-black rounded-sm  ${
+                    className={`w-full border border-black  rounded-sm  ${
                       errors.address2 && errorStyle
                     }`}
                     type="text"
@@ -334,12 +459,14 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative ">
                   City/Town:
                   <input
-                    className={`w-full border border-black rounded-sm  ${
+                    className={`w-full border border-black  rounded-sm  ${
                       errors.city && errorStyle
                     }`}
                     type="text"
                     placeholder="City"
-                    {...register("city", { required: true })}
+                    {...register("city", {
+                      required: { value: true, message: "City name required" },
+                    })}
                   />
                   <div
                     className={`absolute w-[100%] h-[30px] flex items-center justify-start  border rounded-sm border-red-800 pl ${
@@ -386,16 +513,19 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative">
                   Zip:
                   <input
-                    className={`w-full border border-black rounded-sm  ${
+                    className={`w-full border border-black  rounded-sm  ${
                       errors.zip && errorStyle
                     }`}
                     type="text"
                     placeholder="eg: 11209"
                     {...register("zip", {
-                      required: true,
+                      required: {
+                        value: true,
+                        message: "Postal code required",
+                      },
                       maxLength: { value: 5, message: "invalid zip format" },
                       pattern: {
-                        value: /^\d{5}$/,
+                        value: /^\w{5}$/,
                         message: "invalid zip code format",
                       },
                     })}

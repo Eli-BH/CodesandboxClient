@@ -22,24 +22,40 @@ enum StatusEnum {
 }
 
 const notificationVariation = {
-  errorNotif: "border-2 border-red-500 p-1 w-[80%] mt-2 text-red-500 rounded-md flex flex-col items-center justify-center hover:text-red-700 hover:bg-red-200 font-semibold cursor-pointer mx-auto",
-  infoNotif: "border-2 border-yellow-500 p-1 w-[80%] mt-2 text-yellow-500 rounded-md flex flex-col items-center justify-center hover:text-yellow-700 hover:bg-yellow-200 font-semibold cursor-pointer mx-auto",
-  successNotif: "border-2 border-green-500 p-1 w-[80%] mt-2 text-green-500 rounded-md flex flex-col items-center justify-center hover:text-green-700 hover:bg-green-200 font-semibold cursor-pointer mx-auto",
-}
-
+  errorNotif:
+    "border-2 border-red-500 p-1 w-[80%] mt-2 text-red-500 rounded-md flex flex-col items-center justify-center hover:text-red-700 hover:bg-red-200 font-semibold cursor-pointer mx-auto",
+  infoNotif:
+    "border-2 border-yellow-500 p-1 w-[80%] mt-2 text-yellow-500 rounded-md flex flex-col items-center justify-center hover:text-yellow-700 hover:bg-yellow-200 font-semibold cursor-pointer mx-auto",
+  successNotif:
+    "border-2 border-green-500 p-1 w-[80%] mt-2 text-green-500 rounded-md flex flex-col items-center justify-center hover:text-green-700 hover:bg-green-200 font-semibold cursor-pointer mx-auto",
+};
 
 const NotificationItem = ({ text, variant }: NotificationType) => {
   return (
     <div
-      className={variant === "error" ? notificationVariation.errorNotif 
-        : variant === "info" ? notificationVariation.infoNotif : variant === "success" ? notificationVariation.successNotif : null}
-        onClick = {() =>
-          Swal.fire({
-            icon: `${variant}`,
-            title: `${text}`,
-            text: `${text}`,
-           
-          })          
+      className={
+        variant === "error"
+          ? notificationVariation?.errorNotif
+          : variant === "info"
+          ? notificationVariation.infoNotif
+          : variant === "success"
+          ? notificationVariation.successNotif
+          : undefined
+      }
+      onClick={() =>
+        Swal.fire({
+          title: `${text}`,
+          text: `${text}`,
+          icon: `${
+            variant === "error"
+              ? "error"
+              : variant === "success"
+              ? "success"
+              : variant === "info"
+              ? "info"
+              : "error"
+          }`,
+        })
       }
     >
       {text}

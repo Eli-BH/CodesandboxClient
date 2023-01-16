@@ -33,10 +33,13 @@ const step_2_patient = () => {
   const router: NextRouter = useRouter();
   const errorStyle = "border-red-600 bg-red-100";
 
+  const formatText =
+    "The number you entered (XXX) does not appear to be a valid New York State Medicaid ID. The format in that state is :  AA12345A   Where A=alphabet letter If you think this is a valid Medicaid ID then please contact FreedomCare.";
+
   const onSubmit: SubmitHandler<IPatientForm> = async (data) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/auth/patient_register",
+        `https://mysteps.freedomcare.com/api/auth/patient_register`,
         {
           ...data,
         }
@@ -48,7 +51,7 @@ const step_2_patient = () => {
         redirect: false,
       });
 
-      console.log(res.data);
+      console.log({ data: res.data, res: res });
 
       authResponse?.status === 200
         ? router.push("/")
@@ -57,6 +60,8 @@ const step_2_patient = () => {
       console.log(error);
     }
   };
+
+  console.log({ error, errors });
 
   return (
     <div className="w-full h-full  bg-[url('../utils/background.png')] bg-no-repeat bg-cover bg-center flex items-center justify-center">
@@ -114,7 +119,16 @@ const step_2_patient = () => {
                   type="text"
                   placeholder="Medicaid ID #"
                   id="medicaidId"
-                  {...register("medicaidId")}
+                  {...register("medicaidId", {
+                    required: {
+                      value: true,
+                      message: "Medicaid ID is required",
+                    },
+                    pattern: {
+                      value: /^[A-Z]{2}[1-9]{5}[A-Z]$/,
+                      message: "Not a valid Medicaid ID",
+                    },
+                  })}
                 />
                 <div
                   className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
@@ -201,6 +215,17 @@ const step_2_patient = () => {
                     },
                   })}
                 />
+                <div className="w-3/4 md:w-3/4 mt-4 lg:w-3/4  flex items-center justify-start">
+                  <input
+                    type="checkbox"
+                    id="topping"
+                    name="topping"
+                    value="Paneer"
+                    className="mr-2 "
+                    onChange={() => setPasswordVisibility((prev) => !prev)}
+                  />
+                  Show passwords
+                </div>
                 <div
                   className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 ${
                     errors.confirmPassword ? "block" : "hidden"
@@ -210,17 +235,6 @@ const step_2_patient = () => {
                     {errors.confirmPassword && errors.confirmPassword.message}
                   </p>
                 </div>
-                {passwordVisibility ? (
-                  <AiFillEye
-                    className="text-2xl"
-                    onClick={() => setPasswordVisibility(false)}
-                  />
-                ) : (
-                  <AiFillEyeInvisible
-                    className="text-2xl"
-                    onClick={() => setPasswordVisibility(true)}
-                  />
-                )}
               </label>
               </div>
               

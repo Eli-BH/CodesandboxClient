@@ -2,30 +2,17 @@ import { Tab } from "@headlessui/react";
 
 
 const ManagePatientsPage = () => {
-  const resolutions = {
-    homeTab100 : "h-[95%]",
-    homeTab150 : "h-[100%]"
-  }
-
-  
-  return (    
-    <div className={window.devicePixelRatio >= 1.5 ? resolutions.homeTab150 : resolutions.homeTab100 }>
-      <Tab.Group>
-        <Tab.Panel
-          className="
-            bg-white
-            h-full
-            border-x-2
-            border-b-2
-            border-t-2
-            border-gray-400
-            rounded-b-lg
-            rounded-t-lg
-          "
-        >
-          Manage Patients
-        </Tab.Panel>
-      </Tab.Group>
+  return (
+    <div className="bg-orange-50 h-full w-full rounded-md border-orange-200 border-4 flex flex-col items-center justify-center">
+      {/* <p className="text-[32px]">Add a patient </p>
+      <p>
+        To add a patient, all you need is their email address and phone number.
+        We will alert your patient that you are ready to connect
+      </p> */}
+      <p className="text-[1.2rem] md:text-[3rem] lg:text-[4rem] font-bold text-orange-200 ">
+        {" "}
+        Coming soon
+      </p>
     </div>
   );
 };

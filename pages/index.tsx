@@ -9,7 +9,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useContext } from "react";
 
 export default function Home() {
-  const { status, data } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const { page } = router.query;
 

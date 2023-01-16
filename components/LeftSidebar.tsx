@@ -95,7 +95,8 @@ const LeftSidebar = () => {
         </Link>
 
         <h2 className="text-2xl font-medium font-sans">
-          Hello, {`${userInfo && capitalize(userInfo?.firstName)}`}!
+          Hello, {`${userInfo && capitalize(userInfo?.firstName)}` || "Loading"}
+          !
         </h2>
       </div>
 

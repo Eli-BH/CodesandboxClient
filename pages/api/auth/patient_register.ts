@@ -30,6 +30,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (existingUser) return res.status(400).json({ success: false, message: "User already exists" })
 
 
+        //salesforce update
+
+        //check if the user is already in salesforce 
+        // const existingSfUser = await pool.query(
+        //   "SELECT id FROM salesforce.Contact WHERE Email = $1",
+        //   [email]
+        // );
+
+
+        // const existingSfUserPhone = await pool.query(
+        //   "SELECT id FROM salesforce.Contact WHERE Phone = $1",
+        //   [phone]
+        // );
+
+
+        // const existingSfUserMedicaid = await pool.query(
+        //   "SELECT id FROM salesforce.Contact WHERE medicaid__c = $1",
+        //   [medicaidId]
+        // );
+
+        // if(existingSfUserMedicaid){
+        //   return res.status(500).json({success: false, code: 'sf', message: "Medicaid ID already on file"})
+        // }
+
+        // if(existingSfUser.rows|| existingSfUserPhone){
+        //   return res.status(500).json({success: false, code: 'sf', message: "User already has freedomcare information on file"})
+        // }
+
         //check the medicaid ID from epaces 
         // const pattern = /^[A-Z]{2}[1-9]{5}[A-Z]$/
 

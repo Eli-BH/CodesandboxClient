@@ -36,7 +36,7 @@ export default async function forgotPassword(
 
 
         //create a reset url 
-        const resetUrl = `http://localhost:3000/reset_password/${resetToken}`
+        const resetUrl = `https://mysteps.freedomcare.com/reset_password/${resetToken}`
 
 
         try {

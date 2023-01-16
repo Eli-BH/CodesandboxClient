@@ -3,8 +3,8 @@ import Image from "next/image";
 import logo from "../../utils/Logo-Orange.svg";
 
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useRouter, NextRouter } from "next/router";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { NextPage } from "next";
 
@@ -15,11 +15,19 @@ interface ILogin {
 
 const SignIn: NextPage = (props): JSX.Element => {
   const [error, setError] = useState<string | undefined>("");
+  const [visibility, setVisibility] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ILogin>();
+
+  console.log(errors);
+
+  const router = useRouter();
+
+  if (window.location.href.includes("fc-iss-server.herokuapp.com"))
+    router.push("https://mysteps.freedomcare.com/auth/signin");
 
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
     try {
@@ -29,15 +37,12 @@ const SignIn: NextPage = (props): JSX.Element => {
         redirect: false,
       });
 
+      console.log(res);
       res?.status === 200 ? router.push("/") : setError(res?.error);
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(errors);
-
-  const router = useRouter();
 
   const alertType = (type: string): string | undefined => {
     switch (type) {
@@ -56,7 +61,7 @@ const SignIn: NextPage = (props): JSX.Element => {
     <div className="relative w-[100vw] h-[100vh] flex">
       <div className="w-full lg:w-[50%] h-[100%] bg-[url('../utils/background.png')] flex justify-center items-center ">
         <div className="w-[450px] md:h-[550px] lg:h-[550px] xl:h-[550px] h-full bg-white  lg:rounded-md shadow-lg opacity-100 shadow-black ">
-          <div className="h-[20%]  flex justify-center items-center  ">
+          <div className="h-[20%] flex justify-center items-center  ">
             <Image
               src={logo}
               alt="Freedom care logo"
@@ -101,12 +106,23 @@ const SignIn: NextPage = (props): JSX.Element => {
               Password:
               <input
                 className="w-full"
-                type="password"
+                type={visibility ? "text" : "password"}
                 placeholder="Password"
                 autoComplete="off"
                 {...register("password", { required: "Password is required" })}
               />
             </label>
+            <div className="w-3/4 md:w-3/4 lg:w-3/4  flex items-center justify-start">
+              <input
+                type="checkbox"
+                id="topping"
+                name="topping"
+                value="Paneer"
+                className="mr-2"
+                onChange={() => setVisibility((prev) => !prev)}
+              />
+              Show password
+            </div>
 
             <div className="flex w-full justify-evenly ">
               <p
