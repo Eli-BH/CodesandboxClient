@@ -155,7 +155,7 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
           deafult: '/?page=health_assessment'
         }
       },
-      comeOrientation: {
+      WelcomeOrientation: {
         title: {
           type: String,
           default: "Welcome Orientation",
