@@ -7,6 +7,11 @@ import {
   MdCropDin,
   MdOutlineArrowRight,
 } from "react-icons/md";
+
+
+import { BsCheckSquareFill, BsFillDashSquareFill } from "react-icons/bs";
+
+
 import {IoSquareOutline} from "react-icons/io5"
 import { CiSquareMore } from "react-icons/ci"; 
 import { FaRegSquare } from 'react-icons/fa';
@@ -48,10 +53,10 @@ const HomeTabs = (): JSX.Element => {
         return <IoSquareOutline className="text-xl" />;
 
       case "pending":
-        return <CiSquareMore className="text-2xl text-yellow-600" />;
+        return <BsFillDashSquareFill className="text-2xl text-yellow-600" />;
 
       case "complete":
-        return <BsFillCheckSquareFill className="text-2xl text-green-600" />;
+        return <BsCheckSquareFill className="text-2xl text-green-600" />;
 
       default:
         return null;

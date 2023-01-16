@@ -6,7 +6,7 @@ import RightSidebar from "../components/RightSidebar";
 
 import { pageRoutes } from "../utils/constants";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 
 export default function Home() {
   const { status, data } = useSession();
@@ -21,6 +21,25 @@ export default function Home() {
     mainContent150:
       "md:w-[100%] lg:w-full h-[88vh] rounded-b-lg m-auto bg-gray-100 p-3 pb-5",
   };
+
+  useEffect(() => {
+    var addScript = document.createElement('script');
+    addScript.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit');
+    document.body.appendChild(addScript);
+    window.googleTranslateElementInit = googleTranslateElementInit;
+}, [])
+
+const googleTranslateElementInit = () => {
+
+    new window.google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages : "en,es,fr", // include this for selected languages
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    },
+    'google_translate_element');
+
+}
+
 
   /*
   useEffect(() => {
@@ -47,7 +66,9 @@ export default function Home() {
     "
       >
         <LeftSidebar />
+        
         <div className="h-full w-full" id="mainContainer">
+        {/*<div id="google_translate_element"/>*/}
           <div
             className={
               window.devicePixelRatio >= 1.5
