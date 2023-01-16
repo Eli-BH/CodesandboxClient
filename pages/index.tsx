@@ -40,12 +40,10 @@ const googleTranslateElementInit = () => {
 
 }
 
-
-  /*
   useEffect(() => {
     if (status === "unauthenticated") router.replace("/auth/signin");
   }, [status]);
-  */
+  
   console.log(status);
   return status !== "authenticated" ? (
     <>

@@ -9,7 +9,7 @@ import {
 } from "react-icons/md";
 
 
-import { BsCheckSquareFill, BsFillDashSquareFill } from "react-icons/bs";
+import { BsCheckSquareFill, BsThreeDots } from "react-icons/bs";
 
 
 import {IoSquareOutline} from "react-icons/io5"
@@ -73,10 +73,10 @@ const HomeTabs = (): JSX.Element => {
   const statusIcon = (status: string): JSX.Element | null => {
     switch (status) {
       case "incomplete":
-        return <IoSquareOutline className="text-xl" />;
+        return <IoSquareOutline className="text-3xl" />;
 
       case "pending":
-        return <BsFillDashSquareFill className="text-2xl text-yellow-600" />;
+        return <div className="bg-green-500 border border-green-500 rounded "><BsThreeDots className="text-2xl text-white" /></div>;
 
       case "complete":
         return <BsCheckSquareFill className="text-2xl text-green-600" />;
@@ -93,6 +93,14 @@ const HomeTabs = (): JSX.Element => {
 
     return capitalizedWord;
   };
+/*
+  const falseUser = [
+    {
+    title: "test1",
+    status: "complete"
+    },
+  ];
+  */
   return (
     <div
       className={
@@ -171,7 +179,7 @@ const HomeTabs = (): JSX.Element => {
             items-center
           "
           >
-            {userInfo &&
+              {userInfo &&
               Object.values(userInfo && userInfo?.flags).map(
                 (item: any, index) => (
                   <div
