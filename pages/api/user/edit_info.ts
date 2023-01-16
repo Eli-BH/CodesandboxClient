@@ -23,7 +23,7 @@ export default async function editUserInfo(
 
 
 
-        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c WHERE RecordTypeId in (SELECT CAST(id AS varchar) FROM salesforce.RecordType WHERE name = 'Employment Docs') AND IsMostRecent__c = True AND Contact__c = '${sfid}'`)
+        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c WHERE RecordTypeId in (SELECT id FROM salesforce.RecordType WHERE name = 'Employment Docs') AND IsMostRecent__c = True AND Contact__c = '${sfid}'`)
 
 
 
