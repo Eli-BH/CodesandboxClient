@@ -62,6 +62,23 @@ const NotificationItem = ({ text, variant }: NotificationType) => {
 };
 
 const RightSidebar = () => {
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const d = new Date();
+  let currentMonth = month[d.getMonth()];
   const notifs = [
     {
       text: "Form Error",
@@ -147,6 +164,7 @@ const RightSidebar = () => {
         className="h-[60%]  flex
         flex-col content-center justify-center"
       >
+        <p className="text-2xl">{currentMonth}</p>
         <Calendar
           localizer={localizer}
           events={eventsList}
