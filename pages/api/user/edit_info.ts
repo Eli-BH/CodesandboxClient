@@ -19,7 +19,7 @@ export default async function editUserInfo(
 
         if (!sfid) return res.status(404).json({ success: false, message: "User not found" })
 
-        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c  `)
+        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c WHERE IsMostRecent__c = True `)
 
         res.status(200).json({ success: true, status })
     } catch (error) {
