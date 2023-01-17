@@ -198,6 +198,7 @@ const HomeTabs = (): JSX.Element => {
                     </div>
 
                     <p className="font-bold">{item.title}</p>
+                    {console.log(item)}
                     <AiOutlineDoubleRight
                       className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer"
                       onClick={() => router.push(item.link)}
