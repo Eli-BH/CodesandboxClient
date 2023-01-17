@@ -19,7 +19,7 @@ export default async function editUserInfo(
 
         if (!sfid) return res.status(404).json({ success: false, message: "User not found" })
 
-        const status = await pool.query(`SELECT id FROM salesforce.RecordType WHERE Name = 'Employment Docs'`)
+        const status = await pool.query(`SELECT sfid FROM salesforce.RecordType WHERE Name = 'Employment Docs'`)
 
         res.status(200).json({ success: true, status })
     } catch (error) {
