@@ -523,11 +523,11 @@ const step_2 = () => {
                         value: true,
                         message: "Postal code required",
                       },
-                      maxLength: { value: 5, message: "invalid zip format" },
-                      pattern: {
-                        value: /^\w{5}$/,
-                        message: "invalid zip code format",
-                      },
+                      // maxLength: { value: 5, message: "invalid zip format" },
+                      // pattern: {
+                      //   value: /^\w{5}$/,
+                      //   message: "invalid zip code format",
+                      // },
                     })}
                   />
                   <div
