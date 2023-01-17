@@ -106,6 +106,24 @@ const RightSidebar = () => {
     },
   ];
 
+  const date = new Date();
+  const month = date.getMonth();
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   return (
     <div
       className="
@@ -147,6 +165,10 @@ const RightSidebar = () => {
         className="h-[60%]  flex
         flex-col content-center justify-center"
       >
+        <div className="w-full text-center mb-5">
+          <p className="font-semibold text-2xl">{monthNames[month] || ""}</p>
+        </div>
+
         <Calendar
           localizer={localizer}
           events={eventsList}

@@ -34,7 +34,7 @@ const HomeTabs = (): JSX.Element => {
   const [userInfo, setUserInfo]: any = useState(null);
   const [check, setCheck] = useState(false);
   const { data } = useSession();
-
+/*
   useEffect(() => {
     (async () => {
       try {
@@ -69,7 +69,7 @@ const HomeTabs = (): JSX.Element => {
     }
     return () => clearInterval(id);
   }, [check]);
-
+*/
   const statusIcon = (status: string): JSX.Element | null => {
     switch (status) {
       case "incomplete":
@@ -93,14 +93,14 @@ const HomeTabs = (): JSX.Element => {
 
     return capitalizedWord;
   };
-/*
+
   const falseUser = [
     {
     title: "test1",
     status: "complete"
     },
   ];
-  */
+  
   return (
     <div
       className={
@@ -184,9 +184,8 @@ const HomeTabs = (): JSX.Element => {
                 (item: any, index) => (
                   <div
                     className={`
-               hover:bg-gray-100
-                w-[98%]
-                lg:w-[90%]
+                hover:bg-gray-100
+                w-[100%]
                 justify-between
                 items-center
                 flex
@@ -196,6 +195,7 @@ const HomeTabs = (): JSX.Element => {
                 ${index > 1 && "hidden"}
                 `}
                     key={index}
+                    onClick={() => router.push(item.link)}
                   >
                     <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
                       {statusIcon(item.status)}
@@ -204,8 +204,8 @@ const HomeTabs = (): JSX.Element => {
 
                     <p className="font-bold">{item.title}</p>
                     <AiOutlineDoubleRight
-                      className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer"
-                      onClick={() => router.push(item.link)}
+                      className="w-[50px] md:w-[90px] lg:w-[75px] cursor-pointer"
+                      
                     />
                   </div>
                 )
