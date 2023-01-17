@@ -179,7 +179,7 @@ const HomeTabs = (): JSX.Element => {
                 (item: any, index) => (
                   <div
                     className={`
-               hover:bg-gray-100
+               hover:bg-gray-300
                 w-[98%]
                 lg:w-[90%]
                 justify-between
@@ -191,6 +191,7 @@ const HomeTabs = (): JSX.Element => {
                 ${index > 2 && "hidden"}
                 `}
                     key={index}
+                    onClick={() => router.push(item.link)}
                   >
                     <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
                       {statusIcon(item.status)}
