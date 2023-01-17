@@ -1,13 +1,11 @@
 import { Tab } from "@headlessui/react";
-import {
-  MdCheckCircle,
-  MdPending,
-  MdError,
-  MdRemoveCircle,
-  MdCancel,
-  MdOutlineCircle,
-  MdOutlineArrowRight,
-} from "react-icons/md";
+import { MdOutlineCircle } from "react-icons/md";
+
+import { BsCheckSquareFill, BsThreeDots } from "react-icons/bs";
+
+import { IoSquareOutline } from "react-icons/io5";
+import { CiSquareMore } from "react-icons/ci";
+import { FaRegSquare } from "react-icons/fa";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { menuItems } from "../utils/constants";
 import { useRouter, NextRouter } from "next/router";
@@ -66,13 +64,17 @@ const HomeTabs = (): JSX.Element => {
   const statusIcon = (status: string): JSX.Element | null => {
     switch (status) {
       case "incomplete":
-        return <MdOutlineCircle className="text-xl" />;
+        return <IoSquareOutline className="text-3xl" />;
 
       case "pending":
-        return <MdPending className="text-xl text-yellow-600" />;
+        return (
+          <div className="bg-green-500 border border-green-500 rounded ">
+            <BsThreeDots className="text-2xl text-white" />
+          </div>
+        );
 
       case "complete":
-        return <MdCheckCircle className="text-xl text-green-600" />;
+        return <BsCheckSquareFill className="text-2xl text-green-600" />;
 
       default:
         return null;
@@ -86,6 +88,14 @@ const HomeTabs = (): JSX.Element => {
 
     return capitalizedWord;
   };
+  /*
+  const falseUser = [
+    {
+    title: "test1",
+    status: "complete"
+    },
+  ];
+  */
   return (
     <div
       className={
@@ -242,6 +252,7 @@ const HomeTabs = (): JSX.Element => {
                 >
                   <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
                     <MdOutlineCircle className="text-xl" />
+
                     <p>Incomplete</p>
                   </div>
                   <p className="font-bold">{item.title}</p>
