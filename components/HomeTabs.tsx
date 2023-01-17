@@ -34,7 +34,7 @@ const HomeTabs = (): JSX.Element => {
   const [userInfo, setUserInfo]: any = useState(null);
   const [check, setCheck] = useState(false);
   const { data } = useSession();
-/*
+
   useEffect(() => {
     (async () => {
       try {
@@ -69,7 +69,7 @@ const HomeTabs = (): JSX.Element => {
     }
     return () => clearInterval(id);
   }, [check]);
-*/
+
   const statusIcon = (status: string): JSX.Element | null => {
     switch (status) {
       case "incomplete":
