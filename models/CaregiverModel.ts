@@ -138,7 +138,7 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
         },
         link: {
           type: String,
-          deafult: "/?page=other"
+          deafult: "/?page=otherDocs"
         }
       },
       healthAssessment: {

@@ -188,7 +188,7 @@ const HomeTabs = (): JSX.Element => {
                 text-xs
                 md:text-xl
                 lg:text-[1.5em]
-                ${index > 1 && "hidden"}
+                ${index > 2 && "hidden"}
                 `}
                     key={index}
                   >

@@ -214,10 +214,10 @@ const step_2 = () => {
                       }`}
                       required
                       {...register("firstName", {
-                        pattern: {
-                          value: /^[A-Za-z]+$/,
-                          message: "Letters only",
-                        },
+                        // pattern: {
+                        //   value: /^[A-Za-z]+$/,
+                        //   message: "Letters only",
+                        // },
                         required: {
                           value: true,
                           message: "First name required",
@@ -246,10 +246,10 @@ const step_2 = () => {
                         errors.lastName && errorStyle
                       }`}
                       {...register("lastName", {
-                        pattern: {
-                          value: /^[A-Za-z]+(?:[-]\S[A-Za-z]*)?$/,
-                          message: "Letters only",
-                        },
+                        // pattern: {
+                        //   value: /^[A-Za-z]+(?:[-]\S[A-Za-z]*)?$/,
+                        //   message: "Letters only",
+                        // },
                         required: {
                           value: true,
                           message: "Last name required",

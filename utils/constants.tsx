@@ -280,6 +280,8 @@ export const pageRoutes = (page: string): JSX.Element => {
       return <ProfilePage />;
     case "i9":
       return <I9iFrame />;
+    case "otherDocs":
+      return <Other />;
     case "doh":
       return <DOH />;
     case "enrollment":
