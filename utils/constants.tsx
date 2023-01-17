@@ -281,7 +281,7 @@ export const pageRoutes = (page: string): JSX.Element => {
     case "i9":
       return <I9iFrame />;
     case "otherDocs":
-      return <Other />;
+      return <I9iFrame />;
     case "doh":
       return <DOH />;
     case "enrollment":
