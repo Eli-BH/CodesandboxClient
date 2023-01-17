@@ -164,7 +164,10 @@ const RightSidebar = () => {
         className="h-[60%]  flex
         flex-col content-center justify-center"
       >
-        <p className="text-2xl">{currentMonth}</p>
+        <div className="w-full flex items-center justify-center">
+          <p className="text-2xl">{currentMonth}</p>
+        </div>
+
         <Calendar
           localizer={localizer}
           events={eventsList}
