@@ -189,9 +189,14 @@ const HomeTabs = (): JSX.Element => {
                 md:text-xl
                 lg:text-[1.5em]
                 ${index > 2 && "hidden"}
+                ${item.status === "complete" ? "bg-gray-400" : ""}
                 `}
                     key={index}
-                    onClick={() => router.push(item.link)}
+                    onClick={
+                      item.status === "complete"
+                        ? () => null
+                        : () => router.push(item.link)
+                    }
                   >
                     <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
                       {statusIcon(item.status)}
