@@ -179,7 +179,7 @@ const HomeTabs = (): JSX.Element => {
                 (item: any, index) => (
                   <div
                     className={`
-               hover:bg-gray-300
+              
                 w-[98%]
                 lg:w-[90%]
                 justify-between
@@ -188,8 +188,13 @@ const HomeTabs = (): JSX.Element => {
                 text-xs
                 md:text-xl
                 lg:text-[1.5em]
+                
                 ${index > 2 && "hidden"}
-                ${item.status === "complete" ? "bg-gray-400" : ""}
+                ${
+                  item.status === "complete"
+                    ? "bg-gray-300"
+                    : "hover:bg-gray-100 cursor-pointer"
+                }
                 `}
                     key={index}
                     onClick={
