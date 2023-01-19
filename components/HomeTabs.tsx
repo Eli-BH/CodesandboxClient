@@ -1,15 +1,14 @@
 import { Tab } from "@headlessui/react";
-import { MdOutlineCircle } from "react-icons/md";
 
 import { BsCheckSquareFill, BsThreeDots } from "react-icons/bs";
 
 import { IoSquareOutline } from "react-icons/io5";
-import { CiSquareMore } from "react-icons/ci";
-import { FaRegSquare } from "react-icons/fa";
+
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { menuItems } from "../utils/constants";
 import { useRouter, NextRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { MdOutlineCircle } from "react-icons/md";
 import { useSession } from "next-auth/react";
 
 import cron from "node-cron";
@@ -88,14 +87,7 @@ const HomeTabs = (): JSX.Element => {
 
     return capitalizedWord;
   };
-  /*
-  const falseUser = [
-    {
-    title: "test1",
-    status: "complete"
-    },
-  ];
-  */
+
   return (
     <div
       className={
@@ -179,9 +171,8 @@ const HomeTabs = (): JSX.Element => {
                 (item: any, index) => (
                   <div
                     className={`
-              
-                w-[98%]
-                lg:w-[90%]
+                hover:bg-gray-100
+                w-[100%]
                 justify-between
                 items-center
                 flex
@@ -210,10 +201,7 @@ const HomeTabs = (): JSX.Element => {
 
                     <p className="font-bold">{item.title}</p>
 
-                    <AiOutlineDoubleRight
-                      className="w-[50px] md:w-[90px] lg:w-[200px]"
-                      onClick={() => router.push(item.link)}
-                    />
+                    <AiOutlineDoubleRight className="w-[50px] md:w-[90px] lg:w-[75px]" />
                   </div>
                 )
               )}

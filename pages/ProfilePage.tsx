@@ -45,10 +45,14 @@ const ProfilePage = (): JSX.Element => {
             flex
             justify-items-start
             justify-evenly
+            items-center
           "
           >
         
-          <Image className="h-full
+          <Image className="
+            w-32 
+            h-32
+            md: 
             w-40
             h-40
             flex
@@ -58,7 +62,10 @@ const ProfilePage = (): JSX.Element => {
           alt="profile Image" 
           />
           <div className="
-              p-5
+              sm: text-sm
+              break-words
+              px-4
+              md:p-5
               h-[90%]
               w-1/2
               rounded-sm

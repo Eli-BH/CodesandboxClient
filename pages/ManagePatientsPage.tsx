@@ -1,3 +1,6 @@
+import { Tab } from "@headlessui/react";
+
+
 const ManagePatientsPage = () => {
   return (
     <div className="bg-orange-50 h-full w-full rounded-md border-orange-200 border-4 flex flex-col items-center justify-center">

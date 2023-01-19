@@ -9,7 +9,6 @@ import RightSidebar from "../components/RightSidebar";
 import { pageRoutes } from "../utils/constants";
 
 import { useSession } from "next-auth/react";
-
 import { useEffect, useContext } from "react";
 
 export default function Home() {
