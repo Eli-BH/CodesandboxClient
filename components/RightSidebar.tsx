@@ -95,7 +95,7 @@ const RightSidebar = () => {
       start: new Date("November 25, 2022 11:00:00"),
       end: new Date("November 25, 2022 12:00:00"),
       title: "Hiya!",
-      desc: "Test",
+      desc: "Testing",
     },
     {
       allDay: true,
