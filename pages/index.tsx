@@ -66,7 +66,6 @@ const googleTranslateElementInit = () => {
         <LeftSidebar />
         
         <div className="h-full w-full" id="mainContainer">
-        {/*<div id="google_translate_element"/>*/}
           <div
             className={
               window.devicePixelRatio >= 1.5
