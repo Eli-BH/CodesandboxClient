@@ -60,15 +60,9 @@ export default function Home() {
     );
   };
 
-  /*
-
   useEffect(() => {
-
     if (status === "unauthenticated") router.replace("/auth/signin");
-
   }, [status]);
-
-  */
 
   console.log(status);
 
