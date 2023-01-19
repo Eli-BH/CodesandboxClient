@@ -66,7 +66,7 @@ export default function Home() {
 
   console.log(status);
 
-  return status !== "authenticated" ? (
+  return status === "authenticated" ? (
     <>
       <div
         className={
