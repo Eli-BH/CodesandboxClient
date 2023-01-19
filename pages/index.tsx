@@ -41,16 +41,18 @@ export default function Home() {
 
     document.body.appendChild(addScript);
 
+    //@ts-ignore
     window.googleTranslateElementInit = googleTranslateElementInit;
   }, []);
 
   const googleTranslateElementInit = () => {
+    //@ts-ignore
     new window.google.translate.TranslateElement(
       {
         pageLanguage: "en",
 
         includedLanguages: "en,es,fr", // include this for selected languages
-
+        //@ts-ignore
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
       },
 
