@@ -57,7 +57,7 @@ const HomeTabs = (): JSX.Element => {
     async function getOtherFlag() {
       return await axios.post(
         "https://mysteps.freedomcare.com/api/user/getUserFlagOther",
-        data?.user?.email
+        { email: data?.user?.email }
       );
     }
 
