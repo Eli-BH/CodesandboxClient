@@ -198,7 +198,7 @@ const HomeTabs = (): JSX.Element => {
                 (item: any, index) => (
                   <div
                     className={`
-                hover:bg-gray-100
+                
                 w-[100%]
                 justify-between
                 items-center
