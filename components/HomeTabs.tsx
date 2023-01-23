@@ -28,9 +28,12 @@ const HomeTabs = (): JSX.Element => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.post("/api/user/getuser", {
-          email: data?.user?.email,
-        });
+        const res = await axios.post(
+          "https://mysteps.freedomcare.com/api/user/getuser",
+          {
+            email: data?.user?.email,
+          }
+        );
 
         setUserInfo(res.data.data);
       } catch (error) {
@@ -41,11 +44,17 @@ const HomeTabs = (): JSX.Element => {
 
   useEffect(() => {
     function getI9Flag() {
-      return axios.post("/api/user/edit_info", data?.user?.email);
+      return axios.post(
+        "https://mysteps.freedomcare.com/api/user/edit_info",
+        data?.user?.email
+      );
     }
 
     function getOtherFlag() {
-      return axios.post("/api/user/getuserFlagOther", data?.user?.email);
+      return axios.post(
+        "https://mysteps.freedomcare.com/api/user/getuserFlagOther",
+        data?.user?.email
+      );
     }
 
     Promise.all([getI9Flag(), getOtherFlag()]).then(function (results) {
