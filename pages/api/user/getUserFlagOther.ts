@@ -14,10 +14,12 @@ export default async function editUserInfo(
     try {
 
 
+        console.log({ username: email })
+
         const user = await Caregiver.findOne({ email })
 
-        console.log(user)
 
+        console.log({ userRecord: user })
 
         if (!user) return res.status(404).json({ success: false, message: "User not found" })
 
