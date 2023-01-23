@@ -4,7 +4,7 @@ import pool from '../../../utils/connectSalesforce';
 import Caregiver from '../../../models/CaregiverModel';
 
 
-export default async function editUserInfo(
+export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {

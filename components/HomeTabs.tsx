@@ -44,15 +44,14 @@ const HomeTabs = (): JSX.Element => {
 
   useEffect(() => {
     function getI9Flag() {
-      return axios.post(
-        "https://mysteps.freedomcare.com/api/user/edit_info",
-        data?.user?.email
-      );
+      return axios.post("https://mysteps.freedomcare.com/api/user/edit_info", {
+        email: data?.user?.email,
+      });
     }
 
     function getOtherFlag() {
       return axios.post(
-        "https://mysteps.freedomcare.com/api/user/getuserFlagOther",
+        "https://mysteps.freedomcare.com/api/user/getUserFlagOther",
         data?.user?.email
       );
     }
