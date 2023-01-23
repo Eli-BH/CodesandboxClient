@@ -40,6 +40,20 @@ const HomeTabs = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
+    function getI9Flag() {
+      return axios.post("/api/user/edit_info", data?.user?.email);
+    }
+
+    function getOtherFlag() {
+      return axios.post("/api/user/getuserFlagOther", data?.user?.email);
+    }
+
+    Promise.all([getI9Flag(), getOtherFlag()]).then(function (results) {
+      console.log(results);
+    });
+  }, []);
+
+  useEffect(() => {
     const id = setInterval(async () => {
       const res = await axios.post(
         "https://mysteps.freedomcare.com/api/checkForSfid",

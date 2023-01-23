@@ -11,7 +11,7 @@ const Other = () => {
     const fetchSfid = async () => {
       try {
         const response = await axios.post(
-          "https://mysteps.freedomcare.com/api/edit_info",
+          "https://mysteps.freedomcare.com/api/getSfid",
           {
             email: data?.user?.email,
           }

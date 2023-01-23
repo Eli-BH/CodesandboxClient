@@ -1,4 +1,4 @@
-import { Schema, model, models, Document } from "mongoose";
+import { Schema, model, models, Document, ObjectId } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt, { Secret } from "jsonwebtoken";
 import crypto from "crypto";
@@ -37,6 +37,7 @@ interface ICaregiver extends Document {
   phone: string;
   mobile: string;
   lastPage: string;
+  pcrRecords: ObjectId[];
 }
 
 const caregiverSchema: Schema = new Schema<ICaregiver>(
@@ -226,6 +227,10 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
       type: String,
     },
     lastPage: String,
+    pcrRecords: [{
+      type: Schema.Types.ObjectId,
+      ref: 'PCR'
+    }]
   },
   {
     timestamps: true,
