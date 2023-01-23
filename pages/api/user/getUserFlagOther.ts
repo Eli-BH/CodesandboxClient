@@ -16,6 +16,8 @@ export default async function editUserInfo(
 
         const user = await Caregiver.findOne({ email })
 
+        console.log(user)
+
 
         if (!user) return res.status(404).json({ success: false, message: "User not found" })
 
