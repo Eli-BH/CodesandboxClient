@@ -24,10 +24,13 @@ const ProfilePage = (): JSX.Element => {
     (async () => {
       /**Or this https://mysteps.freedomcare.com/api/user/getAllUserInfo */
       try {
-        const res = await axios.get("/api/user/getAllUserInfo", {
-          //@ts-ignore
-          email: data?.user?.email,
-        });
+        const res = await axios.get(
+          "https://mysteps.freedomcare.com/api/user/getAllUserInfo",
+          {
+            //@ts-ignore
+            email: data?.user?.email,
+          }
+        );
         setUserInfo(res.data.data);
         console.log(userInfo);
       } catch (error) {
