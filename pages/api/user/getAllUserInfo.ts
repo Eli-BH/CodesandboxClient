@@ -3,7 +3,7 @@ import dbConnect from "../../../utils/connectMongo";
 import Patient from "../../../models/PatientModel";
 import Caregiver from "../../../models/CaregiverModel";
 
-export default async function getuser(
+export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {

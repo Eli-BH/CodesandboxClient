@@ -66,14 +66,12 @@ const HomeTabs = (): JSX.Element => {
     });
   }, []);
 
+  //("https://mysteps.freedomcare.com");
   useEffect(() => {
     const id = setInterval(async () => {
-      const res = await axios.post(
-        "https://mysteps.freedomcare.com/api/checkForSfid",
-        {
-          email: data?.user?.email,
-        }
-      );
+      const res = await axios.post("/api/checkForSfid", {
+        email: data?.user?.email,
+      });
 
       if (res.data.success) {
         setCheck(true);
