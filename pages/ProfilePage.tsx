@@ -24,7 +24,7 @@ const ProfilePage = (): JSX.Element => {
     (async () => {
       /**Or this https://mysteps.freedomcare.com/api/user/getAllUserInfo */
       try {
-        const res = await axios.get(
+        const res = await axios.post(
           "https://mysteps.freedomcare.com/api/user/getAllUserInfo",
           {
             //@ts-ignore
