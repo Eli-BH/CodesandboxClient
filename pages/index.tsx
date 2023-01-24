@@ -10,7 +10,6 @@ import { pageRoutes } from "../utils/constants";
 
 import { useSession } from "next-auth/react";
 import { useEffect, useContext } from "react";
-import axios from "axios";
 
 export default function Home() {
   const { status } = useSession();
@@ -63,20 +62,6 @@ export default function Home() {
   useEffect(() => {
     if (status === "unauthenticated") router.replace("/auth/signin");
   }, [status]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.post("/api/user/getAllUserInfo", {
-          email: "eli.i.henderson95+testeremail@gmail.com",
-        });
-
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  });
 
   console.log(status);
 
