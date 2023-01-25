@@ -17,7 +17,6 @@ import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 const ProfilePage = (): JSX.Element => {
-
   const [userInfo, setUserInfo]: any = useState("");
   const { data } = useSession();
 
@@ -25,15 +24,19 @@ const ProfilePage = (): JSX.Element => {
     (async () => {
       /**Or this https://mysteps.freedomcare.com/api/user/getAllUserInfo */
       try {
-        const res = await axios.get("/api/user/getAllUserInfo", {
-          email: data?.user?.email,
-        });
+        const res = await axios.post(
+          "https://mysteps.freedomcare.com/api/user/getAllUserInfo",
+          {
+            //@ts-ignore
+            email: data?.user?.email,
+          }
+        );
         setUserInfo(res.data.data);
-        console.log(userInfo)
+        console.log(userInfo);
       } catch (error) {
         console.log(error);
       }
-      console.log(userInfo)
+      console.log(userInfo);
     })();
   }, []);
 
@@ -47,13 +50,18 @@ const ProfilePage = (): JSX.Element => {
   };
 
   const resolutions = {
-    homeTab100 : "h-[95%]",
-    homeTab150 : "h-[100%]"
-  }
-
+    homeTab100: "h-[95%]",
+    homeTab150: "h-[100%]",
+  };
 
   return (
-    <div className={window.devicePixelRatio >= 1.5 ? resolutions.homeTab150 : resolutions.homeTab100 }>
+    <div
+      className={
+        window.devicePixelRatio >= 1.5
+          ? resolutions.homeTab150
+          : resolutions.homeTab100
+      }
+    >
       <Tab.Group>
         <Tab.Panel
           className="
@@ -79,8 +87,8 @@ const ProfilePage = (): JSX.Element => {
             items-center
           "
           >
-        
-          <Image className="
+            <Image
+              className="
             w-32 
             h-32
             md: 
@@ -89,10 +97,11 @@ const ProfilePage = (): JSX.Element => {
             flex
             flex-col
             items-center"
-          src={User} 
-          alt="profile Image" 
-          />
-          <div className="
+              src={User}
+              alt="profile Image"
+            />
+            <div
+              className="
               sm: text-sm
               break-words
               px-4
@@ -104,18 +113,21 @@ const ProfilePage = (): JSX.Element => {
               flex-col
               justify-evenly
               border-l-2
-              ">
-            
-            <p>First Name: {`${userInfo && capitalize(userInfo?.firstName)}` || "-"}</p>
-            <p>Last Name: {`${userInfo && capitalize(userInfo?.lastName)}` || "-"}</p>
-            <p>Phone Number: {`${userInfo && userInfo?.phone}` || "-"}</p>
-            <p>Address: {`${userInfo && userInfo?.address}` || "-"}</p>
-            <p>Email: {`${userInfo && userInfo?.email}` || "-"}</p>
-            
-
+              "
+            >
+              <p>
+                First Name:{" "}
+                {`${userInfo && capitalize(userInfo?.firstName)}` || "-"}
+              </p>
+              <p>
+                Last Name:{" "}
+                {`${userInfo && capitalize(userInfo?.lastName)}` || "-"}
+              </p>
+              <p>Phone Number: {`${userInfo && userInfo?.phone}` || "-"}</p>
+              <p>Address: {`${userInfo && userInfo?.address}` || "-"}</p>
+              <p>Email: {`${userInfo && userInfo?.email}` || "-"}</p>
+            </div>
           </div>
-        
-        </div>
         </Tab.Panel>
       </Tab.Group>
     </div>
