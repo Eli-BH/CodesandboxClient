@@ -92,16 +92,16 @@ const RightSidebar = () => {
   const eventsList = [
     {
       allDay: false,
-      start: new Date("November 25, 2022 11:00:00"),
-      end: new Date("November 25, 2022 12:00:00"),
+      start: new Date("January 25, 2023 11:00:00"),
+      end: new Date("January 25, 2023 12:00:00"),
       title: "Hiya!",
       desc: "Testing",
     },
     {
       allDay: true,
-      start: new Date("November 24, 2022 11:00:00"),
-      end: new Date("November 24, 2022 12:00:00"),
-      title: "Thanksgiving",
+      start: new Date("January 26, 2023 11:00:00"),
+      end: new Date("January 26, 2023 12:00:00"),
+      title: "Greetings",
       desc: "Test2",
     },
   ];
