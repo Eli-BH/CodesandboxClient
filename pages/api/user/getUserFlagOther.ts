@@ -4,35 +4,39 @@ import pool from '../../../utils/connectSalesforce';
 import Caregiver from '../../../models/CaregiverModel';
 
 
-export default async function handler(
+export default async function editUserInfo(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
     dbConnect();
     const { email } = req.body;
-    //`SELECT Id, Status__c, Contact__c, Name FROM Forms__c WHERE RecordType.Name = 'Employment Docs' AND IsMostRecent__c = True AND Contact__c = '${sfid}'`
+    //`SELECT Id, Status__c, Contact__c, Name FROM Forms__c WHERE RecordType.Name = 'Uploaded Docs' AND IsMostRecent__c = True AND Contact__c = '${sfid}'`
     try {
 
 
+        console.log({ username: email })
+
         const user = await Caregiver.findOne({ email })
 
+
+        console.log({ userRecord: user })
 
         if (!user) return res.status(404).json({ success: false, message: "User not found" })
 
         const { sfid } = user
 
-        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c WHERE RecordTypeId in (SELECT sfid FROM salesforce.RecordType WHERE Name = 'Employment Docs') AND IsMostRecent__c = True  AND Contact__c = '${sfid}'`)
+        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c WHERE RecordTypeId in (SELECT sfid FROM salesforce.RecordType WHERE Name = 'Uploaded Documents') AND IsMostRecent__c = True  AND Contact__c = '${sfid}'`)
 
         if (status.rowCount < 1) return res.status(400).json({ success: false, message: 'No records found' })
 
 
 
         if (status.rows[0].status === "Complete") {
-            user.flags.employeeDocs.status = 'complete'
+            user.flags.otherTasks.status = 'complete'
             await user.save()
         }
         else {
-            user.flags.employeeDocs.status = 'pending'
+            user.flags.otherTasks.status = 'pending'
             await user.save()
         }
 

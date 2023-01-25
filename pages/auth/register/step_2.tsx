@@ -214,10 +214,10 @@ const step_2 = () => {
                       }`}
                       required
                       {...register("firstName", {
-                        pattern: {
-                          value: /^[A-Za-z]+$/,
-                          message: "Letters only",
-                        },
+                        // pattern: {
+                        //   value: /^[A-Za-z]+$/,
+                        //   message: "Letters only",
+                        // },
                         required: {
                           value: true,
                           message: "First name required",
@@ -246,10 +246,10 @@ const step_2 = () => {
                         errors.lastName && errorStyle
                       }`}
                       {...register("lastName", {
-                        pattern: {
-                          value: /^[A-Za-z]+(?:[-]\S[A-Za-z]*)?$/,
-                          message: "Letters only",
-                        },
+                        // pattern: {
+                        //   value: /^[A-Za-z]+(?:[-]\S[A-Za-z]*)?$/,
+                        //   message: "Letters only",
+                        // },
                         required: {
                           value: true,
                           message: "Last name required",
@@ -363,7 +363,7 @@ const step_2 = () => {
                     </div>
                   </label>
 
-                  <label className="w-[46%] md:w-[50%] lg:w-[45%] relative">
+                  <label className="w-[46%] md:w-[50%] lg:w-[51%] relative">
                     Confirm Password:
                     <input
                       type="password"
@@ -525,7 +525,7 @@ const step_2 = () => {
                       },
                       maxLength: { value: 5, message: "invalid zip format" },
                       pattern: {
-                        value: /^\w{5}$/,
+                        value: /^\d{5}(-\d{4})?$/,
                         message: "invalid zip code format",
                       },
                     })}

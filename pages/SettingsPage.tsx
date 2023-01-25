@@ -26,9 +26,9 @@ const SettingsPage = (): JSX.Element => {
   const links: string[] = ["name", "address", "number", "password", "photo"];
 
   const resolutions = {
-    homeTab100: "h-[95%]",
-    homeTab150: "h-[90%]",
-  };
+    homeTab100 : "h-[95%]",
+    homeTab150 : "h-[100%]"
+  }
 
   const handleClick = (link: string) => {
     setActive(true);
@@ -70,18 +70,19 @@ const SettingsPage = (): JSX.Element => {
 
         <Tab.Panel
           className="
-            bg-blue-50
+            bg-gray-50
             h-full
             border-x-2
             border-b-2
-            border-t
+            border-t-2
             border-gray-400
             rounded-b-lg
+            rounded-t-lg
           "
         >
           <div
             className="
-            bg-blue-50
+            bg-gray-50
             rounded-b-lg
             h-full
             p-2
@@ -131,10 +132,13 @@ const SettingsPage = (): JSX.Element => {
               ease-in
               p-5
               duration-300
-              bg-gray-50
+              bg-gradient-to-tr from-red-600 to-orange-400
               h-[90%]
               w-1/2
               rounded-sm
+              flex
+              flex-col
+              justify-evenly
               absolute
               ${
                 active

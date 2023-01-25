@@ -11,18 +11,57 @@ import {
 } from "react-icons/md";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import User from "../utils/user.png";
-import React, {useState} from "react";
+
+import axios from "axios";
+import { signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 const ProfilePage = (): JSX.Element => {
+  const [userInfo, setUserInfo]: any = useState("");
+  const { data } = useSession();
+
+  useEffect(() => {
+    (async () => {
+      /**Or this https://mysteps.freedomcare.com/api/user/getAllUserInfo */
+      try {
+        const res = await axios.post(
+          "https://mysteps.freedomcare.com/api/user/getAllUserInfo",
+          {
+            //@ts-ignore
+            email: data?.user?.email,
+          }
+        );
+        setUserInfo(res.data.data);
+        console.log(userInfo);
+      } catch (error) {
+        console.log(error);
+      }
+      console.log(userInfo);
+    })();
+  }, []);
+
+  let capitalize = (word: string): string => {
+    let firstLetter: string = word.charAt(0);
+    let firstLetterCap: string = firstLetter?.toUpperCase();
+    let remainingLetters: string = word.slice(1);
+    const capitalizedWord: string = firstLetterCap + remainingLetters;
+
+    return capitalizedWord;
+  };
 
   const resolutions = {
-    homeTab100 : "h-[95%]",
-    homeTab150 : "h-[100%]"
-  }
-
+    homeTab100: "h-[95%]",
+    homeTab150: "h-[100%]",
+  };
 
   return (
-    <div className={window.devicePixelRatio >= 1.5 ? resolutions.homeTab150 : resolutions.homeTab100 }>
+    <div
+      className={
+        window.devicePixelRatio >= 1.5
+          ? resolutions.homeTab150
+          : resolutions.homeTab100
+      }
+    >
       <Tab.Group>
         <Tab.Panel
           className="
@@ -45,20 +84,28 @@ const ProfilePage = (): JSX.Element => {
             flex
             justify-items-start
             justify-evenly
+            items-center
           "
           >
-        
-          <Image className="h-full
+            <Image
+              className="
+            w-32 
+            h-32
+            md: 
             w-40
             h-40
             flex
             flex-col
             items-center"
-          src={User} 
-          alt="profile Image" 
-          />
-          <div className="
-              p-5
+              src={User}
+              alt="profile Image"
+            />
+            <div
+              className="
+              sm: text-sm
+              break-words
+              px-4
+              md:p-5
               h-[90%]
               w-1/2
               rounded-sm
@@ -66,23 +113,21 @@ const ProfilePage = (): JSX.Element => {
               flex-col
               justify-evenly
               border-l-2
-              ">
-            {/**Will call to logged in users personal info on hand and insert them into p tag */}
-
-            <p>First Name: John </p>
-            <p>Last Name: Doe</p>
-            <p>Phone Number: (XXX)-XXX-XXXX</p>
-            <p>Address: 123 Apple Lane, New York, NY, 12345</p>
-            <p>Email: testingUser1234@test.com</p>
-
-            {/*If user logged in is a patient then display this, will do once we are able to pull information <p>Caregiver Name: John Doe</p>*/}
-
-            <p>Number of Patients: 5</p>
-            
-
+              "
+            >
+              <p>
+                First Name:{" "}
+                {`${userInfo && capitalize(userInfo?.firstName)}` || "-"}
+              </p>
+              <p>
+                Last Name:{" "}
+                {`${userInfo && capitalize(userInfo?.lastName)}` || "-"}
+              </p>
+              <p>Phone Number: {`${userInfo && userInfo?.phone}` || "-"}</p>
+              <p>Address: {`${userInfo && userInfo?.address}` || "-"}</p>
+              <p>Email: {`${userInfo && userInfo?.email}` || "-"}</p>
+            </div>
           </div>
-        
-        </div>
         </Tab.Panel>
       </Tab.Group>
     </div>

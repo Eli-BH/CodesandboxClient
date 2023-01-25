@@ -102,8 +102,10 @@ const Navbar = () => {
                 
             "
       />
-      <div className="md:w-[250px] xs:w-[150px]">
-        <Image className="py-2" src={Logo} alt="Freedom care logo" priority />
+      <div className={
+        window.devicePixelRatio >= 1.5 ? resolutions.logoContainer150 : resolutions.logoContainer100
+      }>
+        <Image className="py-2 w-11/12 " src={Logo} alt="Freedom care logo" priority />
       </div>
 
       <div
@@ -141,7 +143,6 @@ const Navbar = () => {
                 border-r-2
                 h-full
                 w-full
-                
                 flex
                 flex-col
                 "

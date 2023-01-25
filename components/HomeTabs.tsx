@@ -1,17 +1,14 @@
 import { Tab } from "@headlessui/react";
-import {
-  MdCheckCircle,
-  MdPending,
-  MdError,
-  MdRemoveCircle,
-  MdCancel,
-  MdOutlineCircle,
-  MdOutlineArrowRight,
-} from "react-icons/md";
+
+import { BsCheckSquareFill, BsThreeDots } from "react-icons/bs";
+
+import { IoSquareOutline } from "react-icons/io5";
+
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { menuItems } from "../utils/constants";
 import { useRouter, NextRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { MdOutlineCircle } from "react-icons/md";
 import { useSession } from "next-auth/react";
 
 import cron from "node-cron";
@@ -31,9 +28,12 @@ const HomeTabs = (): JSX.Element => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.post("/api/user/getuser", {
-          email: data?.user?.email,
-        });
+        const res = await axios.post(
+          "https://mysteps.freedomcare.com/api/user/getuser",
+          {
+            email: data?.user?.email,
+          }
+        );
 
         setUserInfo(res.data.data);
       } catch (error) {
@@ -43,13 +43,35 @@ const HomeTabs = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    const id = setInterval(async () => {
-      const res = await axios.post(
-        "https://mysteps.freedomcare.com/api/checkForSfid",
+    console.log(data);
+
+    async function getI9Flag() {
+      return await axios.post(
+        "https://mysteps.freedomcare.com/api/user/edit_info",
         {
           email: data?.user?.email,
         }
       );
+    }
+
+    async function getOtherFlag() {
+      return await axios.post(
+        "https://mysteps.freedomcare.com/api/user/getUserFlagOther",
+        { email: data?.user?.email }
+      );
+    }
+
+    Promise.all([getI9Flag(), getOtherFlag()]).then(function (results) {
+      console.log(results);
+    });
+  }, []);
+
+  //("https://mysteps.freedomcare.com");
+  useEffect(() => {
+    const id = setInterval(async () => {
+      const res = await axios.post("/api/checkForSfid", {
+        email: data?.user?.email,
+      });
 
       if (res.data.success) {
         setCheck(true);
@@ -66,13 +88,17 @@ const HomeTabs = (): JSX.Element => {
   const statusIcon = (status: string): JSX.Element | null => {
     switch (status) {
       case "incomplete":
-        return <MdOutlineCircle className="text-xl" />;
+        return <IoSquareOutline className="text-3xl" />;
 
       case "pending":
-        return <MdPending className="text-xl text-yellow-600" />;
+        return (
+          <div className="bg-green-500 border border-green-500 rounded ">
+            <BsThreeDots className="text-2xl text-white" />
+          </div>
+        );
 
       case "complete":
-        return <MdCheckCircle className="text-xl text-green-600" />;
+        return <BsCheckSquareFill className="text-2xl text-green-600" />;
 
       default:
         return null;
@@ -86,6 +112,7 @@ const HomeTabs = (): JSX.Element => {
 
     return capitalizedWord;
   };
+
   return (
     <div
       className={
@@ -169,18 +196,28 @@ const HomeTabs = (): JSX.Element => {
                 (item: any, index) => (
                   <div
                     className={`
-               hover:bg-gray-100
-                w-[98%]
-                lg:w-[90%]
+                
+                w-[100%]
                 justify-between
                 items-center
                 flex
                 text-xs
                 md:text-xl
                 lg:text-[1.5em]
-                ${index > 1 && "hidden"}
+                
+                ${index > 2 && "hidden"}
+                ${
+                  item.status === "complete"
+                    ? "bg-gray-300"
+                    : "hover:bg-gray-100 cursor-pointer"
+                }
                 `}
                     key={index}
+                    onClick={
+                      item.status === "complete"
+                        ? () => null
+                        : () => router.push(item.link)
+                    }
                   >
                     <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
                       {statusIcon(item.status)}
@@ -188,10 +225,8 @@ const HomeTabs = (): JSX.Element => {
                     </div>
 
                     <p className="font-bold">{item.title}</p>
-                    <AiOutlineDoubleRight
-                      className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer"
-                      onClick={() => router.push(item.link)}
-                    />
+
+                    <AiOutlineDoubleRight className="w-[50px] md:w-[90px] lg:w-[75px]" />
                   </div>
                 )
               )}
