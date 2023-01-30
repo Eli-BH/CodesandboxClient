@@ -87,17 +87,17 @@ const HomeTabs = (): JSX.Element => {
 
   const statusIcon = (status: string): JSX.Element | null => {
     switch (status) {
-      case "incomplete":
+      case "Requested":
         return <IoSquareOutline className="text-3xl" />;
 
-      case "pending":
+      case "Submitted":
         return (
           <div className="bg-green-500 border border-green-500 rounded ">
             <BsThreeDots className="text-2xl text-white" />
           </div>
         );
 
-      case "complete":
+      case "Approved":
         return <BsCheckSquareFill className="text-2xl text-green-600" />;
 
       default:

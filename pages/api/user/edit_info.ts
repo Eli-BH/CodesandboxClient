@@ -27,14 +27,19 @@ export default async function handler(
 
 
 
-        if (status.rows[0].status === "Complete") {
-            user.flags.employeeDocs.status = 'complete'
+        //Requested Submitted Approved Declined
+
+        if (status.rows[0].status === "Approved") {
+            user.flags.employeeDocs.status = 'Approved'
             await user.save()
         }
-        else {
-            user.flags.employeeDocs.status = 'pending'
-            await user.save()
+        else if (status.rows[0].status === "Requested" || status.rows[0].status === "Declined") {
+            user.flags.employeeDocs.status = "Requested"
         }
+        else if (status.rows[0].status === "Submitted") {
+            user.flags.employeeDocs.status = "Submitted"
+        }
+
 
         res.status(200).json({ success: true })
     } catch (error) {
