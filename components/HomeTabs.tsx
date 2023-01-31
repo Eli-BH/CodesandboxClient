@@ -1,9 +1,5 @@
 import { Tab } from "@headlessui/react";
 
-import Requested from "../utils/Requested.svg"
-import Submitted from "../utils/Submitted.svg"
-import Approved from "../utils/Approved.svg"
-
 import { BsCheckSquareFill, BsThreeDots } from "react-icons/bs";
 
 import { IoSquareOutline } from "react-icons/io5";
@@ -93,19 +89,19 @@ const HomeTabs = (): JSX.Element => {
     switch (status) {
       case "incomplete":
       case "Requested":
-        return <Requested className="text-3xl" />;
+        return <img src="/Requested.svg" className="text-3xl" />;
 
       case "pending":
       case "Submitted":
         return (
           <div className="bg-green-500 border border-green-500 rounded ">
-            <Submitted className="text-2xl text-white" />
+            <img src="/Submitted.svg"className="text-2xl text-white" />
           </div>
         );
 
       case "complete":
       case "Approved":
-        return <Approved className="text-2xl text-green-600" />;
+        return <img src="/Approved.svg" className="text-2xl text-green-600" />;
 
       default:
         return null;
