@@ -89,16 +89,16 @@ const HomeTabs = (): JSX.Element => {
     switch (status) {
       case "incomplete":
       case "Requested":
-        return <img src="/Requested.svg" className="text-3xl" />;
+        return <img src="/Requested.svg"/>;
 
       case "pending":
       case "Submitted":
-        return <img src="/Submitted.svg"className="text-2xl" />
+        return <img src="/Submitted.svg" />
         
 
       case "complete":
       case "Approved":
-        return <img src="/Approved.svg" className="text-2xl"/>;
+        return <img src="/Approved.svg"/>;
 
       default:
         return null;
