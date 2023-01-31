@@ -1,5 +1,9 @@
 import { Tab } from "@headlessui/react";
 
+import Requested from "../utils/Requested.svg"
+import Submitted from "../utils/Submitted.svg"
+import Approved from "../utils/Approved.svg"
+
 import { BsCheckSquareFill, BsThreeDots } from "react-icons/bs";
 
 import { IoSquareOutline } from "react-icons/io5";
@@ -89,19 +93,19 @@ const HomeTabs = (): JSX.Element => {
     switch (status) {
       case "incomplete":
       case "Requested":
-        return <IoSquareOutline className="text-3xl" />;
+        return <Requested className="text-3xl" />;
 
       case "pending":
       case "Submitted":
         return (
           <div className="bg-green-500 border border-green-500 rounded ">
-            <BsThreeDots className="text-2xl text-white" />
+            <Submitted className="text-2xl text-white" />
           </div>
         );
 
       case "complete":
       case "Approved":
-        return <BsCheckSquareFill className="text-2xl text-green-600" />;
+        return <Approved className="text-2xl text-green-600" />;
 
       default:
         return null;
@@ -222,9 +226,8 @@ const HomeTabs = (): JSX.Element => {
                         : () => router.push(item.link)
                     }
                   >
-                    <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
+                    <div className="md:text-md w-[100px]  lg:w-[150px]">
                       {statusIcon(item.status)}
-                      <p className="font-semibold">{capitalize(item.status)}</p>
                     </div>
 
                     <p className="font-bold">{item.title}</p>
