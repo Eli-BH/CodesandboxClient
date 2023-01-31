@@ -93,15 +93,12 @@ const HomeTabs = (): JSX.Element => {
 
       case "pending":
       case "Submitted":
-        return (
-          <div className="bg-green-500 border border-green-500 rounded ">
-            <img src="/Submitted.svg"className="text-2xl text-white" />
-          </div>
-        );
+        return <img src="/Submitted.svg"className="text-2xl" />
+        
 
       case "complete":
       case "Approved":
-        return <img src="/Approved.svg" className="text-2xl text-green-600" />;
+        return <img src="/Approved.svg" className="text-2xl"/>;
 
       default:
         return null;
