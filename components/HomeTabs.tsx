@@ -4,6 +4,10 @@ import { BsCheckSquareFill, BsThreeDots } from "react-icons/bs";
 
 import { IoSquareOutline } from "react-icons/io5";
 
+import Requested from "../utils/Requested.svg"
+import Submitted from "../utils/Submitted.svg"
+import Approved from "../utils/Approved.svg"
+
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { menuItems } from "../utils/constants";
 import { useRouter, NextRouter } from "next/router";
@@ -104,6 +108,8 @@ const HomeTabs = (): JSX.Element => {
         return null;
     }
   };
+
+{/*
   let capitalize = (word: string): string => {
     let firstLetter: string = word.charAt(0);
     let firstLetterCap: string = firstLetter?.toUpperCase();
@@ -112,6 +118,21 @@ const HomeTabs = (): JSX.Element => {
 
     return capitalizedWord;
   };
+*/}
+  const userTestStatus = [
+    { 
+      "id": 0, 
+      "status": "incomplete"
+    },
+    { 
+      "id": 1, 
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "status": "complete"
+    }
+  ];
 
   return (
     <div
@@ -191,8 +212,9 @@ const HomeTabs = (): JSX.Element => {
             items-center
           "
           >
-            {userInfo &&
-              Object.values(userInfo && userInfo?.flags).map(
+            {/**userInfo &&
+              Object.values(userInfo && userInfo?.flags) */}
+            {userTestStatus.map(
                 (item: any, index) => (
                   <div
                     className={`
@@ -221,10 +243,10 @@ const HomeTabs = (): JSX.Element => {
                   >
                     <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
                       {statusIcon(item.status)}
-                      <p className="font-semibold">{capitalize(item.status)}</p>
+                      <p className="font-semibold">{item.status}</p>
                     </div>
 
-                    <p className="font-bold">{item.title}</p>
+                   {/* <p className="font-bold">{item.title}</p>*/}
 
                     <AiOutlineDoubleRight className="w-[50px] md:w-[90px] lg:w-[75px]" />
                   </div>
