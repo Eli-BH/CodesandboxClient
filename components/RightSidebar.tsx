@@ -147,9 +147,10 @@ const RightSidebar = () => {
       "
       >
         <p className="text-2xl">Notifications</p>
-
-        <div className="w-full overflow-y-scroll">
-          {notifs.map((item, index) => {
+        {/* Remove h-full and on after Notifications is functional */}
+        <div className="w-full overflow-y-scroll h-full flex items-center justify-center">
+            <h3 className="text-lg">No New Notifications</h3>
+          {/*{notifs.map((item, index) => {
             return (
               <NotificationItem
                 text={item.text}
@@ -157,7 +158,7 @@ const RightSidebar = () => {
                 variant={item.variant}
               />
             );
-          })}
+          })}*/}
         </div>
       </div>
       <div
