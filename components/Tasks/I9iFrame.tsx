@@ -24,12 +24,12 @@ const I9iFrame = (): JSX.Element => {
 
     fetchSfid();
   }, []);
-
+  // https://freedomcareny--lightning.sandbox.lightning.force.com/lightning/n/I9Page
   return (
     <>
       <iframe
         id="documents"
-        src={`https://freedomcareny--lightning.sandbox.lightning.force.com/lightning/n/I9Page`}
+        src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}`}
         title="document management"
         className="w-full h-full"
       ></iframe>
