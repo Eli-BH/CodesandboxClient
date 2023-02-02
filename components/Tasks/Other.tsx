@@ -30,7 +30,7 @@ const Other = () => {
     <>
       <iframe
         id="documents"
-        src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/uploadDocuments?id=${sfid}&AppLogin=TRUE&Form=CovidVaccineCard&ShowRecordType=OtherDocs`}
+        src={`https://freedomcareny--lightning.sandbox.lightning.force.com/lightning/n/I9Page?id=${sfid}&AppLogin=TRUE&Form=CovidVaccineCard&ShowRecordType=OtherDocs`}
         title="document management"
         className="w-full h-full"
       ></iframe>
