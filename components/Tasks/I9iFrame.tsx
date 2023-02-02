@@ -29,7 +29,7 @@ const I9iFrame = (): JSX.Element => {
     <>
       <iframe
         id="documents"
-        src={`https://freedomcareny--lightning.sandbox.lightning.force.com/lightning/n/I9Page?id=${sfid}&AppLogin=TRUE&Form=CovidVaccineCard`}
+        src={`https://freedomcareny--lightning.sandbox.lightning.force.com/lightning/n/I9Page`}
         title="document management"
         className="w-full h-full"
       ></iframe>
