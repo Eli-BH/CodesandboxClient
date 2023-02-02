@@ -26,11 +26,12 @@ const Other = () => {
     fetchSfid();
   }, []);
 
-  return (
+  //freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=0038G000009BRDmQAO
+  https: return (
     <>
       <iframe
         id="documents"
-        src={`https://freedomcareny--lightning.sandbox.lightning.force.com/lightning/n/I9Page?id=${sfid}&AppLogin=TRUE&Form=CovidVaccineCard&ShowRecordType=OtherDocs`}
+        src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}`}
         title="document management"
         className="w-full h-full"
       ></iframe>
