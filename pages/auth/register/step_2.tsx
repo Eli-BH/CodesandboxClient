@@ -37,7 +37,7 @@ const step_2 = () => {
     state: "",
     zip: "",
     address: "",
-    birthdate: "",
+    dateOfBirth: "",
   });
   const {
     register,
@@ -91,7 +91,7 @@ const step_2 = () => {
             mailingcity,
             mailingpostalcode,
             mailingstreet,
-            birthdate,
+            dateOfBirth,
           } = result.data.user;
           setUserInfo({
             ...userInfo,
@@ -103,7 +103,7 @@ const step_2 = () => {
             city: mailingcity || "",
             zip: mailingpostalcode || "",
             address: mailingstreet || "",
-            birthdate: (birthdate && birthdate?.split("T")[0]) || "",
+            dateOfBirth: (dateOfBirth && dateOfBirth?.split("T")[0]) || "",
           });
         }
       } catch (error) {
@@ -115,7 +115,7 @@ const step_2 = () => {
   }, [email]);
 
   useEffect(() => {
-    reset({
+    return reset({
       ...userInfo,
       phone: (userInfo.phone && userInfo?.phone.slice(2)) || "",
       password: "",
