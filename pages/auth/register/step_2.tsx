@@ -103,7 +103,7 @@ const step_2 = () => {
             city: mailingcity || "",
             zip: mailingpostalcode || "",
             address: mailingstreet || "",
-            birthdate: birthdate || "",
+            birthdate: (birthdate && birthdate?.split("T")[0]) || "",
           });
         }
       } catch (error) {
@@ -523,7 +523,7 @@ const step_2 = () => {
                         value: true,
                         message: "Postal code required",
                       },
-                      maxLength: { value: 5, message: "invalid zip format" },
+
                       pattern: {
                         value: /^\d{5}(-\d{4})?$/,
                         message: "invalid zip code format",
