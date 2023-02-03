@@ -321,6 +321,7 @@ const step_2 = () => {
                   <input
                     type="date"
                     className={`w-full border border-black  rounded-sm`}
+                    value={userInfo.dateOfBirth}
                     {...register("dateOfBirth", {
                       required: {
                         value: true,
