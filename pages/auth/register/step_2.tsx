@@ -37,7 +37,7 @@ const step_2 = () => {
     state: "",
     zip: "",
     address: "",
-    birthdate: "1970-01-01",
+    birthdate: "",
   });
   const {
     register,
