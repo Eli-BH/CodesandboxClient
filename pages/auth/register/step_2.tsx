@@ -17,7 +17,7 @@ interface IFormInput {
   confirmPassword: string;
   email: string;
   phone: string;
-  dateOfBirth: string;
+  dateOfBirth?: string;
   address: string;
   address2: string;
   city: string;
@@ -103,7 +103,7 @@ const step_2 = () => {
             city: mailingcity || "",
             zip: mailingpostalcode || "",
             address: mailingstreet || "",
-            dateOfBirth: (dateOfBirth && dateOfBirth?.split("T")[0]) || "",
+            dateOfBirth: dateOfBirth && dateOfBirth?.split("T")[0],
           });
         }
       } catch (error) {
