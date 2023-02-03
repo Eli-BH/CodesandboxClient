@@ -17,7 +17,7 @@ interface IFormInput {
   confirmPassword: string;
   email: string;
   phone: string;
-  dateOfBirth?: string;
+  birthdate: string;
   address: string;
   address2: string;
   city: string;
@@ -37,7 +37,7 @@ const step_2 = () => {
     state: "",
     zip: "",
     address: "",
-    dateOfBirth: "",
+    birthdate: "1970-01-01",
   });
   const {
     register,
@@ -91,7 +91,7 @@ const step_2 = () => {
             mailingcity,
             mailingpostalcode,
             mailingstreet,
-            dateOfBirth,
+            birthdate,
           } = result.data.user;
           setUserInfo({
             ...userInfo,
@@ -103,7 +103,7 @@ const step_2 = () => {
             city: mailingcity || "",
             zip: mailingpostalcode || "",
             address: mailingstreet || "",
-            dateOfBirth: dateOfBirth && dateOfBirth?.split("T")[0],
+            birthdate: (birthdate && birthdate?.split("T")[0]) || "",
           });
         }
       } catch (error) {
@@ -115,7 +115,7 @@ const step_2 = () => {
   }, [email]);
 
   useEffect(() => {
-    return reset({
+    reset({
       ...userInfo,
       phone: (userInfo.phone && userInfo?.phone.slice(2)) || "",
       password: "",
@@ -139,7 +139,7 @@ const step_2 = () => {
           state: data.state,
           zip: data.zip,
           city: data.city,
-          dateOfBirth: data.dateOfBirth,
+          dateOfBirth: data.birthdate,
           phone: data.phone,
           password: data.password,
         }
@@ -321,8 +321,7 @@ const step_2 = () => {
                   <input
                     type="date"
                     className={`w-full border border-black  rounded-sm`}
-                    value={userInfo.dateOfBirth}
-                    {...register("dateOfBirth", {
+                    {...register("birthdate", {
                       required: {
                         value: true,
                         message: "Date of birth required",
@@ -331,11 +330,11 @@ const step_2 = () => {
                   />
                   <div
                     className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 pl ${
-                      errors.dateOfBirth ? "block" : "hidden"
+                      errors.birthdate ? "block" : "hidden"
                     }`}
                   >
                     <p className="font-semibold text-red-800">
-                      {errors.dateOfBirth && errors.dateOfBirth.message}
+                      {errors.birthdate && errors.birthdate.message}
                     </p>
                   </div>
                 </label>
