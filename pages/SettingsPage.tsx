@@ -43,6 +43,7 @@ const SettingsPage = (): JSX.Element => {
           : resolutions.homeTab100
       }
     >
+      {/*
       <Tab.Group>
         <Tab.List>
           <Tab
@@ -93,7 +94,7 @@ const SettingsPage = (): JSX.Element => {
             relative
           "
           >
-            {/*Unorder List for Settings */}
+            {/*Unorder List for Settings 
             <ul
               className={`
             ease-in
@@ -153,6 +154,13 @@ const SettingsPage = (): JSX.Element => {
           </div>
         </Tab.Panel>
       </Tab.Group>
+      */}
+        <div className="bg-orange-50 h-full w-full rounded-md border-orange-200 border-4 flex flex-col items-center justify-center">
+          <p className="text-[1.2rem] md:text-[3rem] lg:text-[4rem] font-bold text-orange-200 ">
+          {" "}
+          Coming soon
+        </p>
+      </div>
     </div>
   );
 };
