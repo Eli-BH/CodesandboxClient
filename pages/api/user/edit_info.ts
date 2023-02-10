@@ -33,14 +33,14 @@ export default async function handler(
 
 
 
-        if (status.rows[0].status === "Approved") {
+        if (status.rows[0].status__c === "Approved") {
             user.flags.employeeDocs.status = 'Approved'
             await user.save()
         }
-        else if (status.rows[0].status === "Requested" || status.rows[0].status === "Declined") {
+        else if (status.rows[0].status__c === "Requested" || status.rows[0].status === "Declined") {
             user.flags.employeeDocs.status = "Requested"
         }
-        else if (status.rows[0].status === "Submitted") {
+        else if (status.rows[0].status__c === "Submitted") {
             user.flags.employeeDocs.status = "Submitted"
         }
 
