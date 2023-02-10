@@ -31,6 +31,13 @@ export default async function editUserInfo(
 
 
 
+        console.log({
+            userOther: user.flags,
+            statusOther: status.rows,
+            pinpointOther: status.rows[0],
+
+        })
+
         if (status.rows[0].status === "Complete") {
             user.flags.otherTasks.status = 'complete'
             await user.save()
