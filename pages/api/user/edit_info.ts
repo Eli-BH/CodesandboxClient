@@ -41,9 +41,11 @@ export default async function handler(
         }
         else if (status.rows[0].status__c === "Requested" || status.rows[0].status === "Declined") {
             user.flags.employeeDocs.status = "Requested"
+            await user.save()
         }
         else if (status.rows[0].status__c === "Submitted") {
             user.flags.employeeDocs.status = "Submitted"
+            await user.save()
         }
 
 
