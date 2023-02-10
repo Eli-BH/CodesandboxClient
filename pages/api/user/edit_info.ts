@@ -28,7 +28,9 @@ export default async function handler(
 
         console.log({
             user: user.flags,
-            status: status.rows
+            status: status.rows,
+            pinpoint: status.rows[0],
+            userPinpoint: user.flags.employeeDocs
         })
 
 
