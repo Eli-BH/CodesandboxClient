@@ -40,8 +40,8 @@ export default async function editUserInfo(
 
 
 
-        if (status.rows[0].status__c === "Approved") {
-            user.flags.otherTasks.status = 'Approved'
+        if (status.rows[0].status__c === "Complete") {
+            user.flags.otherTasks.status = 'complete'
             await user.save()
         }
         else if (status.rows[0].status__c === "Requested" || status.rows[0].status === "Declined") {
