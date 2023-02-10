@@ -62,7 +62,7 @@ const HomeTabs = (): JSX.Element => {
     }
 
     Promise.all([getI9Flag(), getOtherFlag()]).then(function (results) {
-      console.log(results);
+      console.log({ results });
     });
   }, []);
 
@@ -89,16 +89,15 @@ const HomeTabs = (): JSX.Element => {
     switch (status) {
       case "incomplete":
       case "Requested":
-        return <img src="/Requested.svg"/>;
+        return <img src="/Requested.svg" />;
 
       case "pending":
       case "Submitted":
-        return <img src="/Submitted.svg" />
-        
+        return <img src="/Submitted.svg" />;
 
       case "complete":
       case "Approved":
-        return <img src="/Approved.svg"/>;
+        return <img src="/Approved.svg" />;
 
       default:
         return null;

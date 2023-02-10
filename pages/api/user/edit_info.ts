@@ -26,8 +26,11 @@ export default async function handler(
         if (status.rowCount < 1) return res.status(400).json({ success: false, message: 'No records found' })
 
 
+        console.log({
+            user, status
+        })
 
-        //Requested Submitted Approved Declined
+
 
         if (status.rows[0].status === "Approved") {
             user.flags.employeeDocs.status = 'Approved'

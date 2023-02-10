@@ -63,7 +63,6 @@ const step_2 = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        console.log(email);
         const result = await axios.post(
           `https://mysteps.freedomcare.com/api/auth/check_user`,
           {
@@ -74,12 +73,6 @@ const step_2 = () => {
         if (result.data.redirect) {
           router.push("https://mysteps.freedomcare.com/auth/signin");
         }
-
-        console.log(result.data);
-
-        // if (result.data.user) {
-        //   setUserInfo(result.data.user);
-        // }
 
         if (result.data.user) {
           const {
@@ -97,7 +90,7 @@ const step_2 = () => {
             ...userInfo,
             firstName: firstname || "",
             lastName: lastname || "",
-            email: email || "",
+            email: email.toLowerCase() || "",
             phone: phone || "",
             state: mailingstate || "",
             city: mailingcity || "",

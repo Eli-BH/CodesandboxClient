@@ -40,6 +40,25 @@ export default async function editUserInfo(
             await user.save()
         }
 
+
+
+
+
+        // if (status.rows[0].status === "Approved") {
+        //     user.flags.otherTasks.status = 'Approved'
+        //     await user.save()
+        // }
+        // else if (status.rows[0].status === "Requested" || status.rows[0].status === "Declined") {
+        //     user.flags.otherTasks.status = "Requested"
+        // }
+        // else if (status.rows[0].status === "Submitted") {
+        //     user.flags.otherTasks.status = "Submitted"
+        // }
+
+
+
+
+
         res.status(200).json({ success: true })
     } catch (error) {
         console.log(error)
