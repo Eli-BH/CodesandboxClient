@@ -38,31 +38,20 @@ export default async function editUserInfo(
 
         })
 
-        if (status.rows[0].status === "Complete") {
-            user.flags.otherTasks.status = 'complete'
+
+
+        if (status.rows[0].status__c === "Approved") {
+            user.flags.otherTasks.status = 'Approved'
             await user.save()
         }
-        else {
-            user.flags.otherTasks.status = 'pending'
+        else if (status.rows[0].status__c === "Requested" || status.rows[0].status === "Declined") {
+            user.flags.otherTasks.status = "Requested"
             await user.save()
         }
-
-
-
-
-
-        // if (status.rows[0].status === "Approved") {
-        //     user.flags.otherTasks.status = 'Approved'
-        //     await user.save()
-        // }
-        // else if (status.rows[0].status === "Requested" || status.rows[0].status === "Declined") {
-        //     user.flags.otherTasks.status = "Requested"
-        // }
-        // else if (status.rows[0].status === "Submitted") {
-        //     user.flags.otherTasks.status = "Submitted"
-        // }
-
-
+        else if (status.rows[0].status__c === "Submitted") {
+            user.flags.otherTasks.status = "Submitted"
+            await user.save()
+        }
 
 
 
