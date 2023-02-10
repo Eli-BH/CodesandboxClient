@@ -27,7 +27,8 @@ export default async function handler(
 
 
         console.log({
-            user, status
+            user: user.flags,
+            status: status.rows
         })
 
 
