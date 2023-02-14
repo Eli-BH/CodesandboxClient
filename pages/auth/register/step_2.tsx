@@ -58,7 +58,7 @@ const step_2 = () => {
     control,
     formState,
   });
-  const { email } = router.query;
+  let { email } = router.query;
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -66,7 +66,8 @@ const step_2 = () => {
         const result = await axios.post(
           `https://mysteps.freedomcare.com/api/auth/check_user`,
           {
-            email: email,
+            //@ts-ignore
+            email: email.toLowerCase(),
           }
         );
 
