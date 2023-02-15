@@ -206,7 +206,7 @@ const HomeTabs = (): JSX.Element => {
                 
                 ${index > 2 && "hidden"}
                 ${
-                  item.status === "complete"
+                  item.status === "complete" || "Approved"
                     ? "text-gray-400"
                     : "hover:bg-gray-100 cursor-pointer"
                 }
@@ -224,7 +224,13 @@ const HomeTabs = (): JSX.Element => {
 
                     <p className="font-bold">{item.title}</p>
 
-                    <AiOutlineDoubleRight className="w-[50px] md:w-[90px] lg:w-[75px]" />
+                    <AiOutlineDoubleRight
+                      className={`w-[50px] md:w-[90px] lg:w-[75px] ${
+                        item.status === "complete" || "Approved"
+                          ? "text-gray-400"
+                          : "hover:bg-gray-100 cursor-pointer"
+                      }`}
+                    />
                   </div>
                 )
               )}
