@@ -207,7 +207,7 @@ const HomeTabs = (): JSX.Element => {
                 ${index > 2 && "hidden"}
                 ${
                   item.status === "complete"
-                    ? "bg-gray-300"
+                    ? "text-gray-400"
                     : "hover:bg-gray-100 cursor-pointer"
                 }
                 `}
