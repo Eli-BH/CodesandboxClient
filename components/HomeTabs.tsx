@@ -213,7 +213,7 @@ const HomeTabs = (): JSX.Element => {
                 `}
                     key={index}
                     onClick={
-                      item.status === "complete"
+                      item.status === "complete" || item.status === "Approved"
                         ? () => null
                         : () => router.push(item.link)
                     }
