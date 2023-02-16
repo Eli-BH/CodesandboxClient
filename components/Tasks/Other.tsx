@@ -29,12 +29,12 @@ const Other = () => {
   //freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=0038G000009BRDmQAO
   https: return (
     <>
-      <iframe
+      {/* <iframe
         id="documents"
         src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs`}
         title="document management"
         className="w-full h-full"
-      ></iframe>
+      ></iframe> */}
     </>
   );
 };
