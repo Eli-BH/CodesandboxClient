@@ -66,7 +66,7 @@ const HomeTabs = (): JSX.Element => {
     });
   }, []);
 
-  setTimeout(async () => {
+  const flagCheck = setTimeout(async () => {
     try {
       console.log("testing other");
       await axios.post(
@@ -81,6 +81,13 @@ const HomeTabs = (): JSX.Element => {
       console.log(error);
     }
   }, 30000);
+
+  if (
+    userInfo.flags.employeeDocs.status === "complete" ||
+    userInfo.flags.employeeDocs.status === "Approved"
+  ) {
+    clearTimeout(flagCheck);
+  }
 
   //("https://mysteps.freedomcare.com");
   useEffect(() => {
