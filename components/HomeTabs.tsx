@@ -77,6 +77,15 @@ const HomeTabs = (): JSX.Element => {
       await axios.post("https://mysteps.freedomcare.com/api/user/edit_info", {
         email: data?.user?.email,
       });
+
+      const res = await axios.post(
+        "https://mysteps.freedomcare.com/api/user/getuser",
+        {
+          email: data?.user?.email,
+        }
+      );
+
+      setUserInfo(res.data.data);
     } catch (error) {
       console.log(error);
     }
