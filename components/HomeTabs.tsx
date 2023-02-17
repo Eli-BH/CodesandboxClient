@@ -83,8 +83,8 @@ const HomeTabs = (): JSX.Element => {
   }, 30000);
 
   if (
-    userInfo.flags.employeeDocs.status === "complete" ||
-    userInfo.flags.employeeDocs.status === "Approved"
+    userInfo?.flags?.employeeDocs?.status === "complete" ||
+    userInfo?.flags?.employeeDocs?.status === "Approved"
   ) {
     clearTimeout(flagCheck);
   }
