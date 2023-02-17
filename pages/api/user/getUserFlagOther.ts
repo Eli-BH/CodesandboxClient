@@ -27,8 +27,11 @@ export default async function editUserInfo(
 
         const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c WHERE RecordTypeId in (SELECT sfid FROM salesforce.RecordType WHERE Name = 'Uploaded Documents') AND IsMostRecent__c = True  AND Contact__c = '${sfid}'`)
 
-        if (status.rowCount < 1) return res.status(400).json({ success: false, message: 'No records found' })
-
+        if (status.rowCount < 1) {
+            user.flags.otherTasks.status = "NR" //not requested
+            await user.save()
+            return res.status(200).json({ success: false })
+        }
 
 
         console.log({

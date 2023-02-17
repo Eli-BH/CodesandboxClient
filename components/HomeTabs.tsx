@@ -66,6 +66,18 @@ const HomeTabs = (): JSX.Element => {
     });
   }, []);
 
+  setTimeout(async () => {
+    try {
+      console.log("testing other");
+      await axios.post(
+        "https://mysteps.freedomcare.com/api/user/getUserFlagOther",
+        { email: data?.user?.email }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }, 30000);
+
   //("https://mysteps.freedomcare.com");
   useEffect(() => {
     const id = setInterval(async () => {
