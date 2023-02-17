@@ -73,6 +73,10 @@ const HomeTabs = (): JSX.Element => {
         "https://mysteps.freedomcare.com/api/user/getUserFlagOther",
         { email: data?.user?.email }
       );
+
+      await axios.post("https://mysteps.freedomcare.com/api/user/edit_info", {
+        email: data?.user?.email,
+      });
     } catch (error) {
       console.log(error);
     }
