@@ -227,7 +227,7 @@ const HomeTabs = (): JSX.Element => {
                 md:text-xl
                 lg:text-[1.5em]
                 ${item.status === "NR" && "hidden"}
-                ${item.status === "Awainting" && "text-gray-400"}
+                ${item.status === "Awaiting" && "text-gray-400"}
                 ${index > 2 && "hidden"}
                 ${
                   item.status === "complete" || item.status === "Approved"
