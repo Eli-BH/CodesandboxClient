@@ -80,7 +80,7 @@ const HomeTabs = (): JSX.Element => {
     } catch (error) {
       console.log(error);
     }
-  }, 5000);
+  }, 30000);
 
   if (
     userInfo.flags.employeeDocs.status === "complete" ||
