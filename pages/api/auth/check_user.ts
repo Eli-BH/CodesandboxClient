@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // redirect only if the user is foundin the mongo db
 
 
-        console.log(email)
+        console.log(id)
 
 
         if (!email) {
