@@ -25,6 +25,11 @@ interface IFormInput {
   zip: string;
 }
 
+export async function getServerSideProps(context) {
+  console.log(`query id: ${context.query}`);
+  return {};
+}
+
 const step_2 = () => {
   const [scrollAnim, setScrollAnim] = useState(false);
   const [error, setError] = useState<string | undefined>("");
@@ -58,7 +63,7 @@ const step_2 = () => {
     control,
     formState,
   });
-  let { email, ID } = router.query;
+  let { email } = router.query;
 
   console.log(router.query);
 
