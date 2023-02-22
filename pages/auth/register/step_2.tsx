@@ -27,7 +27,9 @@ interface IFormInput {
 
 //@ts-ignore
 export async function getServerSideProps(context) {
-  console.log(`query id: ${context.query}`);
+  console.log(
+    `query id: ${context.query.Id} query email: ${context.query.email}`
+  );
   return {};
 }
 
@@ -66,7 +68,7 @@ const step_2 = () => {
   });
   let { email } = router.query;
 
-  console.log(router.query);
+  console.log({ email1: router.query.email, id1: router.query.Id });
 
   useEffect(() => {
     const fetchUser = async () => {
