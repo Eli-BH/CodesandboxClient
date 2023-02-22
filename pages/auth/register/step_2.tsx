@@ -76,7 +76,6 @@ const step_2 = () => {
           {
             //@ts-ignore
             email: email.toLowerCase(),
-            id: ID,
           }
         );
 
