@@ -80,19 +80,20 @@ const step_2 = () => {
             firstname,
             lastname,
             email,
-            phone,
+            mobilephone,
             mailingstate,
             mailingcity,
             mailingpostalcode,
             mailingstreet,
             birthdate,
           } = result.data.user;
+
           setUserInfo({
             ...userInfo,
             firstName: firstname || "",
             lastName: lastname || "",
             email: email.toLowerCase() || "",
-            phone: phone || "",
+            phone: mobilephone || "",
             state: mailingstate || "",
             city: mailingcity || "",
             zip: mailingpostalcode || "",
