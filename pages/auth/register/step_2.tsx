@@ -104,6 +104,8 @@ const step_2 = () => {
         }
       } catch (error) {
         console.log(error);
+        //@ts-ignore
+        alert(error.response.data.messageS);
       }
     };
 
