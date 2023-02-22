@@ -60,7 +60,7 @@ const step_2 = () => {
   });
   let { email, ID } = router.query;
 
-  console.log(ID);
+  console.log(router.query);
 
   useEffect(() => {
     const fetchUser = async () => {
