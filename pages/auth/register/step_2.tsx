@@ -108,7 +108,7 @@ const step_2 = () => {
       } catch (error) {
         console.log(error);
 
-        toast.error("User not found", {
+        return toast.error("User not found", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
