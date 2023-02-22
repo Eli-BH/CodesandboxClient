@@ -25,14 +25,6 @@ interface IFormInput {
   zip: string;
 }
 
-//@ts-ignore
-export async function getServerSideProps(context) {
-  console.log(
-    `query id: ${context.query.Id} query email: ${context.query.email}`
-  );
-  return {};
-}
-
 const step_2 = () => {
   const [scrollAnim, setScrollAnim] = useState(false);
   const [error, setError] = useState<string | undefined>("");
@@ -66,9 +58,7 @@ const step_2 = () => {
     control,
     formState,
   });
-  let { email } = router.query;
-
-  console.log({ email1: router.query.email, id1: router.query.Id });
+  let { email, Id } = router.query;
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -78,6 +68,7 @@ const step_2 = () => {
           {
             //@ts-ignore
             email: email.toLowerCase(),
+            id: Id,
           }
         );
 
