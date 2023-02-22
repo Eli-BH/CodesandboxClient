@@ -25,6 +25,7 @@ interface IFormInput {
   zip: string;
 }
 
+//@ts-ignore
 export async function getServerSideProps(context) {
   console.log(`query id: ${context.query}`);
   return {};
