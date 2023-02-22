@@ -9,6 +9,9 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
 import { signIn } from "next-auth/react";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 interface IFormInput {
   firstName: string;
@@ -104,8 +107,17 @@ const step_2 = () => {
         }
       } catch (error) {
         console.log(error);
-        //@ts-ignore
-        alert(error.response.data.messageS);
+
+        toast.error("User not found", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       }
     };
 
@@ -120,8 +132,6 @@ const step_2 = () => {
       confirmPassword: "",
     });
   }, [userInfo]);
-
-  console.log({ userInfo });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     console.log(data);
@@ -177,6 +187,18 @@ const step_2 = () => {
 
   return (
     <div className="w-full h-full  bg-[url('../utils/background.png')] bg-no-repeat bg-cover bg-center flex items-center justify-center">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div
         className="w-full h-full lg:w-[60%] lg:h-[85%]   bg-white md:rounded-md lg:rounded-md shadow-black shadow-xl overflow-y-auto "
         onScroll={() => setScrollAnim(true)}
