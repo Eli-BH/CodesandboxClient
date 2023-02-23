@@ -61,7 +61,7 @@ const step_2 = () => {
     control,
     formState,
   });
-  let { email, Id } = router.query;
+  let { email, ID } = router.query;
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -71,7 +71,7 @@ const step_2 = () => {
           {
             //@ts-ignore
             email: email.toLowerCase(),
-            id: Id,
+            id: ID,
           }
         );
 
