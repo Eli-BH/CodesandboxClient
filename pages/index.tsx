@@ -10,6 +10,7 @@ import { pageRoutes } from "../utils/constants";
 
 import { useSession } from "next-auth/react";
 import { useEffect, useContext } from "react";
+import Head from "next/head";
 
 export default function Home() {
   const { status } = useSession();

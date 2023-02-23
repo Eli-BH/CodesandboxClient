@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 import { SessionProvider } from "next-auth/react";
 import LogRocket from "logrocket";
+import Head from "next/head";
 
 export default function App({
   Component,
