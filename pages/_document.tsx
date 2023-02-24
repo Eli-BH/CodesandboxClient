@@ -17,8 +17,8 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* <Script  src="//cdn.mouseflow.com/projects/f06ba7d8-a7b6-48fe-941b-fdd2f0f7a01c.js" /> */}
-          <Script>
+          <Script src="//cdn.mouseflow.com/projects/f06ba7d8-a7b6-48fe-941b-fdd2f0f7a01c.js" />
+          {/* <Script>
             {`
              
                 window._mfq = window._mfq || [];
@@ -29,7 +29,7 @@ class MyDocument extends Document {
                   document.getElementsByTagName("head")[0].appendChild(mf);
               
             `}
-          </Script>
+          </Script> */}
         </Head>
         <body>
           <Main />
