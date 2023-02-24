@@ -32,7 +32,7 @@ const Other = () => {
     <>
       <iframe
         id="documents"
-        src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs`}
+        src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`}
         title="document management"
         className="w-full h-full"
       ></iframe>
