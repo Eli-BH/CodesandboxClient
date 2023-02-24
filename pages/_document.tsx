@@ -18,7 +18,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           {/* <Script  src="//cdn.mouseflow.com/projects/f06ba7d8-a7b6-48fe-941b-fdd2f0f7a01c.js" /> */}
-          <Script strategy="beforeInteractive">
+          <Script>
             {`
              
                 window._mfq = window._mfq || [];
