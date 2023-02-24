@@ -17,7 +17,8 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <Script>{`<script>
+          <Script src="//cdn.mouseflow.com/projects/f06ba7d8-a7b6-48fe-941b-fdd2f0f7a01c.js" />
+          <Script>{`
             (function(h,o,t,j,a,r){
                 h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
                 h._hjSettings={hjid:3382700,hjsv:6};
@@ -26,11 +27,10 @@ class MyDocument extends Document {
                 r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
                 a.appendChild(r);
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>`}</Script>
+        `}</Script>
           <Script strategy="beforeInteractive">
             {`
-              <!-- Mouseflow: begin -->
-              <script type="text/javascript">
+             
                 window._mfq = window._mfq || [];
                 (function() {
                   var mf = document.createElement("script");
@@ -38,8 +38,7 @@ class MyDocument extends Document {
                   mf.src = "//cdn.mouseflow.com/projects/f06ba7d8-a7b6-48fe-941b-fdd2f0f7a01c.js";
                   document.getElementsByTagName("head")[0].appendChild(mf);
                 })();
-              </script>
-              <!-- Mouseflow: end -->
+              
             `}
           </Script>
         </Head>
