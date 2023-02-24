@@ -24,7 +24,7 @@ export default function App({
 
   return (
     <SessionProvider session={pageProps.session}>
-      <head>
+      <Head>
         <script
           dangerouslySetInnerHTML={{
             __html: `<script>
@@ -71,7 +71,7 @@ export default function App({
               `,
           }}
         />
-      </head>
+      </Head>
       <div
         className="
       w-[100vw]

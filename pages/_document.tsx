@@ -16,7 +16,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <head>
+        <Head>
           <script
             dangerouslySetInnerHTML={{
               __html: `<script>
@@ -63,7 +63,7 @@ class MyDocument extends Document {
               `,
             }}
           />
-        </head>
+        </Head>
         <body>
           <Main />
           <NextScript />
