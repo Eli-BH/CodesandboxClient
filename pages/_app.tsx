@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { SessionProvider } from "next-auth/react";
 import LogRocket from "logrocket";
 import Head from "next/head";
+import Script from "next/script";
 
 export default function App({
   Component,
@@ -24,6 +25,21 @@ export default function App({
   return (
     <SessionProvider session={pageProps.session}>
       <Head>
+        <Script>
+          {`
+            <!-- Mouseflow: begin -->
+            <script type="text/javascript">
+              window._mfq = window._mfq || [];
+              (function() {
+                var mf = document.createElement("script");
+                mf.type = "text/javascript"; mf.defer = true;
+                mf.src = "//cdn.mouseflow.com/projects/f06ba7d8-a7b6-48fe-941b-fdd2f0f7a01c.js";
+                document.getElementsByTagName("head")[0].appendChild(mf);
+              })();
+            </script>
+            <!-- Mouseflow: end -->
+          `}
+        </Script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
