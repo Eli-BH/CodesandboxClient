@@ -113,6 +113,11 @@ const step_2 = () => {
     fetchUser();
   }, [email]);
 
+  console.log({
+    email: email,
+    ID: ID,
+  });
+
   useEffect(() => {
     reset({
       ...userInfo,
