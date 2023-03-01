@@ -61,7 +61,15 @@ const step_2 = () => {
     control,
     formState,
   });
+
+  for (var key in router.query) {
+    router.query[key.toLowerCase()] = router.query[key];
+  }
+
   let { email, ID } = router.query;
+
+  // let email = router.query.email ||router.query.EMAIL || router.query.Email
+  // let ID =  router.query.ID || router.query.Id || router.query.id
 
   useEffect(() => {
     const fetchUser = async () => {
