@@ -309,7 +309,7 @@ const step_2 = () => {
                 </label>
 
                 <label className="w-[95%] md:w-full lg:w-full relative ">
-                  Phone Number:
+                  Mobile Number:
                   <Controller
                     name="phone"
                     control={control}
