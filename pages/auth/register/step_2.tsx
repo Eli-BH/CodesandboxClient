@@ -432,7 +432,7 @@ const step_2 = () => {
             <div className="w-[100%]  md:w-[50%]  lg:w-[50%] h-[80%] flex flex-col items-center">
               <div className="w-[100%] md:w-[85%] lg:w-[70%] h-full flex flex-col items-center justify-evenly">
                 <label className="w-[95%] md:w-full lg:w-full relative ">
-                  Address:
+                  Physical Address:
                   <input
                     className={`w-full border border-black  rounded-sm  ${
                       errors.address && errorStyle

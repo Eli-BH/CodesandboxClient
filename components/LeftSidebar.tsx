@@ -47,11 +47,6 @@ const LeftSidebar = () => {
       icon: <MdPersonAddAlt />,
       link: "manage_patients",
     },
-    {
-      text: "Settings",
-      icon: <MdOutlineSettings />,
-      link: "settings",
-    },
   ];
 
   let capitalize = (word: string): string => {
