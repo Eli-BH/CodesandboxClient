@@ -176,7 +176,7 @@ const HomeTabs = (): JSX.Element => {
           >
             Caregiver
           </Tab>
-          <Tab
+          {/* <Tab
             className="
               ui-selected:bg-orange-50
               ui-selected:text-black
@@ -195,7 +195,7 @@ const HomeTabs = (): JSX.Element => {
           "
           >
             Patient
-          </Tab>
+          </Tab> */}
         </Tab.List>
 
         {/* Caregiver Panel */}
@@ -272,7 +272,7 @@ const HomeTabs = (): JSX.Element => {
 
         {/* patient panel */}
 
-        <Tab.Panel
+        {/* <Tab.Panel
           className="
            bg-orange-50
             h-full
@@ -327,7 +327,7 @@ const HomeTabs = (): JSX.Element => {
               </p>
             )}
           </div>
-        </Tab.Panel>
+        </Tab.Panel> */}
       </Tab.Group>
     </div>
   );
