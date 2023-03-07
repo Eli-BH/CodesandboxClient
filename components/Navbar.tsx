@@ -77,7 +77,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg bg-white"
+      className="border-b-2 w-full h-20 justify-center flex items-center border-gray-300 shadow-lg bg-white relative"
       id="navbarContainer"
     >
       <CgMenu
@@ -99,20 +99,19 @@ const Navbar = () => {
                 
             "
       />
-      <div className="w-full h-20 lg:border-b border-gray-400 flex items-center justify-center relative">
-        <img
-          alt="FreedomCare Logo"
-          src="/images/Logo-Orange.svg"
-          className="h-9 hidden xl:block"
-        />
-        <img
-          alt="FreedomCare Logo"
-          src="/images/FC_Heart.png"
-          className="h-9 xl:hidden "
-        />
 
-        <FaBell className="text-[#133759] absolute text-2xl xl:text-3xl right-9 hover:text-[#225380] cursor-pointer" />
-      </div>
+      <img
+        alt="FreedomCare Logo"
+        src="/images/Logo-Orange.svg"
+        className="h-9 hidden xl:block"
+      />
+      <img
+        alt="FreedomCare Logo"
+        src="/images/FC_Heart.png"
+        className="h-9 xl:hidden "
+      />
+
+      <FaBell className="text-[#133759] absolute text-2xl xl:text-3xl right-9 hover:text-[#225380] cursor-pointer" />
 
       <div
         className={`
