@@ -1,13 +1,7 @@
 import React from "react";
 import User from "../utils/user.png";
-import { ImLinkedin, ImYoutube, ImFacebook } from "react-icons/im";
-import {
-  MdPersonAddAlt,
-  MdOutlinePermPhoneMsg,
-  MdOutlineSettings,
-  MdOutlineHome,
-} from "react-icons/md";
-import { useRouter, NextRouter } from "next/router";
+import { FaTasks, FaKeyboard, FaHandHoldingMedical } from "react-icons/fa";
+import { MdOutlinePermPhoneMsg } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
@@ -34,7 +28,7 @@ const LeftSidebar = () => {
   const items = [
     {
       text: "Tasks",
-      icon: <MdOutlineHome />,
+      icon: <FaTasks />,
       link: "home",
     },
     {
@@ -44,12 +38,12 @@ const LeftSidebar = () => {
     },
     {
       text: "Patients",
-      icon: <MdPersonAddAlt />,
+      icon: <FaHandHoldingMedical />,
       link: "manage_patients",
     },
     {
       text: "Helpdesk",
-      icon: <MdPersonAddAlt />,
+      icon: <FaKeyboard />,
       link: "manage_patients",
     },
   ];
@@ -98,24 +92,26 @@ const LeftSidebar = () => {
                 key={index}
               >
                 <div
-                  className="
+                  className={`
                         w-1/2
                         text-center 
                         cursor-pointer
                         flex
                         justify-start
                         items-center
-                        hover:bg-[#14375a]
-                        hover:text-white
-                        hover:shadow-xl
                         border-2
                         border-white
-                        hover:border-red-300
                         text-2xl
                         p-2
                         rounded-md
                         gap-3
-                        "
+
+                        ${
+                          index > 1
+                            ? "opacity-10 cursor-not-allowed"
+                            : " hover:bg-[#14375a] hover:text-white hover:shadow-xlhover:border-red-300"
+                        }
+                        `}
                 >
                   {item.icon}
                   <p className="ml-3 text-sm md:text-xl lg:text-2xl font-medium font-sans">
