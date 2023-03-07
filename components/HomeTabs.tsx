@@ -108,18 +108,29 @@ const HomeTabs = (): JSX.Element => {
     switch (status) {
       case "incomplete":
       case "Requested":
-        return <img src="/Requested.svg" />;
+        return (
+          <img src="/images/Requested-cropped.svg" className="w-28 md:w-40 " />
+        );
 
       case "pending":
       case "Submitted":
-        return <img src="/Submitted.svg" />;
+        return (
+          <img src="/images/Submitted-cropped.svg" className="w-28 md:w-40 " />
+        );
 
       case "complete":
       case "Approved":
-        return <img src="/Approved.svg" />;
+        return (
+          <img src="/images/Approved-cropped.svg" className="w-28 md:w-40 " />
+        );
 
       default:
-        return null;
+        return (
+          <img
+            src="/images/NotRequested-cropped.svg"
+            className="w-28 md:w-40 "
+          />
+        );
     }
   };
 
@@ -193,10 +204,11 @@ const HomeTabs = (): JSX.Element => {
                       </tr>
                       <tr>
                         <td>
-                          <img
+                          {/* <img
                             src="/images/NotRequested-cropped.svg"
                             className="w-28 md:w-40 "
-                          />
+                          /> */}
+                          {statusIcon(userInfo.flags.employeeDocs.status)}
                         </td>
                         <td
                           onClick={() => router.push("/?page=i9")}
@@ -209,10 +221,11 @@ const HomeTabs = (): JSX.Element => {
                       </tr>
                       <tr>
                         <td>
-                          <img
+                          {/* <img
                             src="/images/NotRequested-cropped.svg"
                             className="w-28 md:w-40 "
-                          />
+                          /> */}
+                          {statusIcon(userInfo.flags.otherTasks.status)}
                         </td>
                         <td className="font-semibold text-md md:text-3xl xl:text-4xl ">
                           <p className="ml-2  md:ml-4  lg:ml-16  p-2 cursor-not-allowed text-gray-200 border-white border-2">
