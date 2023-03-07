@@ -204,11 +204,18 @@ const HomeTabs = (): JSX.Element => {
                       </tr>
                       <tr>
                         <td>
-                          {/* <img
+                          <img
                             src="/images/NotRequested-cropped.svg"
                             className="w-28 md:w-40 "
-                          /> */}
-                          {statusIcon(userInfo.flags.employeeDocs.status)}
+                          />
+                          {statusIcon(
+                            userInfo?.flags?.employeeDocs?.status
+                          ) || (
+                            <img
+                              src="/images/NotRequested-cropped.svg"
+                              className="w-28 md:w-40 "
+                            />
+                          )}
                         </td>
                         <td
                           onClick={() => router.push("/?page=i9")}
@@ -221,11 +228,16 @@ const HomeTabs = (): JSX.Element => {
                       </tr>
                       <tr>
                         <td>
-                          {/* <img
+                          <img
                             src="/images/NotRequested-cropped.svg"
                             className="w-28 md:w-40 "
-                          /> */}
-                          {statusIcon(userInfo.flags.otherTasks.status)}
+                          />
+                          {statusIcon(userInfo?.flags?.otherTasks?.status) || (
+                            <img
+                              src="/images/NotRequested-cropped.svg"
+                              className="w-28 md:w-40 "
+                            />
+                          )}
                         </td>
                         <td className="font-semibold text-md md:text-3xl xl:text-4xl ">
                           <p className="ml-2  md:ml-4  lg:ml-16  p-2 cursor-not-allowed text-gray-200 border-white border-2">
