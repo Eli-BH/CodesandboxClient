@@ -69,6 +69,7 @@ const LeftSidebar = () => {
         hidden
         lg:flex
         lg:mr-3
+        border-gray-300
       "
     >
       <div className="border-b-2 border-gray-200 h-[20%] flex-col flex items-center justify-center">
