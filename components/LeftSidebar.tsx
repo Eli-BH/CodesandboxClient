@@ -33,11 +33,8 @@ const LeftSidebar = () => {
     },
     {
       text: "Contact Us",
-      icon: (
-        <a href="tel:877-771-5875">
-          <MdOutlinePermPhoneMsg />
-        </a>
-      ),
+      icon: <MdOutlinePermPhoneMsg />,
+
       link: "contact",
     },
     {
@@ -91,7 +88,10 @@ const LeftSidebar = () => {
           items.map(
             (item, index): JSX.Element =>
               index === 1 ? (
-                <div className="w-full flex justify-center">
+                <a
+                  href="tel:877-771-5875"
+                  className="w-full flex justify-center"
+                >
                   <div
                     className={`
                         w-1/2
@@ -110,7 +110,7 @@ const LeftSidebar = () => {
                         ${
                           index > 1
                             ? "opacity-10 cursor-not-allowed"
-                            : " hover:bg-[#14375a] hover:text-white hover:shadow-xlhover:border-red-300"
+                            : " hover:bg-[#14375a] hover:text-white hover:shadow-xl hover:border-red-300"
                         }
                         `}
                   >
@@ -119,7 +119,7 @@ const LeftSidebar = () => {
                       {item.text}
                     </p>
                   </div>
-                </div>
+                </a>
               ) : (
                 <Link
                   className="w-full flex justify-center"
@@ -144,7 +144,7 @@ const LeftSidebar = () => {
                         ${
                           index > 1
                             ? "opacity-10 cursor-not-allowed"
-                            : " hover:bg-[#14375a] hover:text-white hover:shadow-xlhover:border-red-300"
+                            : " hover:bg-[#14375a] hover:text-white hover:shadow-xl hover:border-red-300"
                         }
                         `}
                   >
