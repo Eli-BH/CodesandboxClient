@@ -24,12 +24,12 @@ const I9iFrame = (): JSX.Element => {
 
     fetchSfid();
   }, []);
-
+  // https://freedomcareny--lightning.sandbox.lightning.force.com/lightning/n/I9Page
   return (
     <>
       <iframe
         id="documents"
-        src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/uploadDocuments?id=${sfid}&AppLogin=TRUE&Form=CovidVaccineCard`}
+        src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY`}
         title="document management"
         className="w-full h-full"
       ></iframe>

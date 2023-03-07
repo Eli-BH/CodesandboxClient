@@ -1,5 +1,4 @@
-import React, { JSXElementConstructor } from "react";
-import { JsxElement } from "typescript";
+import React from "react";
 
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
@@ -8,7 +7,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 const localizer = momentLocalizer(moment);
 
 import Swal from "sweetalert2";
-import { Views } from "@react-next-calendar/core";
 
 type NotificationType = {
   text: string;
@@ -64,6 +62,23 @@ const NotificationItem = ({ text, variant }: NotificationType) => {
 };
 
 const RightSidebar = () => {
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const d = new Date();
+  let currentMonth = month[d.getMonth()];
   const notifs = [
     {
       text: "Form Error",
@@ -97,7 +112,7 @@ const RightSidebar = () => {
       start: new Date("November 25, 2022 11:00:00"),
       end: new Date("November 25, 2022 12:00:00"),
       title: "Hiya!",
-      desc: "Test",
+      desc: "Testing",
     },
     {
       allDay: true,
@@ -132,9 +147,11 @@ const RightSidebar = () => {
       "
       >
         <p className="text-2xl">Notifications</p>
-
-        <div className="w-full overflow-y-scroll">
-          {notifs.map((item, index) => {
+        {/* Remove h-full and on after Notifications is functional */}
+        <div className="w-full overflow-y-scroll h-full flex flex-col items-center justify-center">
+            <h3 className="text-lg">No New Notifications</h3>
+            <h4>(Coming Soon)</h4>
+          {/*{notifs.map((item, index) => {
             return (
               <NotificationItem
                 text={item.text}
@@ -142,13 +159,17 @@ const RightSidebar = () => {
                 variant={item.variant}
               />
             );
-          })}
+          })}*/}
         </div>
       </div>
       <div
         className="h-[60%]  flex
         flex-col content-center justify-center"
       >
+        <div className="w-full flex items-center justify-center">
+          <p className="text-2xl">{currentMonth}</p>
+        </div>
+
         <Calendar
           localizer={localizer}
           events={eventsList}

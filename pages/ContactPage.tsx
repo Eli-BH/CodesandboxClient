@@ -13,8 +13,8 @@ const ContactPage = (): JSX.Element => {
 
         "
     >
-      <div className="pl-5 h-[15%]">
-        <p className="text-[1.5em] lg:text-[3em] font-bold">
+      <div className="pl-5 h-[18%] flex flex-col justify-evenly">
+        <p className="text-[1.8em] lg:text-[2em] font-bold">
           Our New York Locations
         </p>
         <p className="text-sm w-[280px] md:w-full lg:w-full xl:w-full lg:text-xl font-semibold">
@@ -31,7 +31,8 @@ const ContactPage = (): JSX.Element => {
           gap-5
           flex
           w-full
-          items-center
+          items-start
+          justify-around
           p-5
           flex-wrap
           rounded-lg

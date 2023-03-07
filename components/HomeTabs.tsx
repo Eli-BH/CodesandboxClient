@@ -1,17 +1,14 @@
 import { Tab } from "@headlessui/react";
-import {
-  MdCheckCircle,
-  MdPending,
-  MdError,
-  MdRemoveCircle,
-  MdCancel,
-  MdOutlineCircle,
-  MdOutlineArrowRight,
-} from "react-icons/md";
+
+import { BsCheckSquareFill, BsThreeDots } from "react-icons/bs";
+
+import { IoSquareOutline } from "react-icons/io5";
+
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { menuItems } from "../utils/constants";
 import { useRouter, NextRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { MdOutlineCircle } from "react-icons/md";
 import { useSession } from "next-auth/react";
 
 import cron from "node-cron";
@@ -31,9 +28,12 @@ const HomeTabs = (): JSX.Element => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.post("/api/user/getuser", {
-          email: data?.user?.email,
-        });
+        const res = await axios.post(
+          "https://mysteps.freedomcare.com/api/user/getuser",
+          {
+            email: data?.user?.email,
+          }
+        );
 
         setUserInfo(res.data.data);
       } catch (error) {
@@ -43,13 +43,67 @@ const HomeTabs = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    const id = setInterval(async () => {
-      const res = await axios.post(
-        "https://mysteps.freedomcare.com/api/checkForSfid",
+    console.log(data);
+
+    async function getI9Flag() {
+      return await axios.post(
+        "https://mysteps.freedomcare.com/api/user/edit_info",
         {
           email: data?.user?.email,
         }
       );
+    }
+
+    async function getOtherFlag() {
+      return await axios.post(
+        "https://mysteps.freedomcare.com/api/user/getUserFlagOther",
+        { email: data?.user?.email }
+      );
+    }
+
+    Promise.all([getI9Flag(), getOtherFlag()]).then(function (results) {
+      console.log({ results });
+    });
+  }, []);
+
+  const flagCheck = setTimeout(async () => {
+    try {
+      console.log("testing other");
+      await axios.post(
+        "https://mysteps.freedomcare.com/api/user/getUserFlagOther",
+        { email: data?.user?.email }
+      );
+
+      await axios.post("https://mysteps.freedomcare.com/api/user/edit_info", {
+        email: data?.user?.email,
+      });
+
+      const res = await axios.post(
+        "https://mysteps.freedomcare.com/api/user/getuser",
+        {
+          email: data?.user?.email,
+        }
+      );
+
+      setUserInfo(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, 5000);
+
+  if (
+    userInfo?.flags?.employeeDocs?.status === "complete" ||
+    userInfo?.flags?.employeeDocs?.status === "Approved"
+  ) {
+    clearTimeout(flagCheck);
+  }
+
+  //("https://mysteps.freedomcare.com");
+  useEffect(() => {
+    const id = setInterval(async () => {
+      const res = await axios.post("/api/checkForSfid", {
+        email: data?.user?.email,
+      });
 
       if (res.data.success) {
         setCheck(true);
@@ -66,13 +120,16 @@ const HomeTabs = (): JSX.Element => {
   const statusIcon = (status: string): JSX.Element | null => {
     switch (status) {
       case "incomplete":
-        return <MdOutlineCircle className="text-xl" />;
+      case "Requested":
+        return <img src="/Requested.svg" />;
 
       case "pending":
-        return <MdPending className="text-xl text-yellow-600" />;
+      case "Submitted":
+        return <img src="/Submitted.svg" />;
 
       case "complete":
-        return <MdCheckCircle className="text-xl text-green-600" />;
+      case "Approved":
+        return <img src="/Approved.svg" />;
 
       default:
         return null;
@@ -86,6 +143,7 @@ const HomeTabs = (): JSX.Element => {
 
     return capitalizedWord;
   };
+
   return (
     <div
       className={
@@ -118,7 +176,7 @@ const HomeTabs = (): JSX.Element => {
           >
             Caregiver
           </Tab>
-          <Tab
+          {/* <Tab
             className="
               ui-selected:bg-orange-50
               ui-selected:text-black
@@ -137,7 +195,7 @@ const HomeTabs = (): JSX.Element => {
           "
           >
             Patient
-          </Tab>
+          </Tab> */}
         </Tab.List>
 
         {/* Caregiver Panel */}
@@ -169,28 +227,42 @@ const HomeTabs = (): JSX.Element => {
                 (item: any, index) => (
                   <div
                     className={`
-               hover:bg-gray-100
-                w-[98%]
-                lg:w-[90%]
+                
+                w-[100%]
                 justify-between
                 items-center
                 flex
                 text-xs
                 md:text-xl
                 lg:text-[1.5em]
-                ${index > 1 && "hidden"}
+                ${item.status === "NR" && "hidden"}
+                ${item.status === "Awaiting" && "text-gray-400"}
+                ${index > 2 && "hidden"}
+                ${
+                  item.status === "complete" || item.status === "Approved"
+                    ? "text-gray-400"
+                    : "hover:bg-gray-100 cursor-pointer"
+                }
                 `}
                     key={index}
+                    onClick={
+                      item.status === "complete" || item.status === "Approved"
+                        ? () => null
+                        : () => router.push(item.link)
+                    }
                   >
-                    <div className="flex bg-white border-2 text-xs md:text-md border-gray-500 w-[100px]  lg:w-[150px]  items-center justify-evenly rounded-full py-2">
+                    <div className="md:text-md w-[100px]  lg:w-[150px]">
                       {statusIcon(item.status)}
-                      <p className="font-semibold">{capitalize(item.status)}</p>
                     </div>
 
                     <p className="font-bold">{item.title}</p>
+
                     <AiOutlineDoubleRight
-                      className="w-[50px] md:w-[90px] lg:w-[200px] cursor-pointer"
-                      onClick={() => router.push(item.link)}
+                      className={`w-[50px] md:w-[90px] lg:w-[75px] ${
+                        item.status === "complete" || item.status === "Approved"
+                          ? "text-gray-400"
+                          : "hover:bg-gray-100 cursor-pointer"
+                      }`}
                     />
                   </div>
                 )
@@ -200,7 +272,7 @@ const HomeTabs = (): JSX.Element => {
 
         {/* patient panel */}
 
-        <Tab.Panel
+        {/* <Tab.Panel
           className="
            bg-orange-50
             h-full
@@ -255,7 +327,7 @@ const HomeTabs = (): JSX.Element => {
               </p>
             )}
           </div>
-        </Tab.Panel>
+        </Tab.Panel> */}
       </Tab.Group>
     </div>
   );

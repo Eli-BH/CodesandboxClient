@@ -1,4 +1,4 @@
-import { Schema, model, models, Document } from "mongoose";
+import { Schema, model, models, Document, ObjectId } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt, { Secret } from "jsonwebtoken";
 import crypto from "crypto";
@@ -37,6 +37,7 @@ interface ICaregiver extends Document {
   phone: string;
   mobile: string;
   lastPage: string;
+  pcrRecords: ObjectId[];
 }
 
 const caregiverSchema: Schema = new Schema<ICaregiver>(
@@ -119,7 +120,7 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
         },
         status: {
           type: String,
-          default: "incomplete",
+          default: "Requested",
         },
         link: {
           type: String,
@@ -134,11 +135,11 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
         },
         status: {
           type: String,
-          default: "incomplete"
+          default: "Requested"
         },
         link: {
           type: String,
-          deafult: "/?page=other"
+          default: "/?page=otherDocs"
         }
       },
       healthAssessment: {
@@ -155,7 +156,7 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
           deafult: '/?page=health_assessment'
         }
       },
-      comeOrientation: {
+      WelcomeOrientation: {
         title: {
           type: String,
           default: "Welcome Orientation",
@@ -226,6 +227,10 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
       type: String,
     },
     lastPage: String,
+    pcrRecords: [{
+      type: Schema.Types.ObjectId,
+      ref: 'PCR'
+    }]
   },
   {
     timestamps: true,

@@ -32,6 +32,12 @@ interface IPatient extends Document {
   mobile: string;
   sfid: string;
   lastPage: string;
+  notifications: [{
+    title: string,
+    description: string,
+    type: string,
+    time?: Date
+  }],
   flags: any //write the type for this
 }
 

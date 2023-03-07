@@ -1,8 +1,11 @@
 import "../styles/globals.css";
+
 import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 import { SessionProvider } from "next-auth/react";
 import LogRocket from "logrocket";
+import Head from "next/head";
+import Script from "next/script";
 
 export default function App({
   Component,
@@ -21,6 +24,7 @@ export default function App({
 
   return (
     <SessionProvider session={pageProps.session}>
+      <Script src="//cdn.mouseflow.com/projects/f06ba7d8-a7b6-48fe-941b-fdd2f0f7a01c.js" />
       <div
         className="
       w-[100vw]

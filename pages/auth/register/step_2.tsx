@@ -9,6 +9,9 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
 import { signIn } from "next-auth/react";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 interface IFormInput {
   firstName: string;
@@ -17,7 +20,7 @@ interface IFormInput {
   confirmPassword: string;
   email: string;
   phone: string;
-  dateOfBirth: string;
+  birthdate: string;
   address: string;
   address2: string;
   city: string;
@@ -58,16 +61,25 @@ const step_2 = () => {
     control,
     formState,
   });
-  const { email } = router.query;
+
+  for (var key in router.query) {
+    router.query[key.toLowerCase()] = router.query[key];
+  }
+
+  let { email, ID } = router.query;
+
+  // let email = router.query.email ||router.query.EMAIL || router.query.Email
+  // let ID =  router.query.ID || router.query.Id || router.query.id
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        console.log(email);
         const result = await axios.post(
           `https://mysteps.freedomcare.com/api/auth/check_user`,
           {
-            email: email,
+            //@ts-ignore
+            email: email.toLowerCase(),
+            id: ID,
           }
         );
 
@@ -75,30 +87,25 @@ const step_2 = () => {
           router.push("https://mysteps.freedomcare.com/auth/signin");
         }
 
-        console.log(result.data);
-
-        // if (result.data.user) {
-        //   setUserInfo(result.data.user);
-        // }
-
         if (result.data.user) {
           const {
             firstname,
             lastname,
             email,
-            phone,
+            mobilephone,
             mailingstate,
             mailingcity,
             mailingpostalcode,
             mailingstreet,
             birthdate,
           } = result.data.user;
+
           setUserInfo({
             ...userInfo,
             firstName: firstname || "",
             lastName: lastname || "",
-            email: email || "",
-            phone: phone || "",
+            email: email.toLowerCase() || "",
+            phone: mobilephone || "",
             state: mailingstate || "",
             city: mailingcity || "",
             zip: mailingpostalcode || "",
@@ -114,6 +121,11 @@ const step_2 = () => {
     fetchUser();
   }, [email]);
 
+  console.log({
+    email: email,
+    ID: ID,
+  });
+
   useEffect(() => {
     reset({
       ...userInfo,
@@ -122,8 +134,6 @@ const step_2 = () => {
       confirmPassword: "",
     });
   }, [userInfo]);
-
-  console.log({ userInfo });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     console.log(data);
@@ -139,7 +149,7 @@ const step_2 = () => {
           state: data.state,
           zip: data.zip,
           city: data.city,
-          dateOfBirth: data.dateOfBirth,
+          dateOfBirth: data.birthdate,
           phone: data.phone,
           password: data.password,
         }
@@ -179,6 +189,18 @@ const step_2 = () => {
 
   return (
     <div className="w-full h-full  bg-[url('../utils/background.png')] bg-no-repeat bg-cover bg-center flex items-center justify-center">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div
         className="w-full h-full lg:w-[60%] lg:h-[85%]   bg-white md:rounded-md lg:rounded-md shadow-black shadow-xl overflow-y-auto "
         onScroll={() => setScrollAnim(true)}
@@ -214,10 +236,10 @@ const step_2 = () => {
                       }`}
                       required
                       {...register("firstName", {
-                        pattern: {
-                          value: /^[A-Za-z]+$/,
-                          message: "Letters only",
-                        },
+                        // pattern: {
+                        //   value: /^[A-Za-z]+$/,
+                        //   message: "Letters only",
+                        // },
                         required: {
                           value: true,
                           message: "First name required",
@@ -246,10 +268,10 @@ const step_2 = () => {
                         errors.lastName && errorStyle
                       }`}
                       {...register("lastName", {
-                        pattern: {
-                          value: /^[A-Za-z]+(?:[-]\S[A-Za-z]*)?$/,
-                          message: "Letters only",
-                        },
+                        // pattern: {
+                        //   value: /^[A-Za-z]+(?:[-]\S[A-Za-z]*)?$/,
+                        //   message: "Letters only",
+                        // },
                         required: {
                           value: true,
                           message: "Last name required",
@@ -287,7 +309,7 @@ const step_2 = () => {
                 </label>
 
                 <label className="w-[95%] md:w-full lg:w-full relative ">
-                  Phone Number:
+                  Mobile Number:
                   <Controller
                     name="phone"
                     control={control}
@@ -321,7 +343,7 @@ const step_2 = () => {
                   <input
                     type="date"
                     className={`w-full border border-black  rounded-sm`}
-                    {...register("dateOfBirth", {
+                    {...register("birthdate", {
                       required: {
                         value: true,
                         message: "Date of birth required",
@@ -330,11 +352,11 @@ const step_2 = () => {
                   />
                   <div
                     className={`absolute w-[100%] h-[50px] flex items-center justify-start  border rounded-sm border-red-800 pl ${
-                      errors.dateOfBirth ? "block" : "hidden"
+                      errors.birthdate ? "block" : "hidden"
                     }`}
                   >
                     <p className="font-semibold text-red-800">
-                      {errors.dateOfBirth && errors.dateOfBirth.message}
+                      {errors.birthdate && errors.birthdate.message}
                     </p>
                   </div>
                 </label>
@@ -363,7 +385,7 @@ const step_2 = () => {
                     </div>
                   </label>
 
-                  <label className="w-[46%] md:w-[50%] lg:w-[45%] relative">
+                  <label className="w-[46%] md:w-[50%] lg:w-[51%] relative">
                     Confirm Password:
                     <input
                       type="password"
@@ -410,7 +432,7 @@ const step_2 = () => {
             <div className="w-[100%]  md:w-[50%]  lg:w-[50%] h-[80%] flex flex-col items-center">
               <div className="w-[100%] md:w-[85%] lg:w-[70%] h-full flex flex-col items-center justify-evenly">
                 <label className="w-[95%] md:w-full lg:w-full relative ">
-                  Address:
+                  Physical Address:
                   <input
                     className={`w-full border border-black  rounded-sm  ${
                       errors.address && errorStyle
@@ -523,9 +545,9 @@ const step_2 = () => {
                         value: true,
                         message: "Postal code required",
                       },
-                      maxLength: { value: 5, message: "invalid zip format" },
+
                       pattern: {
-                        value: /^\w{5}$/,
+                        value: /^\d{5}(-\d{4})?$/,
                         message: "invalid zip code format",
                       },
                     })}
