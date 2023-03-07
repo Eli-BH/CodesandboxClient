@@ -77,7 +77,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="w-screen h-screen flex flex-col bg-green-200"
+      className="border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg bg-white"
       id="navbarContainer"
     >
       <CgMenu
