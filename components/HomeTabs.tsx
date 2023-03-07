@@ -127,14 +127,8 @@ const HomeTabs = (): JSX.Element => {
         return null;
     }
   };
-  let capitalize = (word: string): string => {
-    let firstLetter: string = word.charAt(0);
-    let firstLetterCap: string = firstLetter?.toUpperCase();
-    let remainingLetters: string = word.slice(1);
-    const capitalizedWord: string = firstLetterCap + remainingLetters;
 
-    return capitalizedWord;
-  };
+  console.log(userInfo);
 
   return (
     <>
