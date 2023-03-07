@@ -6,11 +6,9 @@ import {
   MdOutlineSettings,
   MdOutlineHome,
 } from "react-icons/md";
-import { ImLinkedin, ImYoutube, ImFacebook } from "react-icons/im";
 import { signOut, useSession } from "next-auth/react";
 
 import Image from "next/image";
-import Logo from "../utils/Logo-Orange.svg";
 import Link from "next/link";
 import User from "../utils/user.png";
 import axios from "axios";

@@ -33,7 +33,11 @@ const LeftSidebar = () => {
     },
     {
       text: "Contact Us",
-      icon: <MdOutlinePermPhoneMsg />,
+      icon: (
+        <a href="tel:877-771-5875">
+          <MdOutlinePermPhoneMsg />
+        </a>
+      ),
       link: "contact",
     },
     {
@@ -88,7 +92,7 @@ const LeftSidebar = () => {
             (item, index): JSX.Element => (
               <Link
                 className="w-full flex justify-center"
-                href={`/?page=${item.link}`}
+                href={`${index !== 1 && `/?page=${item.link}`}`}
                 key={index}
               >
                 <div
