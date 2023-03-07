@@ -204,10 +204,6 @@ const HomeTabs = (): JSX.Element => {
                       </tr>
                       <tr>
                         <td>
-                          <img
-                            src="/images/NotRequested-cropped.svg"
-                            className="w-28 md:w-40 "
-                          />
                           {statusIcon(
                             userInfo?.flags?.employeeDocs?.status
                           ) || (
@@ -228,10 +224,6 @@ const HomeTabs = (): JSX.Element => {
                       </tr>
                       <tr>
                         <td>
-                          <img
-                            src="/images/NotRequested-cropped.svg"
-                            className="w-28 md:w-40 "
-                          />
                           {statusIcon(userInfo?.flags?.otherTasks?.status) || (
                             <img
                               src="/images/NotRequested-cropped.svg"
