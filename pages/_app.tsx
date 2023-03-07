@@ -22,6 +22,15 @@ export default function App({
     return null;
   }
 
+  // document.querySelector("meta[name=viewport]").setAttribute('content', 'width=device-width, initial-scale='+(1/window.devicePixelRatio));
+
+  document
+    .querySelector("meta[name=viewport]")
+    ?.setAttribute(
+      "content",
+      "width=device-width, initial-scale=" + 1 / window.devicePixelRatio
+    );
+
   return (
     <SessionProvider session={pageProps.session}>
       <Script src="//cdn.mouseflow.com/projects/f06ba7d8-a7b6-48fe-941b-fdd2f0f7a01c.js" />
