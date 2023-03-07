@@ -87,15 +87,7 @@ export default function Home() {
         <div className="h-full w-full" id="mainContainer">
           {/*<div id="google_translate_element"/>*/}
 
-          <div
-            className={
-              window.devicePixelRatio >= 1.5
-                ? resolutions.mainContent150
-                : resolutions.mainContent100
-            }
-          >
-            {pageRoutes(page as string)}
-          </div>
+          <div className="bg-white">{pageRoutes(page as string)}</div>
         </div>
       </div>
     </>

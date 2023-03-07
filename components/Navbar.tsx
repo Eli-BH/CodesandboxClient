@@ -14,6 +14,7 @@ import Logo from "../utils/Logo-Orange.svg";
 import Link from "next/link";
 import User from "../utils/user.png";
 import axios from "axios";
+import { FaBell } from "react-icons/fa";
 
 const Navbar = () => {
   const [menuShowing, setMenuShowing] = useState<Boolean>(false);
@@ -76,11 +77,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={
-        window.devicePixelRatio >= 1.5
-          ? resolutions.navbarContainer150
-          : resolutions.navbarContainer100
-      }
+      className="w-screen h-screen flex flex-col bg-green-200"
       id="navbarContainer"
     >
       <CgMenu
@@ -102,10 +99,19 @@ const Navbar = () => {
                 
             "
       />
-      <div className={
-        window.devicePixelRatio >= 1.5 ? resolutions.logoContainer150 : resolutions.logoContainer100
-      }>
-        <Image className="py-2 w-11/12 " src={Logo} alt="Freedom care logo" priority />
+      <div className="w-full h-20 lg:border-b border-gray-400 flex items-center justify-center relative">
+        <img
+          alt="FreedomCare Logo"
+          src="/images/Logo-Orange.svg"
+          className="h-9 hidden xl:block"
+        />
+        <img
+          alt="FreedomCare Logo"
+          src="/images/FC_Heart.png"
+          className="h-9 xl:hidden "
+        />
+
+        <FaBell className="text-[#133759] absolute text-2xl xl:text-3xl right-9 hover:text-[#225380] cursor-pointer" />
       </div>
 
       <div
