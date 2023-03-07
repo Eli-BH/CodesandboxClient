@@ -69,7 +69,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="border-b-2 w-full h-20 justify-center flex items-center border-gray-300 bg-white relative"
+      className="sm:border-none md:border-b-2  w-full h-20 justify-center flex items-center border-gray-300 bg-white relative"
       id="navbarContainer"
     >
       <CgMenu
@@ -121,7 +121,7 @@ const Navbar = () => {
         `}
         style={{ zIndex: "100" }}
       >
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-screen bg-white">
           <CgClose
             className="
                     xs:top-2
