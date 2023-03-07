@@ -33,7 +33,7 @@ const LeftSidebar = () => {
 
   const items = [
     {
-      text: "Home",
+      text: "Tasks",
       icon: <MdOutlineHome />,
       link: "home",
     },
@@ -43,7 +43,12 @@ const LeftSidebar = () => {
       link: "contact",
     },
     {
-      text: "Add a patient",
+      text: "Patients",
+      icon: <MdPersonAddAlt />,
+      link: "manage_patients",
+    },
+    {
+      text: "Helpdesk",
       icon: <MdPersonAddAlt />,
       link: "manage_patients",
     },
@@ -94,7 +99,7 @@ const LeftSidebar = () => {
               >
                 <div
                   className="
-                        w-[70%] 
+                        w-1/2
                         text-center 
                         cursor-pointer
                         flex
@@ -109,10 +114,11 @@ const LeftSidebar = () => {
                         text-2xl
                         p-2
                         rounded-md
+                        gap-3
                         "
                 >
                   {item.icon}
-                  <p className=" ml-3 text-sm xxxl:text-2xl font-medium font-sans">
+                  <p className="ml-3 text-sm md:text-xl lg:text-2xl font-medium font-sans">
                     {item.text}
                   </p>
                 </div>

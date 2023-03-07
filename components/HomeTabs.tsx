@@ -150,7 +150,7 @@ const HomeTabs = (): JSX.Element => {
             <Tab.Group>
               <Tab.List>
                 <Tab className="ui-not-selected:bg-[#133759] font-semibold  ui-not-selected:text-white border-4 border-b-0 mr-1 border-b border-[#133759] h-12 w-40 text-[#133759] rounded-t-md outline-0 relative">
-                  <div className="w-full ui-not-selected:hidden absolute text-2xl bg-white z-20 text-white -bottom-6">
+                  <div className="w-full ui-not-selected:hidden absolute text-xl bg-white z-20 text-white -bottom-6">
                     test
                   </div>
 
