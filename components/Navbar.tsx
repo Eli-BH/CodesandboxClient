@@ -69,7 +69,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="sm:border-none md:border-b-2  w-full h-20 justify-center flex items-center border-gray-300 bg-white relative"
+      className=" md:border-b-2  w-full h-20 justify-center flex items-center border-gray-300 bg-white relative"
       id="navbarContainer"
     >
       <CgMenu
