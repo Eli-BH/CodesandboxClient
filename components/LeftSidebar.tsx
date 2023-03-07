@@ -63,7 +63,7 @@ const LeftSidebar = () => {
       className="
         border-r-2
         h-full
-        w-80
+        w-[30%]
         items-center
         flex-col
         hidden
