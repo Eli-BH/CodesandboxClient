@@ -18,7 +18,7 @@ export default function Home() {
     nav150: "h-[12vh]",
 
     mainContent100:
-      "md:w-[100%] lg:w-full h-full rounded-b-lg m-auto bg-gray-100 p-3 pb-5 bg-white",
+      "md:w-[100%] lg:w-full h-full rounded-b-lg m-auto bg-gray-100 p-3 pb-5 bg-white h-screen flex flex-col",
 
     mainContent150:
       "md:w-[100%] lg:w-full h-[88vh] rounded-b-lg m-auto bg-gray-100 p-3 pb-5 bg-white",
@@ -61,15 +61,7 @@ export default function Home() {
 
   return status === "authenticated" ? (
     <>
-      <div
-        className={
-          window.devicePixelRatio >= 1.5
-            ? resolutions.nav150
-            : resolutions.nav100
-        }
-      >
-        <Navbar />
-      </div>
+      <Navbar />
 
       <div
         className="
@@ -78,7 +70,7 @@ export default function Home() {
 
       w-full
 
-      h-[90vh]
+     flex-1
 
     "
       >
