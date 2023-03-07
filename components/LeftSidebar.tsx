@@ -89,14 +89,11 @@ const LeftSidebar = () => {
       <div className="border-b-2 h-[65%] w-full flex flex-col items-center justify-evenly text-xl border-gray-200">
         {items &&
           items.map(
-            (item, index): JSX.Element => (
-              <Link
-                className="w-full flex justify-center"
-                href={`${index !== 1 && `/?page=${item.link}`}`}
-                key={index}
-              >
-                <div
-                  className={`
+            (item, index): JSX.Element =>
+              index === 1 ? (
+                <div className="w-full flex justify-center">
+                  <div
+                    className={`
                         w-1/2
                         text-center 
                         cursor-pointer
@@ -116,14 +113,48 @@ const LeftSidebar = () => {
                             : " hover:bg-[#14375a] hover:text-white hover:shadow-xlhover:border-red-300"
                         }
                         `}
-                >
-                  {item.icon}
-                  <p className="ml-3 text-sm md:text-xl lg:text-2xl font-medium font-sans">
-                    {item.text}
-                  </p>
+                  >
+                    {item.icon}
+                    <p className="ml-3 text-sm md:text-xl lg:text-2xl font-medium font-sans">
+                      {item.text}
+                    </p>
+                  </div>
                 </div>
-              </Link>
-            )
+              ) : (
+                <Link
+                  className="w-full flex justify-center"
+                  href={`/?page=${item.link}`}
+                  key={index}
+                >
+                  <div
+                    className={`
+                        w-1/2
+                        text-center 
+                        cursor-pointer
+                        flex
+                        justify-start
+                        items-center
+                        border-2
+                        border-white
+                        text-2xl
+                        p-2
+                        rounded-md
+                        gap-3
+
+                        ${
+                          index > 1
+                            ? "opacity-10 cursor-not-allowed"
+                            : " hover:bg-[#14375a] hover:text-white hover:shadow-xlhover:border-red-300"
+                        }
+                        `}
+                  >
+                    {item.icon}
+                    <p className="ml-3 text-sm md:text-xl lg:text-2xl font-medium font-sans">
+                      {item.text}
+                    </p>
+                  </div>
+                </Link>
+              )
           )}
       </div>
       <div className="h-[15%] flex items-center justify-evenly">
