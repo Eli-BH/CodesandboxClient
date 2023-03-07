@@ -66,18 +66,10 @@ const Navbar = () => {
 
     return capitalizedWord;
   };
-  const resolutions = {
-    navbarContainer100:
-      "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-white",
-    navbarContainer150:
-      "border-b-2 w-full h-full justify-center flex items-center border-gray-300 shadow-lg shadow-gray-200/100 bg-white",
-    logoContainer100: "md:w-[250px] xs:w-[150px]",
-    logoContainer150: "md:w-[150px] xs:w-[175px] w-1/5",
-  };
 
   return (
     <div
-      className="border-b-2 w-full h-20 justify-center flex items-center border-gray-300 shadow-lg bg-white relative"
+      className="border-b-2 w-full h-20 justify-center flex items-center border-gray-300 bg-white relative"
       id="navbarContainer"
     >
       <CgMenu
