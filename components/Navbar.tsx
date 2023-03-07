@@ -117,7 +117,6 @@ const Navbar = () => {
             transition-all
             z-100
             ease-in
-            
         `}
         style={{ zIndex: "100" }}
       >
@@ -170,8 +169,9 @@ const Navbar = () => {
                       </Link>
                     )
                   )}
-                <button
-                  className="
+              </div>
+              <button
+                className="
                       border-2
                       p-3
                       w-[150px]
@@ -183,16 +183,10 @@ const Navbar = () => {
                       hover:bg-[#f29b8a]
                       cursor-pointer
                     "
-                  onClick={() => signOut()}
-                >
-                  Logout
-                </button>
-              </div>
-              <div className="h-[15%] flex items-center justify-evenly">
-                <ImFacebook className="text-[2em] text-blue-600 cursor-pointer" />
-                <ImLinkedin className="text-[2em] text-blue-900 cursor-pointer" />
-                <ImYoutube className="text-[2em] text-red-600   cursor-pointer" />
-              </div>
+                onClick={() => signOut()}
+              >
+                Logout
+              </button>
             </div>
           </div>
         </div>
