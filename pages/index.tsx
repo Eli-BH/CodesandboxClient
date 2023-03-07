@@ -104,8 +104,6 @@ export default function Home() {
             {pageRoutes(page as string)}
           </div>
         </div>
-
-        <RightSidebar />
       </div>
     </>
   ) : (

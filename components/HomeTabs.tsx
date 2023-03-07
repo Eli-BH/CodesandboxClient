@@ -154,11 +154,11 @@ const HomeTabs = (): JSX.Element => {
 
           <FaBell className="text-[#133759] absolute text-2xl xl:text-3xl right-9 hover:text-[#225380] cursor-pointer" />
         </div> */}
-        <div className="flex-1 flex gap-3">
+        <div className="flex-1 flex gap-3 bg-white ">
           {/* <div className="w-80 border-r border-gray-400 hidden lg:block">
             <p>navbar</p>
           </div> */}
-          <div className="h-full flex-1 p-2">
+          <div className="h-full flex-1 p-2 bg-white">
             <Tab.Group>
               <Tab.List>
                 <Tab className="ui-not-selected:bg-[#133759] font-semibold  ui-not-selected:text-white border-4 border-b-0 mr-1 border-b border-[#133759] h-12 w-40 text-[#133759] rounded-t-md outline-0 relative">
