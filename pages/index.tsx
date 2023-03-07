@@ -63,17 +63,7 @@ export default function Home() {
     <>
       <Navbar />
 
-      <div
-        className="
-
-      flex
-
-      w-full
-
-     flex-1
-
-    "
-      >
+      <div className="flex w-full flex-1">
         <LeftSidebar />
 
         <div className="h-full w-full" id="mainContainer">

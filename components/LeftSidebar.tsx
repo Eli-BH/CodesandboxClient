@@ -63,7 +63,7 @@ const LeftSidebar = () => {
       className="
         border-r-2
         h-full
-        w-[30%]
+        w-80
         items-center
         flex-col
         hidden
@@ -72,7 +72,7 @@ const LeftSidebar = () => {
         border-gray-300
       "
     >
-      <div className="border-b-2 border-gray-200 h-[20%] flex-col flex items-center justify-center">
+      <div className="border-b-2 border-gray-200 w-full h-[20%] flex-col flex items-center justify-center">
         <Link href="/?page=profile">
           <Image src={User} alt="profile Image" className="w-" />
         </Link>
@@ -83,7 +83,7 @@ const LeftSidebar = () => {
         </h2>
       </div>
 
-      <div className="border-b-2 h-[65%] flex flex-col items-center justify-evenly text-xl border-gray-200">
+      <div className="border-b-2 h-[65%] w-full flex flex-col items-center justify-evenly text-xl border-gray-200">
         {items &&
           items.map(
             (item, index): JSX.Element => (
@@ -119,6 +119,8 @@ const LeftSidebar = () => {
               </Link>
             )
           )}
+      </div>
+      <div className="h-[15%] flex items-center justify-evenly">
         <button
           onClick={() => signOut()}
           className="
@@ -139,23 +141,6 @@ const LeftSidebar = () => {
         >
           Logout
         </button>
-      </div>
-      <div className="h-[15%] flex items-center justify-evenly">
-        <a href="https://www.facebook.com/freedomcareny/" target="_blank">
-          <ImFacebook className="text-[2em]  text-blue-600 cursor-pointer" />
-        </a>
-        <a
-          href="https://www.linkedin.com/company/freedomcareny"
-          target="_blank"
-        >
-          <ImLinkedin className="text-[2em]  text-blue-900 cursor-pointer" />
-        </a>
-        <a
-          href="https://www.youtube.com/channel/UCGaP0_PxlyAhDK9L68goIrQ"
-          target="_blank"
-        >
-          <ImYoutube className="text-[2em] text-red-600   cursor-pointer" />
-        </a>
       </div>
     </div>
   );
