@@ -139,8 +139,8 @@ const HomeTabs = (): JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="w-screen h-screen flex flex-col">
-        <div className="w-full h-20 lg:border-b border-gray-400 flex items-center justify-center relative">
+      <div className="w-full h-full flex flex-col">
+        {/* <div className="w-full h-20 lg:border-b border-gray-400 flex items-center justify-center relative">
           <img
             alt="FreedomCare Logo"
             src="/images/Logo-Orange.svg"
@@ -153,11 +153,11 @@ const HomeTabs = (): JSX.Element => {
           />
 
           <FaBell className="text-[#133759] absolute text-2xl xl:text-3xl right-9 hover:text-[#225380] cursor-pointer" />
-        </div>
+        </div> */}
         <div className="flex-1 flex gap-3">
-          <div className="w-80 border-r border-gray-400 hidden lg:block">
+          {/* <div className="w-80 border-r border-gray-400 hidden lg:block">
             <p>navbar</p>
-          </div>
+          </div> */}
           <div className="h-full flex-1 p-2">
             <Tab.Group>
               <Tab.List>
