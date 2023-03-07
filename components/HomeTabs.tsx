@@ -7,11 +7,6 @@ import { FaBell } from "react-icons/fa";
 import axios from "axios";
 
 const HomeTabs = (): JSX.Element => {
-  const resolutions = {
-    homeTab100: "h-[95%]",
-    homeTab150: "h-[90%]",
-  };
-
   const router: NextRouter = useRouter();
   const [userInfo, setUserInfo]: any = useState(null);
   const [check, setCheck] = useState(false);

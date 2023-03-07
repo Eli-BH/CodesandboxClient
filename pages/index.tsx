@@ -1,16 +1,9 @@
 import { useRouter } from "next/router";
-
 import Navbar from "../components/Navbar";
-
 import LeftSidebar from "../components/LeftSidebar";
-
-import RightSidebar from "../components/RightSidebar";
-
 import { pageRoutes } from "../utils/constants";
-
 import { useSession } from "next-auth/react";
 import { useEffect, useContext } from "react";
-import Head from "next/head";
 
 export default function Home() {
   const { status } = useSession();
@@ -25,10 +18,10 @@ export default function Home() {
     nav150: "h-[12vh]",
 
     mainContent100:
-      "md:w-[100%] lg:w-full h-full rounded-b-lg m-auto bg-gray-100 p-3 pb-5",
+      "md:w-[100%] lg:w-full h-full rounded-b-lg m-auto bg-gray-100 p-3 pb-5 bg-white",
 
     mainContent150:
-      "md:w-[100%] lg:w-full h-[88vh] rounded-b-lg m-auto bg-gray-100 p-3 pb-5",
+      "md:w-[100%] lg:w-full h-[88vh] rounded-b-lg m-auto bg-gray-100 p-3 pb-5 bg-white",
   };
 
   useEffect(() => {
