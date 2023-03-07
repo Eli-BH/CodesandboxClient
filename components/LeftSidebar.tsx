@@ -58,35 +58,22 @@ const LeftSidebar = () => {
     return capitalizedWord;
   };
 
-  const resolutions = {
-    profileIcon100: "w-[64px]",
-    profileIcon150: "w-[55px]",
-  };
-
   return (
     <div
       className="
         border-r-2
         h-full
-        w-[30%]
+        w-80
         items-center
-        flex
         flex-col
         hidden
-        lg:block
+        lg:flex
+        lg:mr-3
       "
     >
       <div className="border-b-2 border-gray-200 h-[20%] flex-col flex items-center justify-center">
         <Link href="/?page=profile">
-          <Image
-            src={User}
-            alt="profile Image"
-            className={
-              window.devicePixelRatio >= 1.5
-                ? resolutions.profileIcon150
-                : resolutions.profileIcon100
-            }
-          />
+          <Image src={User} alt="profile Image" className="w-" />
         </Link>
 
         <h2 className="text-2xl font-medium font-sans">
