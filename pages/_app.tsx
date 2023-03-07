@@ -32,7 +32,9 @@ export default function App({
       h-[100vh]
       overflow-hidden
       portrait:h-[100vh]
-      bg-white
+      bg-white 
+      flex
+      flex-col
     "
       >
         <Component {...pageProps} />
