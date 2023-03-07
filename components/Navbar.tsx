@@ -14,7 +14,12 @@ import Logo from "../utils/Logo-Orange.svg";
 import Link from "next/link";
 import User from "../utils/user.png";
 import axios from "axios";
-import { FaBell } from "react-icons/fa";
+import {
+  FaBell,
+  FaTasks,
+  FaHandHoldingMedical,
+  FaKeyboard,
+} from "react-icons/fa";
 
 const Navbar = () => {
   const [menuShowing, setMenuShowing] = useState<Boolean>(false);
@@ -37,8 +42,8 @@ const Navbar = () => {
 
   const items = [
     {
-      text: "Home",
-      icon: <MdOutlineHome />,
+      text: "Tasks",
+      icon: <FaTasks />,
       link: "home",
     },
     {
@@ -47,14 +52,14 @@ const Navbar = () => {
       link: "contact",
     },
     {
-      text: "Manage Patients",
-      icons: <MdPersonAddAlt />,
+      text: "Patients",
+      icon: <FaHandHoldingMedical />,
       link: "manage_patients",
     },
     {
-      text: "Settings",
-      icons: <MdOutlineSettings />,
-      link: "settings",
+      text: "Helpdesk",
+      icon: <FaKeyboard />,
+      link: "manage_patients",
     },
   ];
 
