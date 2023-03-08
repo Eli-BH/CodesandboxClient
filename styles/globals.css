@@ -8,6 +8,12 @@
   }
 }
 
+@media (-webkit-device-pixel-ratio: 1.5) {
+  * {
+    zoom: 0.9;
+  }
+}
+
 html,
 body {
   padding: 0;
