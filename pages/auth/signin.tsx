@@ -5,9 +5,8 @@ import logo from "../../utils/Logo-Orange.svg";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NextPage } from "next";
-import useEffect from "react";
 
 interface ILogin {
   email: string;
