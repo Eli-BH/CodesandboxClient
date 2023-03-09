@@ -174,7 +174,6 @@ const LeftSidebar = () => {
       cursor-pointer
       shadow-lg
       drop-shadow-lg
-    
       "
         >
           Logout

@@ -168,7 +168,7 @@ const Navbar = () => {
                       >
                         <div
                           className={` w-full text-center  cursor-pointer ${
-                            index < 1 && "text-gray-200"
+                            index > 1 && "text-gray-200"
                           }`}
                         >
                           <h2 className="text-2xl font-medium font-sans">
@@ -191,6 +191,9 @@ const Navbar = () => {
                       hover:text-[#ffffff]
                       hover:bg-[#f29b8a]
                       cursor-pointer
+                      flex
+                      items-center 
+                      justify-center
                     "
                 onClick={() => signOut()}
               >
