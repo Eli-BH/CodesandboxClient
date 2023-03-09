@@ -62,14 +62,14 @@ const LeftSidebar = () => {
     <div
       className="
         border-r-2
-        h-full
-        w-[30%]
+        lg:h-full
+        lg:w-[30%]
         items-center
-        flex-col
-        hidden
+        lg:flex-col
         lg:flex
         lg:mr-3
         border-gray-300
+        hidden
       "
     >
       <div className="border-b-2 border-gray-200 w-full h-[20%] flex-col flex items-center justify-center">
@@ -157,7 +157,7 @@ const LeftSidebar = () => {
               )
           )}
       </div>
-      <div className="h-[15%] flex items-center justify-evenly">
+      <div className="h-[15%] flex items-center justify-center">
         <button
           onClick={() => signOut()}
           className="
@@ -174,6 +174,7 @@ const LeftSidebar = () => {
       cursor-pointer
       shadow-lg
       drop-shadow-lg
+    
       "
         >
           Logout
