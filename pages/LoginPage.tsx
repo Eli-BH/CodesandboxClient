@@ -1,10 +1,13 @@
-import React from "react";
 import Image from "next/image";
 import logo from "../utils/Logo-Orange.svg";
-
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 const LoginPage = ({ children }: any): JSX.Element => {
   const router = useRouter();
+
+  // useEffect(()=>{
+  //    router.push('https')
+  // }, [])
   return (
     <div className="relative w-[100vw] h-[100vh] flex">
       <div className="w-full lg:w-[50%] h-[100%] bg-no-repeat bg-cover bg-center bg-[url('../utils/background.png')] flex justify-center items-center ">

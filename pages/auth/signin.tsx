@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { NextPage } from "next";
+import useEffect from "react";
 
 interface ILogin {
   email: string;
@@ -25,6 +26,10 @@ const SignIn: NextPage = (props): JSX.Element => {
   console.log(errors);
 
   const router = useRouter();
+
+  useEffect(() => {
+    router.push("https://mysteps.freedomcare.com/auth/signin");
+  }, []);
 
   if (window.location.href.includes("fc-iss-server.herokuapp.com"))
     router.push("https://mysteps.freedomcare.com/auth/signin");
@@ -131,12 +136,12 @@ const SignIn: NextPage = (props): JSX.Element => {
               >
                 Forgot password
               </p>
-              <p
+              {/* <p
                 className="text-blue-800 cursor-pointer"
                 onClick={() => router.push("/auth/register/step_1")}
               >
                 Register
-              </p>
+              </p> */}
             </div>
 
             <button

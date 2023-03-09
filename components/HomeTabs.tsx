@@ -74,7 +74,7 @@ const HomeTabs = (): JSX.Element => {
 
       setUserInfo(res.data.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }, 5000);
 
@@ -98,7 +98,6 @@ const HomeTabs = (): JSX.Element => {
     }, 5000);
 
     if (check === true) {
-      console.log("done");
       clearInterval(id);
     }
     return () => clearInterval(id);
