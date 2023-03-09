@@ -179,8 +179,13 @@ const Navbar = () => {
                     )
                   )}
               </div>
-              <button
-                className="
+              <div
+                className="w-full  flex
+                      items-center 
+                      justify-center pt-4"
+              >
+                <button
+                  className="
                       border-2
                       p-3
                       w-[150px]
@@ -191,14 +196,13 @@ const Navbar = () => {
                       hover:text-[#ffffff]
                       hover:bg-[#f29b8a]
                       cursor-pointer
-                      flex
-                      items-center 
-                      justify-center
+                      
                     "
-                onClick={() => signOut()}
-              >
-                Logout
-              </button>
+                  onClick={() => signOut()}
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           </div>
         </div>
