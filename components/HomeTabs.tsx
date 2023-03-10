@@ -55,7 +55,6 @@ const HomeTabs = (): JSX.Element => {
 
   const flagCheck = setTimeout(async () => {
     try {
-      console.log("testing other");
       await axios.post(
         "https://mysteps.freedomcare.com/api/user/getUserFlagOther",
         { email: data?.user?.email }
@@ -133,7 +132,7 @@ const HomeTabs = (): JSX.Element => {
     }
   };
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
   return (
     <>
