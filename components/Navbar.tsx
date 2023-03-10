@@ -157,26 +157,45 @@ const Navbar = () => {
               <div className="border-b-2 h-[65%] flex flex-col items-center justify-evenly text-xl border-gray-200">
                 {items &&
                   items.map(
-                    (item, index): JSX.Element => (
-                      <Link
-                        className={`w-full ${
-                          index > 1 && "pointer-events-none"
-                        }`}
-                        href={`/?page=${item.link}`}
-                        key={index}
-                        onClick={() => setMenuShowing(false)}
-                      >
-                        <div
-                          className={` w-full text-center  cursor-pointer ${
-                            index > 1 && "text-gray-200"
+                    (item, index): JSX.Element =>
+                      index === 1 ? (
+                        <a
+                          href="tel:877-771-5875"
+                          className={`w-full ${
+                            index > 1 && "pointer-events-none"
                           }`}
+                          key={index}
                         >
-                          <h2 className="text-2xl font-medium font-sans">
-                            {item.text}
-                          </h2>
-                        </div>
-                      </Link>
-                    )
+                          <div
+                            className={` w-full text-center  cursor-pointer ${
+                              index > 1 && "text-gray-200"
+                            }`}
+                          >
+                            <h2 className="text-2xl font-medium font-sans">
+                              {item.text}
+                            </h2>
+                          </div>
+                        </a>
+                      ) : (
+                        <Link
+                          className={`w-full ${
+                            index > 1 && "pointer-events-none"
+                          }`}
+                          href={`/?page=${item.link}`}
+                          key={index}
+                          onClick={() => setMenuShowing(false)}
+                        >
+                          <div
+                            className={` w-full text-center  cursor-pointer ${
+                              index > 1 && "text-gray-200"
+                            }`}
+                          >
+                            <h2 className="text-2xl font-medium font-sans">
+                              {item.text}
+                            </h2>
+                          </div>
+                        </Link>
+                      )
                   )}
               </div>
               <div
