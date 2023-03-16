@@ -216,7 +216,7 @@ const HomeTabs = (): JSX.Element => {
                           className="font-semibold text-md md:text-3xl xl:text-4xl "
                         >
                           <p className=" ml-2  md:ml-4  lg:ml-16 whitespace-nowrap  hover:bg-[#133759] p-2 cursor-pointer hover:text-white rounded-md hover:border-[#DB7F12] hover:shadow-md hover:shadow-black/50 border-white border-2 active:bg-[#225380]">
-                            Employement Documents
+                            Employment Documents
                           </p>
                         </td>
                       </tr>
