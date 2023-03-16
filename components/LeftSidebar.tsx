@@ -89,7 +89,14 @@ const LeftSidebar = () => {
             (item, index): JSX.Element =>
               index === 1 ? (
                 <a
-                  href="tel:877-771-5875"
+                  href={`${
+                    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                      navigator.userAgent
+                    )
+                      ? "tel:877-771-5875"
+                      : "https://freedomcare.com/contact/"
+                  }`}
+                  target="_blank"
                   className="w-full flex justify-center"
                 >
                   <div
