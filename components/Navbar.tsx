@@ -106,7 +106,8 @@ const Navbar = () => {
         className="h-9 xl:hidden "
       />
 
-      <FaBell className="text-[#133759] absolute text-2xl xl:text-3xl right-9 hover:text-[#225380] cursor-pointer" />
+      {/* <FaBell className="text-[#133759] absolute text-2xl xl:text-3xl right-9 hover:text-[#225380] cursor-pointer" /> */}
+      <FaBell className="text-white absolute text-2xl xl:text-3xl right-9 " />
 
       <div
         className={`
