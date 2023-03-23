@@ -148,8 +148,9 @@ const Navbar = () => {
                 "
             >
               <div className="border-b-2 border-gray-200 h-[20%] flex-col flex items-center justify-center">
+              <Link href="/?page=profile">
                 <Image src={User} alt="profile Image" className="w-[64px] " />
-
+              </Link>
                 <h2 className="text-2xl font-medium font-sans">
                   Hello, {`${userInfo && capitalize(userInfo?.firstName)}`}!
                 </h2>

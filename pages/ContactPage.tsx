@@ -19,7 +19,7 @@ const ContactPage = (): JSX.Element => {
         </p>
         <p className="text-sm w-[280px] md:w-full lg:w-full xl:w-full lg:text-xl font-semibold">
           All office visits are by appointment only. Call{" "}
-          <a href="tel:877-771-5875">(877) 771-5875</a> to schedule.
+          <a href="tel:718-260-6299">(718) 260-6299</a> to schedule.
         </p>
       </div>
 
