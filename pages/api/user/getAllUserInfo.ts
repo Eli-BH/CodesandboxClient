@@ -28,7 +28,7 @@ export default async function handler(
         return res.status(200).json({
             success: true,
             data: user,
-            sfData: sfinfo
+            sfData: sfinfo.rows[0]
         });
     } catch (error: any) {
         res.status(500).json({ success: false, error: error.message });
