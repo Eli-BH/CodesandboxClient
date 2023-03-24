@@ -31,6 +31,11 @@ const Other = () => {
   https: return (
     <>
       <iframe
+        onDoubleClick={() =>
+          alert(
+            `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`
+          )
+        }
         id="documents"
         src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`}
         title="document management"
