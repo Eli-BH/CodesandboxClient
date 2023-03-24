@@ -212,10 +212,22 @@ const HomeTabs = (): JSX.Element => {
                           )}
                         </td>
                         <td
-                          onClick={() => router.push("/?page=i9")}
+                          onClick={() =>
+                            userInfo?.flags?.employeeDocs?.status ===
+                              "Requested" && router.push("/?page=i9")
+                          }
                           className="font-semibold text-md md:text-3xl xl:text-4xl "
                         >
-                          <p className=" ml-2  md:ml-4  lg:ml-16 whitespace-nowrap  hover:bg-[#133759] p-2 cursor-pointer hover:text-white rounded-md hover:border-[#DB7F12] hover:shadow-md hover:shadow-black/50 border-white border-2 active:bg-[#225380]">
+                          <p
+                            className={`mouse-events-none ml-2 md:ml-4  lg:ml-16 whitespace-nowrap  ${
+                              userInfo?.flags?.employeeDocs?.status ==
+                                "Requested" &&
+                              "hover:bg-[#133759] hover:border-[#DB7F12] hover:shadow-md hover:shadow-black/50 hover:text-white active:bg-[#225380] cursor-pointer"
+                            }  p-2  rounded-md   border-white border-2 ${
+                              userInfo?.flags?.employeeDocs?.status == "" &&
+                              "ml-2  md:ml-4  lg:ml-16 p-2 cursor-not-allowed text-gray-200  border-white border-2"
+                            }  `}
+                          >
                             Employment Documents
                           </p>
                         </td>
@@ -229,8 +241,23 @@ const HomeTabs = (): JSX.Element => {
                             />
                           )}
                         </td>
-                        <td className="font-semibold text-md md:text-3xl xl:text-4xl ">
-                          <p className="ml-2  md:ml-4  lg:ml-16  p-2 cursor-not-allowed text-gray-200 border-white border-2">
+                        <td
+                          onClick={() =>
+                            userInfo?.flags?.otherTasks?.status ===
+                              "Requested" && router.push("/?page=otherDocs")
+                          }
+                          className="font-semibold text-md md:text-3xl xl:text-4xl "
+                        >
+                          <p
+                            className={`mouse-events-none ml-2 md:ml-4  lg:ml-16 whitespace-nowrap  ${
+                              userInfo?.flags?.otherTasks?.status ==
+                                "Requested" &&
+                              "hover:bg-[#133759] hover:border-[#DB7F12] hover:shadow-md hover:shadow-black/50 hover:text-white active:bg-[#225380] cursor-pointer"
+                            }  p-2  rounded-md   border-white border-2 ${
+                              userInfo?.flags?.otherTasks?.status == "" &&
+                              "ml-2  md:ml-4  lg:ml-16 p-2 cursor-not-allowed text-gray-200  border-white border-2"
+                            }  `}
+                          >
                             Other Documents
                           </p>
                         </td>

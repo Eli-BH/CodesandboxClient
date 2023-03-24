@@ -24,6 +24,14 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
         .status(404)
         .json({ success: false, message: "User not found" });
 
+
+
+    if (user.accountLocked == true) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Account Locked, please reset password" });
+    }
+
     const passwordMatch = await user.matchPasswords(password);
 
     if (!passwordMatch) {
@@ -35,7 +43,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
         .json({ success: false, message: "Invalid email or password" });
     }
 
-    if (user.invalidLoginCounter >= 5) {
+    if (user.invalidLoginCounter >= 10) {
       user.accountLocked = true; //
       user.accountLockTime = Date.now();
 
@@ -45,6 +53,9 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
         .status(400)
         .json({ success: false, message: "Too many attempts, account Locked" });
     }
+
+
+
 
     user.invalidLoginCounter = 0; //
 

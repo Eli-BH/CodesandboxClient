@@ -111,7 +111,8 @@ export default async function register(
     //   [currentLoginTime, email]
     // );
 
-    await pool.query("UPDATE salesforce.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, Phone = $6, RecordTypeId = $7, MailingCity = $8, MailingPostalCode = $9, MailingState = $10, MailingStreet = $11 WHERE Email = $12", [
+
+    await pool.query("UPDATE salesforce.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, MobilePhone = $6, RecordTypeId = $7, MailingCity = $8, MailingPostalCode = $9, MailingState = $10, MailingStreet = $11 WHERE Email = $12", [
       dateOfBirth, //1
       firstName,//2
       lastName,//3
@@ -122,11 +123,11 @@ export default async function register(
       city,//8
       zip,//9
       state,//10
-      address2 ? `${address} ${address2}` : address,//11
+      address2 != "" ? `${address} ${address2}` : address,//11
       email//12
     ])
     // await pool.query(
-    //   "INSERT INTO salesforce.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, Phone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
+    //   "INSERT INTO salesforce.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, MobilePhone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
     //   [
     //     dateOfBirth,
     //     firstName,

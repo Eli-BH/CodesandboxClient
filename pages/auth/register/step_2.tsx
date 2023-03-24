@@ -372,6 +372,12 @@ const step_2 = () => {
                       }`}
                       {...register("password", {
                         required: { value: true, message: "Password required" },
+                        pattern: {
+                          value:
+                            /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-={}|[\]:;"'<>,.?\/])[A-Za-z\d!@#$%^&*()_+\-={}|[\]:;"'<>,.?\/]{8,}$/,
+                          message:
+                            "Must have at least 1 special character, 1 uppercase letter, 1 number , and at least 8 characters",
+                        },
                       })}
                     />
                     <div

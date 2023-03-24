@@ -120,7 +120,7 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
         },
         status: {
           type: String,
-          default: "Requested",
+          default: "",
         },
         link: {
           type: String,
@@ -135,7 +135,7 @@ const caregiverSchema: Schema = new Schema<ICaregiver>(
         },
         status: {
           type: String,
-          default: "Requested"
+          default: ""
         },
         link: {
           type: String,
