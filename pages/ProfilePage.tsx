@@ -103,12 +103,8 @@ const ProfilePage = (): JSX.Element => {
           className="
             bg-white
             h-full
-            border-x-2
-            border-b-2
-            border-t-2
-            border-gray-400
-            rounded-b-lg
-            rounded-t-lg
+           
+           
           "
         >
           <div
