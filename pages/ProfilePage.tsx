@@ -118,6 +118,8 @@ const ProfilePage = (): JSX.Element => {
             p-2
             lg:p-5
             flex
+            lg:flex-row
+            flex-col
             justify-items-start
             justify-evenly
             items-center
@@ -143,12 +145,14 @@ const ProfilePage = (): JSX.Element => {
               px-4
               md:p-5
               h-[90%]
-              w-1/2
+              w-full
+              md:w-1/2
               rounded-sm
               flex
               flex-col
               justify-evenly
-              border-l-2
+              
+              lg:border-l-2
               "
             >
               <p>
