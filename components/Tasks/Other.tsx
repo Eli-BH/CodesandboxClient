@@ -29,21 +29,14 @@ const Other = () => {
   //freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=0038G000009BRDmQAO
 
   return (
-    <div
-      id="other_iframe"
-      onDoubleClick={() =>
-        alert(
-          `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`
-        )
-      }
-    >
+    <>
       <iframe
         id="documents"
         src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`}
         title="document management"
         className="w-full h-full"
       ></iframe>
-    </div>
+    </>
   );
 };
 

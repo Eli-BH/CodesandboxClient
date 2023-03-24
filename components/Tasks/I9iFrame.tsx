@@ -28,11 +28,6 @@ const I9iFrame = (): JSX.Element => {
   return (
     <>
       <iframe
-        onDoubleClick={() =>
-          alert(
-            `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY`
-          )
-        }
         id="documents"
         src={`https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY`}
         title="document management"

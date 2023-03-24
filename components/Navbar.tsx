@@ -99,11 +99,31 @@ const Navbar = () => {
         alt="FreedomCare Logo"
         src="/images/Logo-Orange.svg"
         className="h-9 hidden xl:block"
+        onDoubleClick={() =>
+          alert(
+            `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=OtherDocs&state=NY`
+          )
+        }
+        onClick={() =>
+          alert(
+            `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=EmploymentDocs&state=NY`
+          )
+        }
       />
       <img
         alt="FreedomCare Logo"
         src="/images/FC_Heart.png"
         className="h-9 xl:hidden "
+        onDoubleClick={() =>
+          alert(
+            `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=EmploymentDocs&state=NY`
+          )
+        }
+        onClick={() =>
+          alert(
+            `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=OtherDocs&state=NY`
+          )
+        }
       />
 
       {/* <FaBell className="text-[#133759] absolute text-2xl xl:text-3xl right-9 hover:text-[#225380] cursor-pointer" /> */}
