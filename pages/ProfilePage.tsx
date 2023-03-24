@@ -32,6 +32,7 @@ const ProfilePage = (): JSX.Element => {
           }
         );
         setUserInfo(res.data.data);
+        console.log(res);
         console.log(userInfo);
       } catch (error) {
         console.log(error);
