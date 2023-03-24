@@ -100,14 +100,10 @@ const Navbar = () => {
         src="/images/Logo-Orange.svg"
         className="h-9 hidden xl:block"
         onDoubleClick={() =>
-          alert(
-            `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=OtherDocs&state=NY`
-          )
-        }
-        onClick={() =>
-          alert(
-            `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=EmploymentDocs&state=NY`
-          )
+          alert({
+            i9: `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=EmploymentDocs&state=NY`,
+            other: `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=OtherDocs&state=NY`,
+          })
         }
       />
       <img
@@ -115,14 +111,10 @@ const Navbar = () => {
         src="/images/FC_Heart.png"
         className="h-9 xl:hidden "
         onDoubleClick={() =>
-          alert(
-            `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=EmploymentDocs&state=NY`
-          )
-        }
-        onClick={() =>
-          alert(
-            `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=OtherDocs&state=NY`
-          )
+          alert({
+            i9: `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=EmploymentDocs&state=NY`,
+            other: `https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo.sfid}&ShowRecordType=OtherDocs&state=NY`,
+          })
         }
       />
 
