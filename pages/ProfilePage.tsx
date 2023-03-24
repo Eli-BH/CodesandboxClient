@@ -151,8 +151,9 @@ const ProfilePage = (): JSX.Element => {
               flex
               flex-col
               justify-evenly
-              
+
               lg:border-l-2
+              font-semibold 
               "
             >
               <p>
@@ -170,7 +171,7 @@ const ProfilePage = (): JSX.Element => {
                   sfInfo?.mailingpostalcode
                 }, ${sfInfo?.mailingcountry}` || "-"}
               </p>
-              <p>Email: {`${userInfo && userInfo?.email}` || "-"}</p>
+              <p>Email: {` ${userInfo && userInfo?.email}` || "-"}</p>
             </div>
           </div>
         </Tab.Panel>
