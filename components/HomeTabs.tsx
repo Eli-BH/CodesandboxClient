@@ -104,7 +104,6 @@ const HomeTabs = (): JSX.Element => {
 
   const statusIcon = (status: string): JSX.Element | null => {
     switch (status) {
-      case "incomplete":
       case "Requested":
         return (
           <img src="/images/Requested-cropped.svg" className="w-28 md:w-40 " />
@@ -132,7 +131,7 @@ const HomeTabs = (): JSX.Element => {
     }
   };
 
-  // console.log(userInfo);
+  console.log(userInfo);
 
   return (
     <>
