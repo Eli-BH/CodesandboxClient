@@ -28,7 +28,7 @@ const Other = () => {
 
   //freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=0038G000009BRDmQAO
 
-  https: return (
+  return (
     <>
       <iframe
         onDoubleClick={() =>
