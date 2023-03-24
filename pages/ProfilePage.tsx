@@ -154,6 +154,7 @@ const ProfilePage = (): JSX.Element => {
 
               lg:border-l-2
               font-semibold 
+              text-xl
               "
             >
               <p>
