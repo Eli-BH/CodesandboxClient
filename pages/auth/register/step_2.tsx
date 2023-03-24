@@ -443,6 +443,7 @@ const step_2 = () => {
                     className={`w-full border border-black  rounded-sm  ${
                       errors.address && errorStyle
                     }`}
+                    disabled
                     type="text"
                     placeholder="Address"
                     {...register("address", {
@@ -466,6 +467,7 @@ const step_2 = () => {
                 <label className="w-[95%] md:w-full lg:w-full relative ">
                   Address2:
                   <input
+                    disabled
                     className={`w-full border border-black  rounded-sm  ${
                       errors.address2 && errorStyle
                     }`}
@@ -490,6 +492,7 @@ const step_2 = () => {
                     className={`w-full border border-black  rounded-sm  ${
                       errors.city && errorStyle
                     }`}
+                    disabled
                     type="text"
                     placeholder="City"
                     {...register("city", {
@@ -511,6 +514,7 @@ const step_2 = () => {
                   State:
                   <select
                     placeholder="State"
+                    disabled
                     className={`w-full border border-black rounded-sm  ${
                       errors.state && errorStyle
                     }`}
@@ -544,6 +548,7 @@ const step_2 = () => {
                     className={`w-full border border-black  rounded-sm  ${
                       errors.zip && errorStyle
                     }`}
+                    disabled
                     type="text"
                     placeholder="eg: 11209"
                     {...register("zip", {
