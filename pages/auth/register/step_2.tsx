@@ -381,7 +381,7 @@ const step_2 = () => {
                       })}
                     />
                     <div
-                      className={`absolute w-[100%] h-[30px] flex items-center justify-start  border rounded-sm border-red-800 pl ${
+                      className={`absolute w-[100%] bg-white min-h-[30px] flex items-center justify-start  border rounded-sm border-red-800 pl ${
                         errors.password ? "block" : "hidden"
                       }`}
                     >
