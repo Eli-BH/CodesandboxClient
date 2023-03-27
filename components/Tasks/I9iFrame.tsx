@@ -16,6 +16,7 @@ const I9iFrame = (): JSX.Element => {
           }
         );
 
+        console.log(response?.data);
         setSfid(response?.data.sfid);
       } catch (error) {
         console.log(error);
