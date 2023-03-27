@@ -22,6 +22,7 @@ import {
 const Navbar = () => {
   const [menuShowing, setMenuShowing] = useState<Boolean>(false);
   const [userInfo, setUserInfo]: any = useState(null);
+  const [sfid, setSfid]: any = useState("");
   const { data } = useSession();
 
   useEffect(() => {
@@ -38,8 +39,28 @@ const Navbar = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    const fetchSfid = async () => {
+      try {
+        const response = await axios.post(
+          "https://mysteps.freedomcare.com/api/getSfid",
+          {
+            email: data?.user?.email,
+          }
+        );
+
+        console.log(response?.data);
+        setSfid(response?.data.sfid);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchSfid();
+  }, []);
+
   console.log("TARGET");
-  console.log(userInfo);
+  console.log(sfid);
   const items = [
     {
       text: "Tasks",
@@ -103,8 +124,8 @@ const Navbar = () => {
         className="h-9 hidden xl:block"
         onDoubleClick={() =>
           alert(
-            `i9: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo?.ID}&ShowRecordType=EmploymentDocs&state=NY \n \n` +
-              `Other: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo?.ID}&ShowRecordType=OtherDocs&state=NY`
+            `i9: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY \n \n` +
+              `Other: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`
           )
         }
       />
@@ -114,8 +135,8 @@ const Navbar = () => {
         className="h-9 xl:hidden "
         onDoubleClick={() =>
           alert(
-            `i9: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo?.ID}&ShowRecordType=EmploymentDocs&state=NY \n\n` +
-              `other: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${userInfo?.ID}&ShowRecordType=OtherDocs&state=NY`
+            `i9: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY \n\n` +
+              `other: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`
           )
         }
       />
