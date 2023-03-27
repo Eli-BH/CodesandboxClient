@@ -38,7 +38,8 @@ const Navbar = () => {
     })();
   }, []);
 
-  userInfo && console.log("TARGET:" + userInfo.ID);
+  console.log("TARGET");
+  console.log(userInfo);
   const items = [
     {
       text: "Tasks",
