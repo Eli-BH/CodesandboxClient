@@ -448,7 +448,7 @@ const step_2 = () => {
                     placeholder="Address"
                     {...register("address", {
                       required: {
-                        value: true,
+                        value: false,
                         message: "Street addr. required",
                       },
                     })}
@@ -496,7 +496,7 @@ const step_2 = () => {
                     type="text"
                     placeholder="City"
                     {...register("city", {
-                      required: { value: true, message: "City name required" },
+                      required: { value: false, message: "City name required" },
                     })}
                   />
                   <div
@@ -520,7 +520,7 @@ const step_2 = () => {
                     }`}
                     {...register("state", {
                       required: {
-                        value: true,
+                        value: false,
                         message: "Please select your state",
                       },
                     })}
@@ -553,7 +553,7 @@ const step_2 = () => {
                     placeholder="eg: 11209"
                     {...register("zip", {
                       required: {
-                        value: true,
+                        value: false,
                         message: "Postal code required",
                       },
 
