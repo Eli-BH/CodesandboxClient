@@ -111,8 +111,9 @@ export default async function register(
     //   [currentLoginTime, email]
     // );
 
+    //"UPDATE salesforce.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, MobilePhone = $6, RecordTypeId = $7, MailingCity = $8, MailingPostalCode = $9, MailingState = $10, MailingStreet = $11 WHERE Email = $12"
 
-    await pool.query("UPDATE salesforce.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, MobilePhone = $6, RecordTypeId = $7, MailingCity = $8, MailingPostalCode = $9, MailingState = $10, MailingStreet = $11 WHERE Email = $12", [
+    await pool.query("UPDATE salesforce.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, MobilePhone = $6, RecordTypeId = $7 WHERE Email = $8", [
       dateOfBirth, //1
       firstName,//2
       lastName,//3
@@ -120,10 +121,10 @@ export default async function register(
       "english", //let them change this //5
       phone,//6
       newUser.callerType, //caregiver in this case //7
-      city,//8
-      zip,//9
-      state,//10
-      address2 != "" ? `${address} ${address2}` : address,//11
+      // city,//8
+      // zip,//9
+      // state,//10
+      // address2 != "" ? `${address} ${address2}` : address,//11
       email//12
     ])
     // await pool.query(
