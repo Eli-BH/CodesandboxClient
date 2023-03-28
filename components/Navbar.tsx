@@ -124,8 +124,8 @@ const Navbar = () => {
         className="h-9 hidden xl:block"
         onDoubleClick={() =>
           alert(
-            `i9: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY \n \n` +
-              `Other: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`
+            `i9: https://freedomcareny--dev.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY \n \n` +
+              `Other: https://freedomcareny--dev.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`
           )
         }
       />
@@ -135,8 +135,8 @@ const Navbar = () => {
         className="h-9 xl:hidden "
         onDoubleClick={() =>
           alert(
-            `i9: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY \n\n` +
-              `other: https://freedomcareny--lightning.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`
+            `i9: https://freedomcareny--dev.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY \n\n` +
+              `other: https://freedomcareny--dev.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`
           )
         }
       />
