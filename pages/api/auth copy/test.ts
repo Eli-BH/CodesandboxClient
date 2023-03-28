@@ -12,7 +12,7 @@ export default async function test(req: NextApiRequest, res: NextApiResponse) {
 
 
         const user = await pool.query(
-            "SELECT Name, email, id From salesforce.Contact WHERE Email = $1", [email]
+            "SELECT Name, email, id From devsandbox.Contact WHERE Email = $1", [email]
         );
 
 

@@ -93,13 +93,13 @@ export default async function register(
 
     // check if the user is already in salesforce 
     // const existingSfUser = await pool.query(
-    //   "SELECT id FROM salesforce.Contact WHERE Email = $1",
+    //   "SELECT id FROM devsandbox.Contact WHERE Email = $1",
     //   [email]
     // );
 
 
     // const existingSfUserPhone = await pool.query(
-    //   "SELECT id FROM salesforce.Contact WHERE Phone = $1",
+    //   "SELECT id FROM devsandbox.Contact WHERE Phone = $1",
     //   [phone]
     // );
 
@@ -107,13 +107,13 @@ export default async function register(
     //   return res.status(500).json({ success: false, code: 'sf', message: "User already has freedomcare information on file" })
     // }
     // await pool.query(
-    //   "UPDATE salesforce.Contact set LastWebAppLogin__c = $1 WHERE Email = $2",
+    //   "UPDATE devsandbox.Contact set LastWebAppLogin__c = $1 WHERE Email = $2",
     //   [currentLoginTime, email]
     // );
 
-    //"UPDATE salesforce.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, MobilePhone = $6, RecordTypeId = $7, MailingCity = $8, MailingPostalCode = $9, MailingState = $10, MailingStreet = $11 WHERE Email = $12"
+    //"UPDATE devsandbox.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, MobilePhone = $6, RecordTypeId = $7, MailingCity = $8, MailingPostalCode = $9, MailingState = $10, MailingStreet = $11 WHERE Email = $12"
 
-    await pool.query("UPDATE salesforce.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, MobilePhone = $6, RecordTypeId = $7 WHERE Email = $8", [
+    await pool.query("UPDATE devsandbox.Contact set Birthdate = $1 , FirstName = $2, LastName = $3, caller_type__c = $4, Primary_Language__c = $5, MobilePhone = $6, RecordTypeId = $7 WHERE Email = $8", [
       dateOfBirth, //1
       firstName,//2
       lastName,//3
@@ -128,7 +128,7 @@ export default async function register(
       email//12
     ])
     // await pool.query(
-    //   "INSERT INTO salesforce.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, MobilePhone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
+    //   "INSERT INTO devsandbox.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, MobilePhone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
     //   [
     //     dateOfBirth,
     //     firstName,

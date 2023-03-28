@@ -25,7 +25,7 @@ export default async function editUserInfo(
 
         const { sfid } = user
 
-        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c WHERE RecordTypeId in (SELECT sfid FROM salesforce.RecordType WHERE Name = 'Uploaded Documents') AND IsMostRecent__c = True  AND Contact__c = '${sfid}'`)
+        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM devsandbox.Forms__c WHERE RecordTypeId in (SELECT sfid FROM devsandbox.RecordType WHERE Name = 'Uploaded Documents') AND IsMostRecent__c = True  AND Contact__c = '${sfid}'`)
 
         if (status.rowCount < 1) {
             user.flags.otherTasks.status = "NR" //not requested

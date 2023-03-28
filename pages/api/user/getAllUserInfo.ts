@@ -23,7 +23,7 @@ export default async function handler(
                 .json({ success: false, message: "User not found" });
 
 
-        let sfinfo = await pool.query("SELECT * FROM salesforce.Contact WHERE Email = $1 AND sfid = $2", [email, user.sfid])
+        let sfinfo = await pool.query("SELECT * FROM devsandbox.Contact WHERE Email = $1 AND sfid = $2", [email, user.sfid])
 
         return res.status(200).json({
             success: true,
