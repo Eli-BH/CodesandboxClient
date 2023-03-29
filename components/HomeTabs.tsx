@@ -254,8 +254,9 @@ const HomeTabs = (): JSX.Element => {
                                 "Requested" &&
                               "hover:bg-[#133759] hover:border-[#DB7F12] hover:shadow-md hover:shadow-black/50 hover:text-white active:bg-[#225380] cursor-pointer"
                             }  p-2  rounded-md   border-white border-2 ${
-                              userInfo?.flags?.otherTasks?.status ==
-                                ("Awaiting" || "NR") &&
+                              (userInfo?.flags?.otherTasks?.status ==
+                                "Awaiting" ||
+                                userInfo?.flags?.otherTasks?.status == "NR") &&
                               "ml-2  md:ml-4  lg:ml-16 p-2 cursor-not-allowed text-gray-200  border-white border-2"
                             }  `}
                           >
