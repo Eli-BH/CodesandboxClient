@@ -164,9 +164,10 @@ const ProfilePage = (): JSX.Element => {
               <p>Phone Number: {`${sfInfo && sfInfo?.mobilephone}` || "-"}</p>
               <p>
                 Address:{" "}
-                {`${sfInfo && sfInfo?.mailingcity}, ${sfInfo?.mailingstreet}, ${
-                  sfInfo?.mailingpostalcode
-                }, ${sfInfo?.mailingcountry}` || "-"}
+                {`${sfInfo?.mailingstreet}, ${sfInfo && sfInfo?.mailingcity},${
+                  sfInfo?.mailingstate
+                },  ${sfInfo?.mailingpostalcode}, ${sfInfo?.mailingcountry}` ||
+                  "-"}
               </p>
               <p>Email: {` ${userInfo && userInfo?.email}` || "-"}</p>
             </div>
