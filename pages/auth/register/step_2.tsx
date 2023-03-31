@@ -152,6 +152,7 @@ const step_2 = () => {
           dateOfBirth: data.birthdate,
           phone: data.phone,
           password: data.password,
+          sfid: ID,
         }
       );
 
