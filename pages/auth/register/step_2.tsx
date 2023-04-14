@@ -104,7 +104,7 @@ const step_2 = () => {
             ...userInfo,
             firstName: firstname || "",
             lastName: lastname || "",
-            email: email.toLowerCase() || "",
+            email: email.toLowerCase().replace(" ", "+") || "",
             phone: mobilephone || "",
             state: mailingstate || "",
             city: mailingcity || "",
