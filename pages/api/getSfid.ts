@@ -19,7 +19,7 @@ export default async function handler(
         if (!userSfid) res.status(404).json({ success: false, error: 'sfid not found' })
 
 
-        res.status(200).json({ success: true, sfid: userSfid.sfid })
+        res.status(200).json({ success: true, sfid: userSfid.sfid, state: userSfid.state })
 
 
     } catch (error) {
