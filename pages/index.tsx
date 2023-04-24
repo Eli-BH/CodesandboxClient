@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import LeftSidebar from "../components/LeftSidebar";
 import { pageRoutes } from "../utils/constants";
 import { useSession } from "next-auth/react";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
   const { status } = useSession();

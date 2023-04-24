@@ -18,6 +18,42 @@ import { useEffect, useState } from "react";
 
 const ProfilePage = (): JSX.Element => {
   const [userInfo, setUserInfo]: any = useState("");
+  const [sfInfo, setSfInfo] = useState({
+    lastname: "",
+    accountid: "",
+    hhax_admission_id__c: null,
+    name: "",
+    isdeleted: false,
+    systemmodstamp: "",
+    createddate: "",
+    firstname: "",
+    sfid: "",
+    id: 0,
+    _hc_lastop: "",
+    _hc_err: null,
+    mobilephone: "",
+    phone: "",
+    email: "",
+    primary_language__c: "",
+    mailingpostalcode: "",
+    mailingstate: "",
+    mailingcountry: "",
+    mailingstreet: "",
+    mailingcity: "",
+    ownerid: "",
+    birthdate: "",
+    homephone: null,
+    potential_patients_medicaid_number__c: null,
+    caller_type__c: "",
+    there_is_a_designated_representative__c: null,
+    intake_type__c: null,
+    relationship_to_patient__c: null,
+    recordtypeid: "",
+    medicaid__c: null,
+    hhax_caregiver_code__c: "",
+    status__c: "",
+    lastwebapplogin__c: null,
+  });
   const { data } = useSession();
 
   useEffect(() => {
@@ -32,7 +68,7 @@ const ProfilePage = (): JSX.Element => {
           }
         );
         setUserInfo(res.data.data);
-        console.log(userInfo);
+        setSfInfo(res.data.sfData);
       } catch (error) {
         console.log(error);
       }
@@ -67,12 +103,8 @@ const ProfilePage = (): JSX.Element => {
           className="
             bg-white
             h-full
-            border-x-2
-            border-b-2
-            border-t-2
-            border-gray-400
-            rounded-b-lg
-            rounded-t-lg
+           
+           
           "
         >
           <div
@@ -82,6 +114,8 @@ const ProfilePage = (): JSX.Element => {
             p-2
             lg:p-5
             flex
+            lg:flex-row
+            flex-col
             justify-items-start
             justify-evenly
             items-center
@@ -107,12 +141,16 @@ const ProfilePage = (): JSX.Element => {
               px-4
               md:p-5
               h-[90%]
-              w-1/2
+              w-full
+              md:w-1/2
               rounded-sm
               flex
               flex-col
               justify-evenly
-              border-l-2
+
+              lg:border-l-2
+              font-semibold 
+              text-xl
               "
             >
               <p>
@@ -123,9 +161,15 @@ const ProfilePage = (): JSX.Element => {
                 Last Name:{" "}
                 {`${userInfo && capitalize(userInfo?.lastName)}` || "-"}
               </p>
-              <p>Phone Number: {`${userInfo && userInfo?.phone}` || "-"}</p>
-              <p>Address: {`${userInfo && userInfo?.address}` || "-"}</p>
-              <p>Email: {`${userInfo && userInfo?.email}` || "-"}</p>
+              <p>Phone Number: {`${sfInfo && sfInfo?.mobilephone}` || "-"}</p>
+              <p>
+                Address:{" "}
+                {`${sfInfo?.mailingstreet}, ${sfInfo && sfInfo?.mailingcity},${
+                  sfInfo?.mailingstate
+                },  ${sfInfo?.mailingpostalcode}, ${sfInfo?.mailingcountry}` ||
+                  "-"}
+              </p>
+              <p>Email: {` ${userInfo && userInfo?.email}` || "-"}</p>
             </div>
           </div>
         </Tab.Panel>

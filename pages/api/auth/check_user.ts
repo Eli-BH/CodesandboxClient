@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (user) return res.status(200).json({ success: true, message: 'user found', redirect: true })
 
 
-        let foundUser = await pool.query("SELECT * FROM salesforce.Contact WHERE Email = $1 AND sfid = $2", [email, id])
+        let foundUser = await pool.query("SELECT * FROM production.Contact WHERE Email = $1 AND sfid = $2", [email, id])
 
         console.log(foundUser)
         if (!foundUser.rowCount) return res.status(404).json({ success: false, message: "No account", redirect: true })

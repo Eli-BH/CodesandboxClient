@@ -14,7 +14,7 @@ export default async function handler(
 
     try {
 
-        const queryUser = await pool.query("SELECT sfid from salesforce.Contact WHERE email = $1", [email])
+        const queryUser = await pool.query("SELECT sfid from production.Contact WHERE email = $1", [email])
         const user = await Caregiver.findOne({ email }) || await Patient.findOne({ email })
 
 

@@ -56,7 +56,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     //dev
     // if ((process.env.ENVIRONMENT = "live")) {
     //   await pool.query(
-    //     "UPDATE salesforce.Contact set	LastWebAppLogin__c = $1 WHERE Email = $2",
+    //     "UPDATE production.Contact set	LastWebAppLogin__c = $1 WHERE Email = $2",
     //     [currentLoginTime, email]
     //   );
     // }

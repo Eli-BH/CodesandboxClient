@@ -22,6 +22,7 @@ import {
 const Navbar = () => {
   const [menuShowing, setMenuShowing] = useState<Boolean>(false);
   const [userInfo, setUserInfo]: any = useState(null);
+  const [sfid, setSfid]: any = useState("");
   const { data } = useSession();
 
   useEffect(() => {
@@ -38,6 +39,28 @@ const Navbar = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    const fetchSfid = async () => {
+      try {
+        const response = await axios.post(
+          "https://mysteps.freedomcare.com/api/getSfid",
+          {
+            email: data?.user?.email,
+          }
+        );
+
+        console.log(response?.data);
+        setSfid(response?.data.sfid);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchSfid();
+  }, []);
+
+  console.log("TARGET");
+  console.log(sfid);
   const items = [
     {
       text: "Tasks",
@@ -99,11 +122,23 @@ const Navbar = () => {
         alt="FreedomCare Logo"
         src="/images/Logo-Orange.svg"
         className="h-9 hidden xl:block"
+        onDoubleClick={() =>
+          alert(
+            `i9: https://freedomcareny--dev.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY \n \n` +
+              `Other: https://freedomcareny--dev.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`
+          )
+        }
       />
       <img
         alt="FreedomCare Logo"
         src="/images/FC_Heart.png"
         className="h-9 xl:hidden "
+        onDoubleClick={() =>
+          alert(
+            `i9: https://freedomcareny--dev.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=EmploymentDocs&state=NY \n\n` +
+              `other: https://freedomcareny--dev.sandbox.my.salesforce-sites.com/issProject?recordId=${sfid}&ShowRecordType=OtherDocs&state=NY`
+          )
+        }
       />
 
       {/* <FaBell className="text-[#133759] absolute text-2xl xl:text-3xl right-9 hover:text-[#225380] cursor-pointer" /> */}

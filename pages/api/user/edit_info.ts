@@ -21,7 +21,7 @@ export default async function handler(
 
         const { sfid } = user
 
-        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM salesforce.Forms__c WHERE RecordTypeId in (SELECT sfid FROM salesforce.RecordType WHERE Name = 'Employment Docs') AND IsMostRecent__c = True  AND Contact__c = '${sfid}'`)
+        const status = await pool.query(`SELECT Id, Status__c, Contact__c, Name FROM production.Forms__c WHERE RecordTypeId in (SELECT sfid FROM production.RecordType WHERE Name = 'Employment Docs') AND IsMostRecent__c = True  AND Contact__c = '${sfid}'`)
 
         if (status.rowCount < 1) {
             user.flags.employeeDocs.status = "Awaiting"

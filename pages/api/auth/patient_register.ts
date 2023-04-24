@@ -34,19 +34,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         //check if the user is already in salesforce 
         // const existingSfUser = await pool.query(
-        //   "SELECT id FROM salesforce.Contact WHERE Email = $1",
+        //   "SELECT id FROM production.Contact WHERE Email = $1",
         //   [email]
         // );
 
 
         // const existingSfUserPhone = await pool.query(
-        //   "SELECT id FROM salesforce.Contact WHERE Phone = $1",
+        //   "SELECT id FROM production.Contact WHERE Phone = $1",
         //   [phone]
         // );
 
 
         // const existingSfUserMedicaid = await pool.query(
-        //   "SELECT id FROM salesforce.Contact WHERE medicaid__c = $1",
+        //   "SELECT id FROM production.Contact WHERE medicaid__c = $1",
         //   [medicaidId]
         // );
 
@@ -161,7 +161,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // Add user to salesforce 
         let newSfUser = await pool.query(
-            "INSERT INTO salesforce.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, Phone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet, intakeType,There_is_a_Designated_Representative__c, medicaid__c ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *",
+            "INSERT INTO production.Contact(Birthdate, FirstName, LastName, Email, caller_type__c, Primary_Language__c, Phone, RecordTypeId, MailingCity, MailingPostalCode, MailingState, MailingStreet, intakeType,There_is_a_Designated_Representative__c, medicaid__c ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *",
             [
                 finalObj["Date of Birth"],
                 finalObj.Firstname,
